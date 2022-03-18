@@ -104,14 +104,15 @@ load_data("sources/awards.csv") %>%
 
 # Instruction
 
-## Teaching - Instructor of Record
+## Instructor of Record
 ```{r teaching_mine}
+# TODO: START HERE
 read.csv("sources/teaching_mine.csv")  %>% 
   detailed_entries(what=class, when=code, with=paste(credits, "credits"), why=schedule)
 
 ```
 
-## Teaching - Guest Lectures
+## Guest Lectures
 ```{r teaching_guest}
 read.csv("sources/teaching_guest.csv") %>%
   detailed_entries(when=class, what=title, with=date)
