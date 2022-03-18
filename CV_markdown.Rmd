@@ -10,20 +10,16 @@ email: "jason.wallace@uga.edu"
 github: jgwall
 linkedin: "jason-wallace-a874b845"
 date: "`r format(Sys.time(), '%B %Y')`"
-#output: vitae::awesomecv     # Some good points, but overall not a fan
 output: vitae::hyndman       # Not bad, but a little ugly with title bar
-#output: vitae::markdowncv    # Only HTML?
-#output: vitae::moderncv      # Okay, but a little bland
-#output: vitae::twentyseconds # Sleek with sidebar; better for short resume
-#output: 
-#   vitae::latexcv:
-#     theme: classic
 header-includes:
   \definecolor{headcolor}{HTML}{000099}
 
-# TODO: Various ways I can tweak this. I like the direct format of https://github.com/robjhyndman/CV/ , but it involves typing stuff right into the rMarkdown. Like use of custom baretable() function to make a no-nonsense table for output. Adapt?
 # TODO: Can also use Bookdown to separate out sections. Not necessary as currently written, but would help if want to include plaint-text stuff somewhere.
 ---
+
+```{r formatting, results="asis"}
+cat("\\renewcommand{\\labelitemi}{\\textbullet}") # Reset bullets to round circles
+```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
@@ -62,7 +58,9 @@ baretable <- function(tbl, digits = 0,
     )
 }
 
+
 ```
+
 
 # Academic History
 ```{r header_info, results="asis"}
@@ -106,14 +104,16 @@ load_data("sources/awards.csv") %>%
 
 ## Instructor of Record
 ```{r teaching_mine}
-# TODO: START HERE
 read.csv("sources/teaching_mine.csv")  %>% 
-  detailed_entries(what=class, when=code, with=paste(credits, "credits"), why=schedule)
+  mutate(class = paste(class, " (", credits, ifelse(credits==1, " credit", " credits"), ")", sep=""), .keep="unused") %>%
+  detailed_entries(what=class, when=code, why=schedule)
 
+# TODO: Test Baretable outline? I like the bullet points, how to keep?
 ```
 
 ## Guest Lectures
 ```{r teaching_guest}
+# TODO: Start here. probably best to redo as a baretable()
 read.csv("sources/teaching_guest.csv") %>%
   detailed_entries(when=class, what=title, with=date)
 # detailed_entries(what=paste(title, "( in", class, ")"), when=date)
