@@ -29,10 +29,16 @@ header-includes:
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(vitae)
 library(dplyr)
+library(readr)
 
 # Function to make sure any special characters are dealt with first
 sanitize = function(tbl){
   tbl %>% mutate_all(dplR::latexify, doublebackslash = FALSE)
+}
+
+# Helper function to load a CSV and do routine tasks
+load_data = function(infile){
+  read_csv(infile, show_col_types=FALSE) %>% sanitize
 }
 
 # Helper function to bold text
@@ -43,24 +49,16 @@ bold = function(x){
 # Function to produce very basic table, no lines or headings - From Rob Hyndman, https://github.com/robjhyndman/CV
 baretable <- function(tbl, digits = 0,
                       include.colnames = FALSE, include.rownames = FALSE,
-                      hline.after = NULL,
-                      size = getOption("xtable.size", NULL),
-                      add.to.row = getOption("xtable.add.to.row", NULL),
-                      longtable = FALSE,
+                      hline.after = NULL, size = getOption("xtable.size", NULL),
+                      add.to.row = getOption("xtable.add.to.row", NULL), longtable = FALSE,
                       ...) {
   xtable::xtable(tbl, digits = digits, ...) %>%
     print(
-      include.colnames = include.colnames,
-      include.rownames = include.rownames,
-      hline.after = hline.after,
-      comment = FALSE,
+      include.colnames = include.colnames, include.rownames = include.rownames,
+      hline.after = hline.after,  comment = FALSE,
       tabular.environment = if_else(longtable, "longtable", "tabular"),
-      floating = FALSE,
-      size = size,
-      add.to.row = add.to.row,
-      sanitize.text.function = function(x) {
-        x
-      }
+      floating = FALSE, size = size, add.to.row = add.to.row,
+      sanitize.text.function = function(x) {x}
     )
 }
 
@@ -68,24 +66,14 @@ baretable <- function(tbl, digits = 0,
 
 # Academic History
 ```{r header_info, results="asis"}
-read.csv("sources/0_header_info.csv") %>%
-  sanitize() %>%
+load_data("sources/0_header_info.csv") %>%
   mutate(info = bold(info)) %>%
   baretable()
 ```
-<!-- **Present Rank:** Associate Professor -->
-
-<!-- **Recommended Rank:** Full  Professor -->
-
-<!-- **Proportion Time Assignment:** 80% research, 20% teaching -->
-
-<!-- **Tenure Status:** Tenured -->
-
-<!-- **Graduate Faculty:** 2015-Present -->
 
 ## Education
 ```{r education, results="asis"}
-read.csv("sources/education.csv") %>%
+load_data("sources/education.csv") %>%
   mutate(degree = bold(paste(degree, "\\textendash{}", location)), .keep="unused") %>%
   relocate(year, degree) %>%
   arrange(desc(year)) %>% # Arrange in descending order of Year
@@ -94,11 +82,10 @@ read.csv("sources/education.csv") %>%
 
 ## Professional Experience
 ```{r employment, results="asis"}
-read.csv("sources/employment.csv") %>% 
-  sanitize() %>%
+load_data("sources/employment.csv") %>% 
   arrange(desc(stop)) %>%
-  mutate(time=paste(start, "\\textendash{}", stop, sep=""), 
-         title=bold(title), 
+  mutate(time=paste(start, "\\textendash{}", stop, sep=""),
+         title=bold(title),
          location=paste(organization, " (", location, ")", sep=""), .keep="unused") %>%
   relocate(time, title) %>%
   baretable()
@@ -106,9 +93,13 @@ read.csv("sources/employment.csv") %>%
 
 
 ## Awards
-```{r awards}
-read.csv("sources/awards.csv") %>%
-  detailed_entries(what=award, when=when, with=sponsor)
+```{r awards, results="asis"}
+load_data("sources/awards.csv") %>%
+  relocate(when) %>%
+  #mutate(award=paste(bold(award), " (", sponsor, ")", sep=""), .keep="unused") %>%
+  mutate(award=bold(award)) %>%
+  baretable()
+  
 ```
 
 # Instruction
