@@ -1,0 +1,144 @@
+---
+name: Jason G.
+surname: Wallace
+position: "Associate Professor"
+address: "Department of Crop & Soil Sciences, University of Georgia"
+phone: +1-706-542-9696 
+www: wallacelab.uga.edu
+email: "jason.wallace@uga.edu"
+#twitter: TheWallaceLab
+github: jgwall
+linkedin: "jason-wallace-a874b845"
+date: "`r format(Sys.time(), '%B %Y')`"
+#output: vitae::awesomecv     # Some good points, but overall not a fan
+output: vitae::hyndman       # Not bad, but a little ugly with title bar
+#output: vitae::markdowncv    # Only HTML?
+#output: vitae::moderncv      # Okay, but a little bland
+#output: vitae::twentyseconds # Sleek with sidebar; better for short resume
+#output: 
+#   vitae::latexcv:
+#     theme: classic
+
+# TODO: Various ways I can tweak this. I like the direct format of https://github.com/robjhyndman/CV/ , but it involves typing stuff right into the rMarkdown. Like use of custom baretable() function to make a no-nonsense table for output. Adapt?
+# TODO: Can also use Bookdown to separate out sections. Not necessary as currently written, but would help if want to include plaint-text stuff somewhere.
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(vitae)
+library(dplyr)
+
+# Function to produce very basic table, no lines or headings - From Rob Hyndman, https://github.com/robjhyndman/CV
+baretable <- function(tbl, digits = 0,
+                      include.colnames = FALSE, include.rownames = FALSE,
+                      hline.after = NULL,
+                      size = getOption("xtable.size", NULL),
+                      add.to.row = getOption("xtable.add.to.row", NULL),
+                      longtable = FALSE,
+                      ...) {
+  xtable::xtable(tbl, digits = digits, ...) %>%
+    print(
+      include.colnames = include.colnames,
+      include.rownames = include.rownames,
+      hline.after = hline.after,
+      comment = FALSE,
+      tabular.environment = if_else(longtable, "longtable", "tabular"),
+      floating = FALSE,
+      size = size,
+      add.to.row = add.to.row,
+      sanitize.text.function = function(x) {
+        x
+      }
+    )
+}
+
+```
+
+# Academic History
+
+**Present Rank:** Associate Professor
+
+**Recommended Rank:** Full  Professor
+
+**Proportion Time Assignment:** 80% research, 20% teaching
+
+**Tenure Status:** Tenured
+
+**Graduate Faculty:** 2015-Present
+
+## Education
+
+```{r education, results="asis"}
+# Try alternative formatting so less constricted by vitae package
+education = read.csv("sources/education.csv") %>%
+  mutate(year = paste("\\textbf{", year, "}", sep=""),
+         degree = paste("\\textbf{", degree, "}", sep="")) %>%
+  relocate(year, degree) %>%
+  arrange(desc(year))  # Arrange in descending order of Year
+
+baretable(education)
+```
+
+
+## Professional Experience
+```{r employment}
+employment = read.csv("sources/employment.csv") 
+employment = employment[order(employment$stop, decreasing=TRUE),]
+employment %>%
+  detailed_entries(what=title, when=paste(start, stop, sep="-"), with=organization, where=location)
+```
+
+## Awards
+```{r awards}
+read.csv("sources/awards.csv") %>%
+  detailed_entries(what=award, when=when, with=sponsor)
+```
+
+# Instruction
+
+## Teaching - Instructor of Record
+```{r teaching_mine}
+read.csv("sources/teaching_mine.csv")  %>% 
+  detailed_entries(what=class, when=code, with=paste(credits, "credits"), why=schedule)
+
+```
+
+## Teaching - Guest Lectures
+```{r teaching_guest}
+read.csv("sources/teaching_guest.csv") %>%
+  detailed_entries(when=class, what=title, with=date)
+# detailed_entries(what=paste(title, "( in", class, ")"), when=date)
+
+```
+
+## Student Mentorship
+```{r student_mentorship}
+students = read.csv("sources/students.csv")
+
+# Format segments
+students$header = paste(students$role, " (", students$status, ")", sep="")
+students$description = paste(students$name, " (", students$degree, " ", students$year, "; ",
+                             students$department, ")", sep="")
+
+students %>% detailed_entries(what=header, why=description)
+```
+
+```{r visitors}
+visitors = read.csv("sources/visiting_scientists.csv")
+visitors$description = paste(visitors$name, " (", visitors$role, ", ", visitors$from,
+                             "; ", visitors$date, ")", sep="")
+visitors %>% detailed_entries(what="Visiting Scientist", why=description)
+```
+
+# TODO: Undergraduates & high-schoolers
+
+<!-- # Publications Note: Can use rcrossref package to retrieve citations via API -->
+
+<!-- ```{r} -->
+<!-- #library(dplyr) -->
+<!-- #knitr::write_bib(c("vitae", "tibble"), "packages.bib") -->
+
+<!-- #bibliography_entries("packages.bib") %>% -->
+<!-- #  arrange(desc(author$family), issued) -->
+<!-- ``` -->
+
