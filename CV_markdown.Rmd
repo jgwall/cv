@@ -18,6 +18,8 @@ output: vitae::hyndman       # Not bad, but a little ugly with title bar
 #output: 
 #   vitae::latexcv:
 #     theme: classic
+header-includes:
+  \definecolor{headcolor}{HTML}{000099}
 
 # TODO: Various ways I can tweak this. I like the direct format of https://github.com/robjhyndman/CV/ , but it involves typing stuff right into the rMarkdown. Like use of custom baretable() function to make a no-nonsense table for output. Adapt?
 # TODO: Can also use Bookdown to separate out sections. Not necessary as currently written, but would help if want to include plaint-text stuff somewhere.
@@ -27,6 +29,16 @@ output: vitae::hyndman       # Not bad, but a little ugly with title bar
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(vitae)
 library(dplyr)
+
+# Function to make sure any special characters are dealt with first
+sanitize = function(tbl){
+  tbl %>% mutate_all(dplR::latexify, doublebackslash = FALSE)
+}
+
+# Helper function to bold text
+bold = function(x){
+  paste("\\textbf{", x, "}", sep="")
+}
 
 # Function to produce very basic table, no lines or headings - From Rob Hyndman, https://github.com/robjhyndman/CV
 baretable <- function(tbl, digits = 0,
@@ -55,38 +67,43 @@ baretable <- function(tbl, digits = 0,
 ```
 
 # Academic History
+```{r header_info, results="asis"}
+read.csv("sources/0_header_info.csv") %>%
+  sanitize() %>%
+  mutate(info = bold(info)) %>%
+  baretable()
+```
+<!-- **Present Rank:** Associate Professor -->
 
-**Present Rank:** Associate Professor
+<!-- **Recommended Rank:** Full  Professor -->
 
-**Recommended Rank:** Full  Professor
+<!-- **Proportion Time Assignment:** 80% research, 20% teaching -->
 
-**Proportion Time Assignment:** 80% research, 20% teaching
+<!-- **Tenure Status:** Tenured -->
 
-**Tenure Status:** Tenured
-
-**Graduate Faculty:** 2015-Present
+<!-- **Graduate Faculty:** 2015-Present -->
 
 ## Education
-
 ```{r education, results="asis"}
-# Try alternative formatting so less constricted by vitae package
-education = read.csv("sources/education.csv") %>%
-  mutate(year = paste("\\textbf{", year, "}", sep=""),
-         degree = paste("\\textbf{", degree, "}", sep="")) %>%
+read.csv("sources/education.csv") %>%
+  mutate(degree = bold(paste(degree, "\\textendash{}", location)), .keep="unused") %>%
   relocate(year, degree) %>%
-  arrange(desc(year))  # Arrange in descending order of Year
-
-baretable(education)
+  arrange(desc(year)) %>% # Arrange in descending order of Year
+  baretable()
 ```
-
 
 ## Professional Experience
-```{r employment}
-employment = read.csv("sources/employment.csv") 
-employment = employment[order(employment$stop, decreasing=TRUE),]
-employment %>%
-  detailed_entries(what=title, when=paste(start, stop, sep="-"), with=organization, where=location)
+```{r employment, results="asis"}
+read.csv("sources/employment.csv") %>% 
+  sanitize() %>%
+  arrange(desc(stop)) %>%
+  mutate(time=paste(start, "\\textendash{}", stop, sep=""), 
+         title=bold(title), 
+         location=paste(organization, " (", location, ")", sep=""), .keep="unused") %>%
+  relocate(time, title) %>%
+  baretable()
 ```
+
 
 ## Awards
 ```{r awards}
