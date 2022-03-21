@@ -1,32 +1,32 @@
-role,name,degree,department,year,status
-Chair,"Corut, Kivanc",PhD,UGA Institute of Bioinformatics ,2019-present,Current
-Chair,"Li, Hanxia “Roy”",PhD,UGA Institute of Bioinformatics ,2019-present,Current
-Chair,"Schultz, Corey",PhD,UGA Institute of Bioinformatics ,2019-present,Current
-Chair,"Talamantes, Darrian “Roy”",PhD,UGA Institute of Bioinformatics ,2020-present,Current
-Chair,"Griffis, Holly",MS,UGA Department of Genetics ,2022,Prior
-Chair,"Johnson, Matthew",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics ",2020,Prior
-Chair,"Kovar, Lynsey",MS,UGA Institute of Bioinformatics ,2020,Prior
-Chair,"Rodman, Naomi",MS (incomplete),UGA Department of Crop & Soil Sciences ,2021,Prior
-Co-Chair,"Voghoei, Sahar",PhD,UGA Department of Computer Science ,2021,Prior
-Committee Member,"Adhikari, Jeevan",PhD,UGA Plant Genome Mapping Laboratory (Andy Paterson lab),2017-present,Current
-Committee Member,"Bhattarai, Guarab",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics (Patrick Connor lab)",2019-present,Current
-Committee Member,"Choi, Soyeon",PhD,UGA Department of Genetics (Katrien Devos lab),2018-present,Current
-Committee Member,"Fernandez-Canela, Josue",PhD,UGA Department of Plant Biology (Jeff Bennetzen Lab),2019-present,Current
-Committee Member,"Kwon, Kheeman",PhD,UGA Department of Plant Pathology (Melissa Mitchum lab),2020-present,Current
-Committee Member,"Liu, Jianing",PhD,UGA Department of Genetics (Kelly Dawe lab),2018-present,Current
-Committee Member,"Meinecke, Colton",MS,UGA Warnell School of Forestry (Caterina Villari lab),2019-present,Current
-Committee Member,"Miller, Mark",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics (Zenglu Li lab)",2019-present,Current
-Committee Member,"Pathania, Sakshi",MS,UGA Department of Horticulture (Dario Chavez lab),2019-present,Current
-Committee Member,"Piri, Rebecca",PhD,UGA Institute of Bioinformatics (Kelly Dawe lab),2019-present,Current
-Committee Member,"Sapkota, Manoj",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics (Esther van der Knap lab)",2018-present,Current
-Committee Member,"Singh, Lovepreet",PhD,UGA Department of Crop & Soil Sciences (Andy Paterson lab),2019-present,Current
-Committee Member,"Tran, Dung(“Ivy”)",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics  (Zenglu Li lab)",2018-present,Current
-Committee Member,"Wang, Li",MS,UGA Department of Plant Pathology (Pingsheng Ji lab),2020-present,Current
-Committee Member,"Wright, Hallie",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics (Katrien Devos lab)",2018-present,Current
-Committee Member,"Conway, Tara",MS,UGA Plant Genome Mapping Laboratory (Andrew Paterson lab),2020,Prior
-Committee Member,"Gimode, Davis",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics (Peggy Ozias-Akins lab)",2019,Prior
-Committee Member,"Moore, Bryshal(“Bri”)",MS,Fort Valley State University Department of Plant Biotechnology (Som Punnuri lab),2020,Prior
-Committee Member,"Steketee, Clint",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics (Zenglu Li lab)",2018,Prior
-Committee Member,"Sumabat, Leilani",PhD,UGA Department of Plant Pathology (Marin Brewer lab),2018,Prior
-Committee Member,"Taborda, Carolina",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics (Scott Jackson lab)",2019,Prior
-Committee Member,"Taitano, Nathan",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics (Esther van der Knaap lab)",2020,Prior
+role,name,degree,department,year,status,notes
+Chair,"Corut, Kivanc",PhD,UGA Institute of Bioinformatics ,2019-present,Current,
+Chair,"Li, Hanxia “Roy”",PhD,UGA Institute of Bioinformatics ,2019-present,Current,
+Chair,"Schultz, Corey",PhD,UGA Institute of Bioinformatics ,2019-present,Current,
+Chair,"Talamantes, Darrian “Roy”",PhD,UGA Institute of Bioinformatics ,2020-present,Current,
+Chair,"Griffis, Holly",MS,UGA Department of Genetics ,2022,Prior,
+Chair,"Johnson, Matthew",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics ",2020,Prior,
+Chair,"Kovar, Lynsey",MS,UGA Institute of Bioinformatics ,2020,Prior,
+Chair,"Rodman, Naomi",MS,UGA Department of Crop & Soil Sciences ,2021,Prior,incomplete
+Co-Chair,"Voghoei, Sahar",PhD,UGA Department of Computer Science ,2021,Prior,
+Committee Member,"Adhikari, Jeevan",PhD,UGA Plant Genome Mapping Laboratory (Andy Paterson lab),2017-present,Current,
+Committee Member,"Bhattarai, Guarab",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics (Patrick Connor lab)",2019-present,Current,
+Committee Member,"Choi, Soyeon",PhD,UGA Department of Genetics (Katrien Devos lab),2018-present,Current,
+Committee Member,"Fernandez-Canela, Josue",PhD,UGA Department of Plant Biology (Jeff Bennetzen Lab),2019-present,Current,
+Committee Member,"Kwon, Kheeman",PhD,UGA Department of Plant Pathology (Melissa Mitchum lab),2020-present,Current,
+Committee Member,"Liu, Jianing",PhD,UGA Department of Genetics (Kelly Dawe lab),2018-present,Current,
+Committee Member,"Meinecke, Colton",MS,UGA Warnell School of Forestry (Caterina Villari lab),2019-present,Current,
+Committee Member,"Miller, Mark",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics (Zenglu Li lab)",2019-present,Current,
+Committee Member,"Pathania, Sakshi",MS,UGA Department of Horticulture (Dario Chavez lab),2019-present,Current,
+Committee Member,"Piri, Rebecca",PhD,UGA Institute of Bioinformatics (Kelly Dawe lab),2019-present,Current,
+Committee Member,"Sapkota, Manoj",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics (Esther van der Knap lab)",2018-present,Current,
+Committee Member,"Singh, Lovepreet",PhD,UGA Department of Crop & Soil Sciences (Andy Paterson lab),2019-present,Current,
+Committee Member,"Tran, Dung(“Ivy”)",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics  (Zenglu Li lab)",2018-present,Current,
+Committee Member,"Wang, Li",MS,UGA Department of Plant Pathology (Pingsheng Ji lab),2020-present,Current,
+Committee Member,"Wright, Hallie",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics (Katrien Devos lab)",2018-present,Current,
+Committee Member,"Conway, Tara",MS,UGA Plant Genome Mapping Laboratory (Andrew Paterson lab),2020,Prior,
+Committee Member,"Gimode, Davis",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics (Peggy Ozias-Akins lab)",2019,Prior,
+Committee Member,"Moore, Bryshal(“Bri”)",MS,Fort Valley State University Department of Plant Biotechnology (Som Punnuri lab),2020,Prior,
+Committee Member,"Steketee, Clint",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics (Zenglu Li lab)",2018,Prior,
+Committee Member,"Sumabat, Leilani",PhD,UGA Department of Plant Pathology (Marin Brewer lab),2018,Prior,
+Committee Member,"Taborda, Carolina",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics (Scott Jackson lab)",2019,Prior,
+Committee Member,"Taitano, Nathan",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics (Esther van der Knaap lab)",2020,Prior,

@@ -94,7 +94,6 @@ load_data("sources/employment.csv") %>%
 ```{r awards, results="asis"}
 load_data("sources/awards.csv") %>%
   relocate(when) %>%
-  #mutate(award=paste(bold(award), " (", sponsor, ")", sep=""), .keep="unused") %>%
   mutate(award=bold(award)) %>%
   baretable()
   
@@ -104,7 +103,7 @@ load_data("sources/awards.csv") %>%
 
 ## Instructor of Record
 ```{r teaching_mine}
-read.csv("sources/teaching_mine.csv")  %>% 
+load_data("sources/teaching_mine.csv")  %>% 
   mutate(class = paste(class, " (", credits, ifelse(credits==1, " credit", " credits"), ")", sep=""), .keep="unused") %>%
   detailed_entries(what=class, when=code, why=schedule)
 
@@ -112,31 +111,39 @@ read.csv("sources/teaching_mine.csv")  %>%
 ```
 
 ## Guest Lectures
-```{r teaching_guest}
-# TODO: Start here. probably best to redo as a baretable()
-read.csv("sources/teaching_guest.csv") %>%
-  detailed_entries(when=class, what=title, with=date)
-# detailed_entries(what=paste(title, "( in", class, ")"), when=date)
+```{r teaching_guest, results="asis"}
+load_data("sources/teaching_guest.csv") %>%
+  mutate(description = paste(bold(title), " (", class, ")", sep=""), .keep="unused") %>%
+  relocate(date) %>%
+  baretable()
 
 ```
 
 ## Student Mentorship
-```{r student_mentorship}
-students = read.csv("sources/students.csv")
-
-# Format segments
-students$header = paste(students$role, " (", students$status, ")", sep="")
-students$description = paste(students$name, " (", students$degree, " ", students$year, "; ",
-                             students$department, ")", sep="")
-
-students %>% detailed_entries(what=header, why=description)
+```{r student_mentorship, results="asis"}
+# Note: throws error if not saved to variable
+students=load_data("sources/students.csv") %>% 
+  arrange(desc(year)) %>%  # Sort newest to oldest
+  mutate(role = paste(role, " (", status, ")", sep=""), 
+         #name = paste(bold(name), " (", degree, " ", year, ")", sep=""), 
+         name=bold(name),
+         year = ifelse(is.na(notes), year, paste(year, " (", notes, ")", sep="")), #Add notes in if present
+         .keep="unused") %>%
+  relocate(degree, year) %>%
+  group_by(role) %>%
+  group_map(function(x, ...){
+    cat("###", unique(x$role), "\n")
+    x %>% select(-role) %>% baretable()
+  }, .keep=TRUE)
 ```
 
-```{r visitors}
-visitors = read.csv("sources/visiting_scientists.csv")
-visitors$description = paste(visitors$name, " (", visitors$role, ", ", visitors$from,
-                             "; ", visitors$date, ")", sep="")
-visitors %>% detailed_entries(what="Visiting Scientist", why=description)
+### Visiting Scientists
+
+```{r visitors, results="asis"}
+visitors = load_data("sources/visiting_scientists.csv") %>%
+  mutate(name=bold(name)) %>%
+  relocate(date) %>%
+  baretable()
 ```
 
 # TODO: Undergraduates & high-schoolers
