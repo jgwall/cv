@@ -32,6 +32,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(vitae)
 library(dplyr)
 library(readr)
+library(rcrossref)
 
 # Function to make sure any special characters are dealt with first
 sanitize = function(tbl){
@@ -182,11 +183,21 @@ load_data("sources/students_highschool.csv") %>%
 # Scholarly Activities
 
 ## Publications
+```{r download_pubs, cache=TRUE, cache.extra = tools::md5sum('sources/publications.csv')}
+# Load publications from CrossRef. Cache options mean only runs if source file or this chunk's code have changed
+pubs = read.csv("sources/publications.csv")
+citations = unlist(cr_cn(pubs$doi, format="bibtex"))
+write(citations, "sources/publications.bib")
+```
+
 
 ```{r}
-# TODO: How to include publications? Keep list of DOIs and annotations?
+pubdata = read.csv("sources/publications.csv")
+pubs = bibliography_entries("sources/publications.bib")
+pubs
+# TODO: Format pubs how I want, in reverse order, broken up by time period (year? Position?)
 # TODO: Want to make a nice table summary of pubs in different time periods
-# Maybe list of DOIs and pull from CrossRef? Or can I somehow automatically pull?
+
 ```
 
 
