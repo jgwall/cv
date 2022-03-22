@@ -21,10 +21,11 @@ header-includes:
 # TODO: look at this forum post for splitting xtables over mult. pages:https://tex.stackexchange.com/questions/376790/tabularx-break-long-tables-over-several-pages  Maybe booktabs?
 ---
 
-```{r formatting, results="asis", echo=FALSE}
-cat("\\renewcommand{\\labelitemi}{\\textbullet}") # Reset bullets to round circles
-cat("\\setlist{nosep,after=\\vspace{-\\baselineskip}}") # Don't skip a line after lists finish
-```
+<!-- Formatting LaTeX commands -->
+\renewcommand{\labelitemi}{\textbullet}  <!-- Reset bullets to round circles -->
+\setlist{nosep,after=\vspace{-\baselineskip}}  <!-- Don't skip a line after lists finish -->
+
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
@@ -136,7 +137,7 @@ load_data("sources/teaching_guest.csv") %>%
 ## Student Mentorship
 ```{r student_mentorship, results="asis"}
 # Note: throws error if not saved to variable
-students=load_data("sources/students.csv") %>% 
+students=load_data("sources/students_grads.csv") %>% 
   arrange(desc(year)) %>%  # Sort newest to oldest
   mutate(role = paste(role, " (", status, ")", sep=""), 
          name=bold(name),
@@ -153,7 +154,6 @@ students=load_data("sources/students.csv") %>%
 ```
 
 ### Visiting Scientists
-
 ```{r visitors, results="asis"}
 visitors = load_data("sources/visiting_scientists.csv") %>%
   mutate(name=bold(name)) %>%
@@ -161,7 +161,34 @@ visitors = load_data("sources/visiting_scientists.csv") %>%
   baretable()
 ```
 
-# TODO: Undergraduates & high-schoolers
+### Undergraduate Mentoring
+```{r undergrads, results="asis"}
+load_data("sources/students_undergrads.csv") %>%
+  #mutate(name=bold(name)) %>%
+  mutate(name=bold(name), role=paste(role, " (", university, ")", sep=""), .keep="unused") %>%
+  relocate(date) %>%
+  baretable()
+```
+
+### High School Students
+```{r highschool, results="asis"}
+load_data("sources/students_highschool.csv") %>%
+  mutate(name=bold(name)) %>%
+  select(-grade_level) %>%
+  relocate(date, name) %>%
+  baretable()
+```
+
+# Scholarly Activities
+
+## Publications
+
+```{r}
+# TODO: How to include publications? Keep list of DOIs and annotations?
+# TODO: Want to make a nice table summary of pubs in different time periods
+# Maybe list of DOIs and pull from CrossRef? Or can I somehow automatically pull?
+```
+
 
 <!-- # Publications Note: Can use rcrossref package to retrieve citations via API -->
 
