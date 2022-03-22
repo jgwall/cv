@@ -13,12 +13,15 @@ date: "`r format(Sys.time(), '%B %Y')`"
 output: vitae::hyndman       # Not bad, but a little ugly with title bar
 header-includes:
   \definecolor{headcolor}{HTML}{000099}
+  \usepackage{tabularx}
 
 # TODO: Can also use Bookdown to separate out sections. Not necessary as currently written, but would help if want to include plaint-text stuff somewhere.
+# TODO: May be able to use kableExtras to format Student Mentorship so that columns align across groups (or I just specify them manually; that's probably simpler)
 ---
 
-```{r formatting, results="asis"}
+```{r formatting, results="asis", echo=FALSE}
 cat("\\renewcommand{\\labelitemi}{\\textbullet}") # Reset bullets to round circles
+#cat("\\usepackage{tabularx}") # Include tabularX for variable-width columns
 ```
 
 ```{r setup, include=FALSE}
@@ -42,18 +45,21 @@ bold = function(x){
   paste("\\textbf{", x, "}", sep="")
 }
 
-# Function to produce very basic table, no lines or headings - From Rob Hyndman, https://github.com/robjhyndman/CV
+# Function to produce very basic table, no lines or headings - From Rob Hyndman, https://github.com/robjhyndman/CV, with modifications
 baretable <- function(tbl, digits = 0,
                       include.colnames = FALSE, include.rownames = FALSE,
                       hline.after = NULL, size = getOption("xtable.size", NULL),
-                      add.to.row = getOption("xtable.add.to.row", NULL), longtable = FALSE,
+                      add.to.row = getOption("xtable.add.to.row", NULL), 
+                      tabular.environment="tabularx",
+                      width = "\\textwidth",
                       ...) {
   xtable::xtable(tbl, digits = digits, ...) %>%
     print(
       include.colnames = include.colnames, include.rownames = include.rownames,
       hline.after = hline.after,  comment = FALSE,
-      tabular.environment = if_else(longtable, "longtable", "tabular"),
+      tabular.environment = tabular.environment,
       floating = FALSE, size = size, add.to.row = add.to.row,
+      width=width,
       sanitize.text.function = function(x) {x}
     )
 }
@@ -95,19 +101,29 @@ load_data("sources/employment.csv") %>%
 load_data("sources/awards.csv") %>%
   relocate(when) %>%
   mutate(award=bold(award)) %>%
-  baretable()
-  
+  baretable(align=c("llXl"))
 ```
 
 # Instruction
 
 ## Instructor of Record
-```{r teaching_mine}
-load_data("sources/teaching_mine.csv")  %>% 
-  mutate(class = paste(class, " (", credits, ifelse(credits==1, " credit", " credits"), ")", sep=""), .keep="unused") %>%
-  detailed_entries(what=class, when=code, why=schedule)
+```{r teaching_mine, results="asis"}
+schedule_to_bullets=function(class, schedule){
+  bullets = paste(" \\item", schedule, sep=" ", collapse=" ")
+  bullets = paste("\\begin{itemize}", bullets, "\\end{itemize}")
+  paste(unique(class), bullets)
+}
 
-# TODO: Test Baretable outline? I like the bullet points, how to keep?
+# Load and format
+load_data("sources/teaching_mine.csv")  %>% 
+  mutate(class = bold(class), 
+         credits=paste(credits, ifelse(credits==1, "credit", "credits"))) %>%
+  group_by(code) %>%
+  summarize(class = schedule_to_bullets(class, schedule), credits=unique(credits)) %>%
+  baretable(align=c("llXl")) # Have to specify column width for bullets to work ("X" = variable, but still works)
+
+
+
 ```
 
 ## Guest Lectures
@@ -116,7 +132,6 @@ load_data("sources/teaching_guest.csv") %>%
   mutate(description = paste(bold(title), " (", class, ")", sep=""), .keep="unused") %>%
   relocate(date) %>%
   baretable()
-
 ```
 
 ## Student Mentorship
@@ -125,15 +140,14 @@ load_data("sources/teaching_guest.csv") %>%
 students=load_data("sources/students.csv") %>% 
   arrange(desc(year)) %>%  # Sort newest to oldest
   mutate(role = paste(role, " (", status, ")", sep=""), 
-         #name = paste(bold(name), " (", degree, " ", year, ")", sep=""), 
          name=bold(name),
-         year = ifelse(is.na(notes), year, paste(year, " (", notes, ")", sep="")), #Add notes in if present
+         department = ifelse(is.na(notes), department, paste(department, " (", notes, ")", sep="")), #Add notes in if present
          .keep="unused") %>%
   relocate(degree, year) %>%
   group_by(role) %>%
   group_map(function(x, ...){
     cat("###", unique(x$role), "\n")
-    x %>% select(-role) %>% baretable()
+    x %>% select(-role) %>% baretable(align="llllX")
   }, .keep=TRUE)
 ```
 
