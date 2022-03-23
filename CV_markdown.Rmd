@@ -11,26 +11,14 @@ github: jgwall
 linkedin: "jason-wallace-a874b845"
 date: "`r format(Sys.time(), '%B %Y')`"
 output: vitae::hyndman       # Not bad, but a little ugly with title bar
+csl: 
 header-includes:
   \definecolor{headcolor}{HTML}{000099}
   \usepackage{tabularx}
   \usepackage{float}
   \usepackage{colortbl}
-  #\usepackage{xcolor}
-#  \usepackage{booktabs}
-#  \usepackage{longtable}
-#  \usepackage{array}
-#  \usepackage{multirow}
-#  \usepackage{wrapfig}
-  
-#  
-#  \usepackage{pdflscape}
-#  \usepackage{tabu}
-#  \usepackage{threeparttable}
-#  \usepackage{threeparttablex}
-#  \usepackage[normalem]{ulem}
-#  \usepackage{makecell}
-#  
+  \hypersetup{colorlinks=true, urlcolor=headcolor}
+  \urlstyle{same}
 
 # TODO: Can also use Bookdown to separate out sections. Not necessary as currently written, but would help if want to include plaint-text stuff somewhere.
 
@@ -220,6 +208,7 @@ pubs = pubs %>% arrange(desc(issued)) %>%
          DOI=tolower(DOI),
          period = pubdata[DOI, "period"],
          type = pubdata[DOI, "article_type"])
+#pubs$URL = paste("\\href{", pubs$URL, "}{", pubs$URL, "}", sep="")
 ```
 
 ```{r summarize_pubs, results="asis"}
@@ -265,13 +254,30 @@ pubs
 ```
 
 
-<!-- # Publications Note: Can use rcrossref package to retrieve citations via API -->
+## TODO Presentations
 
-<!-- ```{r} -->
-<!-- #library(dplyr) -->
-<!-- #knitr::write_bib(c("vitae", "tibble"), "packages.bib") -->
+## TODO Posters & Abstracts
 
-<!-- #bibliography_entries("packages.bib") %>% -->
-<!-- #  arrange(desc(author$family), issued) -->
-<!-- ``` -->
+## TODO: Other Creative Contributions
 
+# Research Grants
+
+## TODO: Grants (inc. summary table)
+
+# TODO: Professional Development
+
+# TODO: Academic Service
+
+## TODO: University Service
+
+## TODO: Service to the wider field (rename)
+
+## TODO: Public Outreach and Service
+
+# Other
+
+## TODO: Meetings attendede
+
+## TODO: Society memberships
+
+# TODO: Major Accomplishments
