@@ -14,7 +14,23 @@ output: vitae::hyndman       # Not bad, but a little ugly with title bar
 header-includes:
   \definecolor{headcolor}{HTML}{000099}
   \usepackage{tabularx}
-  #\usepackage{enumitem}
+  \usepackage{float}
+  \usepackage{colortbl}
+  #\usepackage{xcolor}
+#  \usepackage{booktabs}
+#  \usepackage{longtable}
+#  \usepackage{array}
+#  \usepackage{multirow}
+#  \usepackage{wrapfig}
+  
+#  
+#  \usepackage{pdflscape}
+#  \usepackage{tabu}
+#  \usepackage{threeparttable}
+#  \usepackage{threeparttablex}
+#  \usepackage[normalem]{ulem}
+#  \usepackage{makecell}
+#  
 
 # TODO: Can also use Bookdown to separate out sections. Not necessary as currently written, but would help if want to include plaint-text stuff somewhere.
 
@@ -33,6 +49,8 @@ library(vitae)
 library(dplyr)
 library(readr)
 library(rcrossref)
+library(tibble)
+library(kableExtra)
 
 # Function to make sure any special characters are dealt with first
 sanitize = function(tbl){
@@ -192,9 +210,6 @@ write(citations, "sources/publications.bib")
 
 
 ```{r summarize_pubs, results="asis"}
-
-# TODO: Want to make a nice table summary of pubs in different time periods and article types
-#       (articles, reviews, book chapters) ? 
 # TODO: Figure out how to indicate if I'm senior/corresponding author, bold my name, and underline lab members. (Latter two may have to be a lua filter apparnetly)
 
 pubdata = read.csv("sources/publications.csv", row.names="doi", check.names=FALSE)
@@ -206,12 +221,18 @@ pubs = pubs %>% arrange(desc(issued)) %>%
          period = pubdata[DOI, "period"],
          type = pubdata[DOI, "article_type"])
 
-# Table out output - TODO: figure out how to remove comment, or use different formatting
-#as.matrix(table(pubs$period, pubs$type)) %>% xtable::xtable()
-table(pubs$period, pubs$type) %>% 
+# Table output; "hold_position" argument keeps it in place, not top of page
+pub.summary = table(pubs$period, pubs$type) %>%
   as.data.frame.matrix() %>%
-  as_tibble(rownames="period") %>% # converting to tibble removes row names
-  xtable::xtable()
+  as_tibble(rownames="period") %>% # Part of workaround; tibble removes rownames
+  column_to_rownames("period") %>%
+  relocate(research, review, book_chapter) %>%
+  rename(`Research Article`=research, Review=review, "Book Chapter"=book_chapter)
+  
+pub.summary %>% 
+  kbl(booktabs=TRUE) %>%
+  kableExtra::kable_styling(latex_options = c("hold_position", "striped")) #%>%
+  #row_spec(nrow(pub.summary), background="blue")
 ```
 
 ```{r print_pubs, results="asis"}
