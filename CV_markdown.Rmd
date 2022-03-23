@@ -51,6 +51,7 @@ library(readr)
 library(rcrossref)
 library(tibble)
 library(kableExtra)
+library(bibtex)
 
 # Function to make sure any special characters are dealt with first
 sanitize = function(tbl){
@@ -209,9 +210,8 @@ write(citations, "sources/publications.bib")
 ```
 
 
-```{r summarize_pubs, results="asis"}
-# TODO: Figure out how to indicate if I'm senior/corresponding author, bold my name, and underline lab members. (Latter two may have to be a lua filter apparnetly)
-
+```{r load_pubs, results="asis"}
+# Load publications into R
 pubdata = read.csv("sources/publications.csv", row.names="doi", check.names=FALSE)
 rownames(pubdata) = tolower(rownames(pubdata))
 pubs = bibliography_entries("sources/publications.bib")
@@ -220,23 +220,32 @@ pubs = pubs %>% arrange(desc(issued)) %>%
          DOI=tolower(DOI),
          period = pubdata[DOI, "period"],
          type = pubdata[DOI, "article_type"])
+```
+
+```{r summarize_pubs, results="asis"}
+# Summary table of publications
 
 # Table output; "hold_position" argument keeps it in place, not top of page
 pub.summary = table(pubs$period, pubs$type) %>%
   as.data.frame.matrix() %>%
-  as_tibble(rownames="period") %>% # Part of workaround; tibble removes rownames
-  column_to_rownames("period") %>%
   relocate(research, review, book_chapter) %>%
-  rename(`Research Article`=research, Review=review, "Book Chapter"=book_chapter)
+  rename("Research Article"=research, Review=review, "Book Chapter"=book_chapter)
+pub.summary = pub.summary[rev(unique(pubdata$period)),]
+pub.totals = pub.summary %>%
+  summarize_all(sum)
+rownames(pub.totals) = "Total"
   
 pub.summary %>% 
+  rbind(pub.totals) %>%
   kbl(booktabs=TRUE) %>%
-  kableExtra::kable_styling(latex_options = c("hold_position", "striped")) #%>%
-  #row_spec(nrow(pub.summary), background="blue")
+  kableExtra::kable_styling(latex_options = c("hold_position")) %>%
+  row_spec(nrow(pub.summary), hline_after=TRUE) %>% # Separate from "totals"
+  row_spec(nrow(pub.summary)+1, italic=TRUE, background="white", align="r") # Change format for "totals" row
+
 ```
 
+
 ```{r print_pubs, results="asis"}
-# Loop over and print out. (Not using group_map to preserve descending year order)
 # NOTE: only actually prints entries if printed in full elsewhere. Made workaround in next chunk.
 for(myperiod in unique(pubs$period)){
   count = sum(pubs$period==myperiod)
@@ -245,10 +254,11 @@ for(myperiod in unique(pubs$period)){
     vitae:::knit_print.vitae_bibliography() %>%
     cat()
 }
+# TODO: Figure out how to indicate if I'm senior/corresponding author, bold my name, and underline lab members. (Latter two may have to be a lua filter apparnetly)
 # TODO: More control if I do this myself (to add bold, asterisks, etc?). Harder to change bibliography method, so keep commented out if need that for some reason.
 ```
 
-```{r, include=FALSE}
+```{r print_pubs_dummy, include=FALSE}
 # Workaround to needing a full printing for things to be included. 
 # This doesn't show up, but it apparently gets everything placed properly to show
 pubs 
