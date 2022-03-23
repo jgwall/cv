@@ -191,13 +191,46 @@ write(citations, "sources/publications.bib")
 ```
 
 
-```{r}
-pubdata = read.csv("sources/publications.csv")
-pubs = bibliography_entries("sources/publications.bib")
-pubs
-# TODO: Format pubs how I want, in reverse order, broken up by time period (year? Position?)
-# TODO: Want to make a nice table summary of pubs in different time periods
+```{r summarize_pubs, results="asis"}
 
+# TODO: Want to make a nice table summary of pubs in different time periods and article types
+#       (articles, reviews, book chapters) ? 
+# TODO: Figure out how to indicate if I'm senior/corresponding author, bold my name, and underline lab members. (Latter two may have to be a lua filter apparnetly)
+
+pubdata = read.csv("sources/publications.csv", row.names="doi", check.names=FALSE)
+rownames(pubdata) = tolower(rownames(pubdata))
+pubs = bibliography_entries("sources/publications.bib")
+pubs = pubs %>% arrange(desc(issued)) %>%
+  mutate(year=format(as.Date(issued), format="%Y"),
+         DOI=tolower(DOI),
+         period = pubdata[DOI, "period"],
+         type = pubdata[DOI, "article_type"])
+
+# Table out output - TODO: figure out how to remove comment, or use different formatting
+#as.matrix(table(pubs$period, pubs$type)) %>% xtable::xtable()
+table(pubs$period, pubs$type) %>% 
+  as.data.frame.matrix() %>%
+  as_tibble(rownames="period") %>% # converting to tibble removes row names
+  xtable::xtable()
+```
+
+```{r print_pubs, results="asis"}
+# Loop over and print out. (Not using group_map to preserve descending year order)
+# NOTE: only actually prints entries if printed in full elsewhere. Made workaround in next chunk.
+for(myperiod in unique(pubs$period)){
+  count = sum(pubs$period==myperiod)
+  cat("### ", myperiod, " (", count, ")\n", sep="")
+  pubs %>% filter(period==myperiod) %>%
+    vitae:::knit_print.vitae_bibliography() %>%
+    cat()
+}
+# TODO: More control if I do this myself (to add bold, asterisks, etc?). Harder to change bibliography method, so keep commented out if need that for some reason.
+```
+
+```{r, include=FALSE}
+# Workaround to needing a full printing for things to be included. 
+# This doesn't show up, but it apparently gets everything placed properly to show
+pubs 
 ```
 
 
