@@ -17,8 +17,10 @@ header-includes:
   \usepackage{tabularx}
   \usepackage{float}
   \usepackage{colortbl}
+  \usepackage{makecell}
   \hypersetup{colorlinks=true, urlcolor=headcolor}
   \urlstyle{same}
+  \usepackage{xltabular}
 
 # TODO: Can also use Bookdown to separate out sections. Not necessary as currently written, but would help if want to include plaint-text stuff somewhere.
 
@@ -28,7 +30,8 @@ header-includes:
 <!-- Formatting LaTeX commands -->
 \renewcommand{\labelitemi}{\textbullet}  <!-- Reset bullets to round circles -->
 \setlist{nosep,after=\vspace{-\baselineskip}}  <!-- Don't skip a line after lists finish -->
-
+\setlength{\LTpre}{0pt}  <!-- Remove extra space before longtable -->
+\setlength{\LTpost}{0pt} <!-- Remove extra space after longtable  -->
 
 
 ```{r setup, include=FALSE}
@@ -42,13 +45,15 @@ library(kableExtra)
 library(bibtex)
 
 # Function to make sure any special characters are dealt with first
-sanitize = function(tbl){
-  tbl %>% mutate_all(dplR::latexify, doublebackslash = FALSE)
+sanitize = function(tbl, ignore=NULL){
+  to_change = names(tbl)
+  to_change = to_change[!to_change %in% ignore]
+  tbl %>% mutate_at(.vars=to_change, dplR::latexify, doublebackslash = FALSE)
 }
 
 # Helper function to load a CSV and do routine tasks
-load_data = function(infile){
-  read_csv(infile, show_col_types=FALSE) %>% sanitize
+load_data = function(infile, ...){
+  read_csv(infile, show_col_types=FALSE) %>% sanitize(...)
 }
 
 # Helper function to bold text
@@ -254,7 +259,21 @@ pubs
 ```
 
 
-## TODO Presentations
+## Invited Presentations _(* = international)_
+
+```{r presentations, results="asis"}
+load_data("sources/presentations.csv", ignore="date") %>%
+  mutate(international = ifelse(is.na(international), FALSE, international)) %>% # Remove NAs
+  mutate(date=as.Date(date), international=ifelse(international, yes="*", no="")) %>%
+  arrange(desc(date)) %>%
+  mutate(date = format(date, "%d %b %Y"), 
+         title = paste(international, bold(title), ". ", event, " (", location, ").", sep=""),
+         .keep="unused") %>%
+  baretable(align=c("l", "l", "X"), tabular.environment = "xltabular", 
+            caption="test caption", label="test label")
+
+# TODO: Split by career stage, like with publications?
+```
 
 ## TODO Posters & Abstracts
 
