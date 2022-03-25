@@ -67,6 +67,7 @@ baretable <- function(tbl, digits = 0,
                       hline.after = NULL, size = getOption("xtable.size", NULL),
                       add.to.row = getOption("xtable.add.to.row", NULL), 
                       tabular.environment="tabularx",
+                      #tabular.environment="xltabular", # Can experiment with this later
                       width = "\\textwidth",
                       ...) {
   xtable::xtable(tbl, digits = digits, ...) %>%
@@ -82,7 +83,6 @@ baretable <- function(tbl, digits = 0,
 
 
 ```
-
 
 # Academic History
 ```{r header_info, results="asis"}
@@ -262,20 +262,42 @@ pubs
 ## Invited Presentations _(* = international)_
 
 ```{r presentations, results="asis"}
-load_data("sources/presentations.csv", ignore="date") %>%
+presents = load_data("sources/presentations.csv", ignore="date") %>%
   mutate(international = ifelse(is.na(international), FALSE, international)) %>% # Remove NAs
   mutate(date=as.Date(date), international=ifelse(international, yes="*", no="")) %>%
   arrange(desc(date)) %>%
   mutate(date = format(date, "%d %b %Y"), 
          title = paste(international, bold(title), ". ", event, " (", location, ").", sep=""),
-         .keep="unused") %>%
-  baretable(align=c("l", "l", "X"), tabular.environment = "xltabular", 
-            caption="test caption", label="test label")
+         .keep="unused")
 
-# TODO: Split by career stage, like with publications?
+for(myperiod in unique(presents$period)){
+  count = sum(presents$period==myperiod)
+  cat("### ", myperiod, " (", count, ")\n", sep="")
+  presents %>% filter(period==myperiod) %>%
+    select(-period) %>%
+    baretable(align=c("l", "l", "X"), tabular.environment = "xltabular")
+}
 ```
 
-## TODO Posters & Abstracts
+## Posters & Abstracts
+
+```{r posters, results="asis"}
+posters = load_data("sources/posters_and_abstracts.csv", ignore="date") %>%
+  mutate(international = ifelse(is.na(international), FALSE, international)) %>% # Remove NAs
+  mutate(date=as.Date(date), international=ifelse(international, yes="*", no="")) %>%
+  arrange(desc(date)) %>%
+  mutate(date = format(date, "%d %b %Y"), 
+         title = paste(international, authors, " ", bold(title), ". ", event, " (", location, ").", sep=""),
+         .keep="unused")
+
+for(myperiod in unique(posters$period)){
+  count = sum(posters$period==myperiod)
+  cat("### ", myperiod, " (", count, ")\n", sep="")
+  posters %>% filter(period==myperiod) %>%
+    select(-period) %>%
+    baretable(align=c("l", "l", "X"), tabular.environment = "xltabular")
+}
+```
 
 ## TODO: Other Creative Contributions
 
