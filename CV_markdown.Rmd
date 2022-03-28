@@ -61,6 +61,10 @@ bold = function(x){
   paste("\\textbf{", x, "}", sep="")
 }
 
+link = function(link, text){
+  paste("\\href{", link, "}{", text, "}", sep="")
+}
+
 # Function to produce very basic table, no lines or headings - From Rob Hyndman, https://github.com/robjhyndman/CV, with modifications
 baretable <- function(tbl, digits = 0,
                       include.colnames = FALSE, include.rownames = FALSE,
@@ -197,17 +201,17 @@ load_data("sources/students_highschool.csv") %>%
 ## Publications
 ```{r download_pubs, cache=TRUE, cache.extra = tools::md5sum('sources/publications.csv')}
 # Load publications from CrossRef. Cache options mean only runs if source file or this chunk's code have changed
-pubs = read.csv("sources/publications.csv")
+pubs = read.csv("sources/pubs.articles.csv")
 citations = unlist(cr_cn(pubs$doi, format="bibtex"))
-write(citations, "sources/publications.bib")
+write(citations, "sources/pubs.articles.bib")
 ```
 
 
 ```{r load_pubs, results="asis"}
 # Load publications into R
-pubdata = read.csv("sources/publications.csv", row.names="doi", check.names=FALSE)
+pubdata = read.csv("sources/pubs.articles.csv", row.names="doi", check.names=FALSE)
 rownames(pubdata) = tolower(rownames(pubdata))
-pubs = bibliography_entries("sources/publications.bib")
+pubs = bibliography_entries("sources/pubs.articles.bib")
 pubs = pubs %>% arrange(desc(issued)) %>%
   mutate(year=format(as.Date(issued), format="%Y"),
          DOI=tolower(DOI),
@@ -299,7 +303,17 @@ for(myperiod in unique(posters$period)){
 }
 ```
 
-## TODO: Other Creative Contributions
+## Other Creative Contributions
+```{r creative_contributions, results="asis"}
+creatives = load_data("sources/pubs.creative_contributions.csv", ignore="date") %>%
+  mutate(date=as.Date(date)) %>%
+  arrange(desc(date)) %>%
+  mutate(date = format(date, "%d %b %Y"),
+         description = paste(authors, bold(link(url, title))), .keep="unused") %>%
+  relocate(date, description, type) %>%
+  baretable(align=c("l", "l", "X", "l"))
+```
+
 
 # Research Grants
 
