@@ -1,41 +1,44 @@
 period,status,submitted,start,stop,title,source,id,amount_all,amount_wallace,role,PI
+Assistant Professor,Declined,2015-10-06,2016-06-01,2017-01-31,Induction of Nitrogen stress tolerance in Maize using biological seed treatment products,USDA-NIFA,NA,61442,59190,Co-PI,M. Cadle-Davidson
+Assistant Professor,Declined,2015-11-19,2016-07-15,2021-07-14,The Role of the Maize Microbiome on Biomass Production under Field Conditions,DOE,NA,949353,949353,PI,J. Wallace
 Assistant Professor,Finished,2016-02-16,2016-05-01,2016-12-31,Genome sequencing of tall fescue endophytes,UGA OVPR,NA,9806,9806,PI,J. Wallace
+Assistant Professor,Declined,2016-11-02,2017-07-01,2020-06-30,Ecosystems Underfoot: Using undergraduate research on the urban microbiome to assess the impact of research participation on STEM recruitment and retention,NSF,NA,299992,25000,Co-PI,M. Momany
 Assistant Professor,Finished,2016-12-02,2017-01-01,2017-12-31,A Comparison of Corn Biological Seed Treatments for use in Georgia,Georgia Corn Commission,NA,19840,19840,PI,J. Wallace
 Assistant Professor,Finished,2016-12-02,2017-01-01,2017-12-31,Support for Georgia Locations in the US-wide Genomes to Fields (G2F) initiative,Georgia Corn Commission,NA,24260,24260,PI,J. Wallace
 Assistant Professor,Finished,2017-01-09,2017-04-01,2018-06-30,Genomic Selection for Aflatoxin and Drought Resistance in Peanut,Georgia Peanut Commission,NA,15000,15000,PI,J. Wallace
-Assistant Professor,Declined,2016-11-02,2017-07-01,2020-06-30,Ecosystems Underfoot: Using undergraduate research on the urban microbiome to assess the impact of research participation on STEM recruitment and retention,NSF,NA,299992,25000,Co-PI,M. Momany
-Assistant Professor,Finished,2017-09-29,2017-12-01,2018-06-30,Catalyzing new research partnerships in maize microbiomes,CRDF global,,6252,6252,PI,J. Wallace
-Assistant Professor,Current,2017-06-14,2018-01-01,2021-12-31,Building soil health with living mulch cultivation,USDA-NIFA,2018-67013-27401,500000,38588,Co-PI,N. Hill
-Assistant Professor,Declined,2017-10-06,2018-01-01,2018-12-31,Understanding the Impact of Salt Stress on Maize and Its Interactions with Beneficial Microbes,UGA Global Research Collaborations,NA,7825,7825,PI,J. Wallace
-Assistant Professor,Declined,2018-01-25,2018-03-01,2018-12-31,Comparing Traditional and Genomic Selection for Georgia Peanuts,Georgia Peanut Commission,NA,13698,,PI,J. Wallace
-Assistant Professor,Finished,2018-12-18,2018-03-01,2018-12-31,Evaluating the Natural Corn Microbiome in Georgia,Georgia Corn Commission,NA,25360,25360,PI,J. Wallace
-Assistant Professor,Finished,2018-12-19,2018-03-01,2018-12-31,Continuing Support for Georgia Locations in the Genomes to Fields (G2F) Initiative,Georgia Corn Commission,NA,26014,26014,PI,J. Wallace
-Assistant Professor,Current,2017-09-06,2018-03-15,2021-03-14,RESEARCH-PGR Mining the compact Utricularia genome as source of novel regulatory elements for crop biotechnology,National Science Foundation,1759837,487811,215400,Co-PI,W. Parrott
-Assistant Professor,Finished,2017-11-30,2018-03-28,2018-09-30,Study on microbiome of soil and microorganisms in plants under implementing the biological products functioned on tolerance to low temperature and enhance in maize yield ,UGA and Chinese Agriculture University,NA,4800,4800,Co-PI,D. Kang
+Assistant Professor,Declined,2017-02-23,2018-01-01,2021-12-31,GEPR: Bridging the gap between genomics clues and improved (cotton) plants,NSF-PGRP,NA,3472863,244358,Co-PI,A. Paterson
+Assistant Professor,Declined,2017-04-21,2018-01-01,2020-12-31,Harnessing Microbes to Improve Crop Efficiency and Production,FFAR,NA,524118,524118,PI,J. Wallace
+Assistant Professor,Declined,2017-04-28,2017-07-01,2018-06-30,UGA Microbiome Research Hub,UGA CAES Seed Grants,NA,6845,6845,PI,J. Wallace
+Assistant Professor,Current,2017-06-14,2018-01-01,2021-12-31,Building soil health with living mulch cultivation,USDA-NIFA,2018-67013-27401,498181,38588,Co-PI,N. Hill
+Assistant Professor,Finished,2017-06-16,2018-01-01,2019-12-31,BFP 2017 Asia & LA: CSA and GRA Bangladesh,USDA Foreign Ag Service,FX17BF-10777R040,39356,39356,Co-PI,A. Bart
+Assistant Professor,Declined,2017-06-19,2018-01-01,2020-12-31,Defining the relative contributions of cold tolerance and avoidance mechanisms to seed and seedling vigor under cold temperatures,USDA-NIFA,NA,499431,116370,Co-PI,J. Snider
+Assistant Professor,Declined,2017-07-21,2018-07-01,2023-06-30,CAREER: Understanding the basis of maize-microbe interactions,NSF-BIO-PBI,NA,1124365,1124365,PI,J. Wallace
+Assistant Professor,Current,2017-09-06,2018-03-15,2022-12-31,TRANSFORM-PGR Mining the compact Utricularia genome as source of novel regulatory elements for crop biotechnology,National Science Foundation,1759837,487811,215400,Co-PI,W. Parrott
 Assistant Professor,Current,2017-09-27,2018-04-01,2022-03-31,ECA-PGR: Identifying Host Factors that Modulate the Association of Tall Fescue (Festuca arundinacea) with an Obligate Fungal Endophyte,National Science Foundation,1764127,1344038,1330152,PI,J. Wallace
-Assistant Professor,Declined,2018-02-28,2018-06-01,2018-12-31,Genome sequencing of root endophytes that affect biomass accumulation and stress tolerance of bioenergy crops,DOE JGI,NA,0,0,PI,J. Wallace
-Assistant Professor,Declined,2017-07-21,2018-07-01,2023-06-30,CAREER: Understanding the basis of maize-microbe interactions,NSF-BIO-PBI,NA,1125226,1125226,PI,J. Wallace
-Assistant Professor,Current,2018-04-20,2018-10-01,2022-09-30,Uncovering novel sources of anthracnose resistance in populations of genetically diverse sorghums [Sorghum bicolor (L.) Moench] ,DOE,DE?SC0019454,1054463,135997,Co-PI,H. Cuevas
-Assistant Professor,Current,2018-04-27,2019-01-01,2022-12-31,Harnessing Endophytes to Improve Crop Efficiency and Production,FFAR,32,584461,584461,PI,J. Wallace
+Assistant Professor,Finished,2017-09-29,2017-12-01,2018-06-30,Catalyzing new research partnerships in maize microbiomes,CRDF global,NA,6252,6252,PI,J. Wallace
+Assistant Professor,Declined,2017-10-06,2018-01-01,2018-12-31,Understanding the Impact of Salt Stress on Maize and Its Interactions with Beneficial Microbes,UGA Global Research Collaborations,NA,7825,7825,PI,J. Wallace
+Assistant Professor,Finished,2017-11-30,2018-03-28,2018-09-30,Study on microbiome of soil and microorganisms in plants under implementing the biological products functioned on tolerance to low temperature and enhance in maize yield ,UGA and Chinese Agriculture University,NA,4800,4800,Co-PI,D. Kang
+Assistant Professor,Finished,2017-12-19,2018-03-01,2018-12-31,Continuing Support for Georgia Locations in the Genomes to Fields (G2F) Initiative,Georgia Corn Commission,NA,26014,26014,PI,J. Wallace
+Assistant Professor,Declined,2018-01-25,2018-03-01,2018-12-31,Comparing Traditional and Genomic Selection for Georgia Peanuts,Georgia Peanut Commission,NA,13670,10670,PI,J. Wallace
+Assistant Professor,Declined,2018-02-15,2018-04-23,2020-04-22,Space-based seedling vigor indicators for improved cotton production sustainability on Earth,NASA,NA,314662,121750,Co-PI,J. Snider
+Assistant Professor,Declined,2018-02-28,2018-06-01,2018-12-31,Genome sequencing of root endophytes that affect biomass accumulation and stress tolerance of bioenergy crops,DOE JGI,NA,NA,NA,PI,J. Wallace
+Assistant Professor,Current,2018-04-20,2018-10-01,2022-09-30,Uncovering novel sources of anthracnose resistance in populations of genetically diverse sorghums [Sorghum bicolor (L.) Moench] ,DOE,DE‐SC0019454,1054463,135997,Co-PI,H. Cuevas
+Assistant Professor,Current,2018-04-27,2019-01-01,2022-12-31,Harnessing Endophytes to Improve Crop Efficiency and Production,FFAR,593608,584461,584461,PI,J. Wallace
 Assistant Professor,Declined,2018-04-27,2019-01-01,2022-12-31,GEPR: Bridging the gap between genomics clues and improved (cotton) plants,NSF-PGRP,NA,3472863,257468,Co-PI,A. Paterson
-Assistant Professor,Declined,2019-03-28,2019-01-01,2020-12-31,Quantifying the Effect of Organic Poultry Litter and Local Effective Microorganisms on Plant Production and Nutrient Content,NIFA-ORG,NA,378038,378038,Co-PI,D. Franklin
-Assistant Professor,Finished,2018-12-06,2019-01-01,2019-12-31,Continuing Support for Georgia Locations in the Genomes to Fields (G2F) Initiative in 2019,Georgia Corn Commission,NA,29946,29946,PI,J. Wallace
 Assistant Professor,Current,2018-05-30,2019-02-15,2023-02-14,Developing high-throughput phenotyping capacity at Fort Valley State University for genetic enhancement of sugarcane aphid resistance in sorghum,USDA-NIFA,2019-38821-29057,499997,30585,Co-PI,S. Punnuri
+Assistant Professor,Finished,2018-12-06,2019-01-01,2019-12-31,Continuing Support for Georgia Locations in the Genomes to Fields (G2F) Initiative in 2019,Georgia Corn Commission,NA,29946,29946,PI,J. Wallace
+Assistant Professor,Finished,2018-12-18,2018-03-01,2018-12-31,Evaluating the Natural Corn Microbiome in Georgia,Georgia Corn Commission,NA,25530,25530,PI,J. Wallace
+Assistant Professor,Declined,2019-03-28,2019-01-01,2020-12-31,Quantifying the Effect of Organic Poultry Litter and Local Effective Microorganisms on Plant Production and Nutrient Content,USDA-NIFA,NA,378038,189019,Co-PI,D. Franklin
+Assistant Professor,Finished,2019-04-11,2019-05-15,2019-12-31,Request for Initiating Breeding of Industrial Hemp for Georgia,Georgia Seed Development Program,NA,32750,9000,Co-PI,T. Coolong
+Assistant Professor,Finished,2019-06-25,2019-07-08,2019-12-31,Breeding Hemp Varieties Adapted to Georgia Growing Conditions,UGA Cultivar Development Research Program,NA,44475,44475,PI,J. Wallace
 Assistant Professor,Declined,2019-07-17,2020-01-01,2024-12-31,CAREER: Understanding Crop-Microbiome Interactions and Engaging with the Public through the Visual Arts,NSF-BIO-PBI,NA,1089800,1089800,PI,J. Wallace
-Associate Professor,Finished,2019-12-05,2020-01-01,2020-12-31,Continuing Support for Georgia Locations in the Genomes to Fields (G2F) Initiative in 2020,Georgia Corn Commission,,31068,31068,PI,J. Wallace
-Associate Professor,Finished,2020-03-17,2020-04-01,2020-12-31,Sponsored Research Agreement (Hemp),GaXtracts,NA,67500,67500,PI,J. Wallace
-Associate Professor,Current,2020-11-04,2021-01-01,2021-12-31,Continuing Support for Georgia Locations in the Genomes to Fields (G2F) Initiative in 2021,Georgia Corn Commission,. ,32881,32881,PI,J. Wallace
 Associate Professor,Current,2019-08-22,2021-01-01,2024-12-31,Biological nitrogen fixation in the mucilage of maize aerial roots ,USDA-NIFA,2020-67013-32675,1068999,457658,Co-PI,J-M. Ane
-Associate Professor,Declined,2020-01-28,2021-01-01,2025-12-31,NRT-URoL: PlantSciFI: Cultivating Careers in the Plant Sciences and Fields that Intersect,National Science Foundation,NA,2999997,,Co-PI,J. Leebens-Mack
+Associate Professor,Finished,2019-12-05,2020-01-01,2020-12-31,Continuing Support for Georgia Locations in the Genomes to Fields (G2F) Initiative in 2020,Georgia Corn Commission,NA,31068,31068,PI,J. Wallace
+Associate Professor,Declined,2020-01-28,2021-01-01,2025-12-31,NRT-URoL: PlantSciFI: Cultivating Careers in the Plant Sciences and Fields that Intersect,National Science Foundation,NA,2999997,NA,Co-PI,J. Leebens-Mack
+Associate Professor,Finished,2020-03-17,2020-04-01,2020-12-31,Scaling Up Clonal Hemp Production,GaXtracts,NA,67500,67500,PI,J. Wallace
+Associate Professor,Current,2020-11-04,2021-01-01,2021-12-31,Continuing Support for Georgia Locations in the Genomes to Fields (G2F) Initiative in 2021,Georgia Corn Commission,NA,32881,32881,PI,J. Wallace
 Associate Professor,Declined,2020-11-06,2021-06-01,2025-05-30,An integrated approach to increase thermotolerance in sorghum and pearl millet,FFAR,NA,999990,158460,Co-PI,S. Punnuri
-Associate Professor,Current,2021-02-26,2021-07-01,2022-06-30,Hitchhiking on Inheritance: Finding the Microbes that make Seeds their Homes,UGA Faculty Seed Grants,,14813,14813,PI,J. Wallace
-Associate Professor,Current,2021-10-27,2022-01-01,2022-12-31,Continuing Support for Georgia Locations in the Genomes to Fields (G2F) Initiative in 2022,Georgia Corn Commission,. ,34535,34535,PI,J. Wallace
+Associate Professor,Current,2021-02-26,2021-07-01,2022-06-30,Hitchhiking on Inheritance: Finding the Microbes that make Seeds their Homes,UGA Faculty Seed Grants,NA,14813,14813,PI,J. Wallace
 Associate Professor,Declined,2021-05-18,2022-01-01,2024-12-31,Plant breeding partnership: introgression of efficient aerial root nitrogen-fixation from tropical maize landraces to selected elite materials,USDA-AFRI,NA,799776,299428,Co-PI,J-M. Ane
-Assistant Professor,Declined,2017-02-23,,,GEPR: Bridging the gap between genomics clues and improved (cotton) plants,NSF-PGRP,NA,3472863,244358,Co-PI,A. Paterson
-Assistant Professor,Declined,2017-04-21,,,Harnessing Microbes to Improve Crop Efficiency and Production,FFAR,NA,524118,524118,PI,J. Wallace
-Assistant Professor,Declined,2017-04-28,,,UGA Microbiome Research Hub,UGA CAES Seed Grants,NA,6845,6845,PI,J. Wallace
-Assistant Professor,Declined,2017-06-19,,,Defining the relative contributions of cold tolerance and avoidance mechanisms to seed and seedling vigor under cold temperatures,USDA-NIFA,NA,499431,116370,Co-PI,J. Snider
-Assistant Professor,Declined,2018-02-15,,,Space-based seedling vigor indicators for improved cotton production sustainability on Earth,NASA,NA,238059,121750,Co-PI,J. Snider
-Assistant Professor,Finished,2019-04-11,,,Request for Initiating Breeding of Industrial Hemp for Georgia,Georgia Seed Development Program,,32750,9000,Co-PI,T. Coolong
-Assistant Professor,Finished,2019-06-25,,,Breeding Hemp Varieties Adapted to Georgia Growing Conditions,UGA Cultivar Development Research Program,,44475,44475,PI,J. Wallace
-Assistant Professor,Declined,,,,NOT SUBMITTED? RESEARCH-PGR: Bridging the gap between genomic clues and improved (cotton) plants,,,,,Co-PI,A. Paterson
+Associate Professor,Current,2021-10-27,2022-01-01,2022-12-31,Continuing Support for Georgia Locations in the Genomes to Fields (G2F) Initiative in 2022,Georgia Corn Commission,NA,34535,34535,PI,J. Wallace
+Assistant Professor,Declined,2019-10-22,2020-04-01,2024-03-31,RESEARCH-PGR: Bridging the gap between genomic clues and improved (cotton) plants,NSF,NA,3970338,325950,Co-PI,A. Paterson

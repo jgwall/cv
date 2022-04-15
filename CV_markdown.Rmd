@@ -338,7 +338,8 @@ totals = grants %>%
   pivot_wider(names_from=role, values_from=c(total_all, total_wallace)) %>% 
   rename(all_copi=`total_all_Co\\mbox{-}PI`, all_pi=total_all_PI,
            mine_copi=`total_wallace_Co\\mbox{-}PI`, mine_pi=total_wallace_PI) %>%
-  relocate(period, all_pi, mine_pi, all_copi, mine_copi)
+  relocate(period, all_pi, mine_pi, all_copi, mine_copi) %>%
+  mutate(total_all = all_pi + all_copi, total_mine = mine_pi + mine_copi)
 
 # Totals for below
 totals.sum = select(totals, -period) %>%
@@ -346,23 +347,30 @@ totals.sum = select(totals, -period) %>%
   summarize_all(sum, na.rm=TRUE)
 
 # Format pretty
+accent_color="headcolor"
 totals %>%
   rbind(totals.sum) %>%
   mutate_if(is.numeric, dollar)  %>%
   kbl(booktabs=TRUE, col.names=NULL) %>%
   kableExtra::kable_styling(latex_options = c("hold_position")) %>%
-  add_header_above(c(" ", "Total", "Wallace Lab", "Total", "Wallace Lab")) %>%
-  add_header_above(c(" ", "PI"=2, "Co-PI"=2), bold=TRUE) %>%
+  add_header_above(c(" ", "Total", "Wallace Lab", "Total", "Wallace Lab", "Total", "Wallace Lab"), 
+                   color=c(rep("black",5), rep(accent_color,2)),
+                   bold=c(rep(FALSE,5), rep(TRUE,2)), 
+                   italic=c(rep(FALSE,5), rep(TRUE,2))) %>%
+  add_header_above(c(" ", "PI"=2, "Co-PI"=2, "Totals"=2), bold=TRUE,
+                   italic=c(F,F,F,T),
+                   color=c("black","black", "black", accent_color)) %>%
   column_spec(1, bold = T) %>%
   row_spec(nrow(totals), hline_after=TRUE) %>% 
-  row_spec(nrow(totals)+1, italic=TRUE, background="white") # Change format for "totals" row
-
+  row_spec(nrow(totals)+1, italic=TRUE, color=accent_color) %>% # Change format for "totals" row
+  column_spec(6:7, italic=TRUE, bold=TRUE, color=accent_color) 
+  
 # Grand totals
 grand = paste(bold("Total grants: "), 
               dollar(totals.sum$all_pi + totals.sum$all_copi, prefix="\\$"), "; ", 
               bold("Total to Wallace: "), 
               dollar(totals.sum$mine_pi + totals.sum$mine_copi, prefix="\\$"), sep="") 
-cat("\\begin{center}",grand,"\\end{center}\n")
+#cat("\\begin{center}",grand,"\\end{center}\n")
 ```
 
 ## Pending
@@ -371,11 +379,13 @@ month_year=function(x){
   as.Date(x) %>% format("%b %Y")
 }
 
-format_grants_full=function(x){
-  x = x %>% mutate(mine_desc = ifelse(is.na(amount_wallace), yes="",
-                              no=paste(" (", source, "; ",
-                               dollar(amount_wallace, prefix="\\$"), 
-                               " to Wallace)", sep="")), .keep="all" )
+# Helper function to format grants. include_mine does whether or not to include my portion
+format_grants=function(x, include_mine=TRUE){
+  x = x %>% mutate(mine_desc = ifelse(is.na(amount_wallace) | !include_mine, 
+                                      yes=paste(" (", source, ")", sep=""),
+                                      no=paste(" (", source, "; ",
+                                               dollar(amount_wallace, prefix="\\$"), 
+                                               " to Wallace)", sep="")), .keep="all" )
   x %>%
     mutate(role=role,
            amount=dollar(amount_all, prefix="\\$"),
@@ -383,14 +393,14 @@ format_grants_full=function(x){
                                month_year(start), "-",
                                month_year(stop), ".",
               sep=""), .keep="none") %>%
-    baretable(align=c("l", "l", "l", "X"), tabular.environment="xltabular")
+    baretable(align=c("l", "l", "r", "X"), tabular.environment="xltabular")
 }
 
 pending = grants %>% filter(status=="Pending")
 if(nrow(pending)==0){
   cat("[None currently]\n")
 }else{
-  format_grants_full(pending)
+  format_grants(pending)
 }
 ```
 
@@ -401,7 +411,7 @@ for(myperiod in unique(funded$period)){
    cat("###", myperiod,"\n") 
    funded %>% filter(period==myperiod) %>% 
      select(-period) %>% 
-     format_grants_full()
+     format_grants()
 }
   
 ```
@@ -413,7 +423,7 @@ for(myperiod in unique(unfunded$period)){
    cat("###", myperiod,"\n") 
    unfunded %>% filter(period==myperiod) %>% 
      select(-period) %>% 
-     format_grants_full()
+     format_grants()
 }
 ```
 
