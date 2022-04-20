@@ -427,7 +427,14 @@ for(myperiod in unique(unfunded$period)){
 }
 ```
 
-# TODO: Professional Development
+# Professional Development
+```{r prof_development}
+load_data("sources/professional_development.csv", ignore="date") %>%
+  mutate(date=format(as.Date(date), "%d %b %Y"), description = paste(bold(title), ". \\newline ", description, ". (", location, ")", sep=""), .keep="none") %>%
+  #select(-organization) %>%
+  relocate(date, description) %>%
+  baretable(align=c("l", "l", "X"), tabular.environment="xltabular")
+```
 
 # TODO: Academic Service
 
