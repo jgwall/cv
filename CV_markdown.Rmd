@@ -434,9 +434,29 @@ load_data("sources/professional_development.csv", ignore="date") %>%
   baretable(align=c("l", "l", "X"))
 ```
 
-# TODO: Academic Service
+# Academic Service
 
-## TODO: Service to the University
+## Service to the University
+```{r service_university}
+load_data("sources/service_university.csv", ignore=c("start", "stop")) %>%
+  #arrange(!is.na(stop), desc(as.Date(start))) %>%
+  arrange(!is.na(stop), desc(stop), desc(as.Date(start))) %>%
+  mutate(
+    start=format(as.Date(start), "%b %Y"),
+    stop=ifelse(is.na(stop), "Present", format(as.Date(stop), "%b %Y")),
+    sep="--",
+    description = paste(bold(description), ", ", unit, sep=""), 
+    .keep="unused") %>%
+  relocate(start, sep, stop, description) %>%
+  baretable(align=c("l", "l", "c", "l", "X"))
+  
+# Deprecated reformat where have start-stop as one column instead of separate ones
+  # mutate(
+  #   date=paste(format(as.Date(start), "%b %Y"), ifelse(is.na(stop), "Present", format(as.Date(stop), "%b %Y")), sep="--"), 
+  #                   description = paste(bold(description), ", ", unit, sep=""), .keep="unused") %>%
+  # relocate(date, description) %>%
+  # baretable(align=c("l", "l", "X"))
+```
 
 ## TODO: Service to the Scientific Community
 
