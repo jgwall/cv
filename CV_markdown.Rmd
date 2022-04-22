@@ -22,11 +22,9 @@ header-includes:
   \urlstyle{same}
   \usepackage{xltabular}
 
-# TODO: Uncomment updat-pubs section when back in good wifi
 
 # TODO: Can also use Bookdown to separate out sections. Not necessary as currently written, but would help if want to include plaint-text stuff somewhere.
 
-# TODO: look at this forum post for splitting xtables over mult. pages:https://tex.stackexchange.com/questions/376790/tabularx-break-long-tables-over-several-pages  Maybe booktabs?
 ---
 
 <!-- Formatting LaTeX commands -->
@@ -74,8 +72,8 @@ baretable <- function(tbl, digits = 0,
                       include.colnames = FALSE, include.rownames = FALSE,
                       hline.after = NULL, size = getOption("xtable.size", NULL),
                       add.to.row = getOption("xtable.add.to.row", NULL), 
-                      tabular.environment="tabularx",
-                      #tabular.environment="xltabular", # Can experiment with this later
+                      #tabular.environment="tabularx",
+                      tabular.environment="xltabular", # Can experiment with this later
                       width = "\\textwidth",
                       ...) {
   xtable::xtable(tbl, digits = digits, ...) %>%
@@ -285,7 +283,7 @@ for(myperiod in unique(presents$period)){
   cat("### ", myperiod, " (", count, ")\n", sep="")
   presents %>% filter(period==myperiod) %>%
     select(-period) %>%
-    baretable(align=c("l", "l", "X"), tabular.environment = "xltabular")
+    baretable(align=c("l", "l", "X"))
 }
 ```
 
@@ -305,7 +303,7 @@ for(myperiod in unique(posters$period)){
   cat("### ", myperiod, " (", count, ")\n", sep="")
   posters %>% filter(period==myperiod) %>%
     select(-period) %>%
-    baretable(align=c("l", "l", "X"), tabular.environment = "xltabular")
+    baretable(align=c("l", "l", "X"))
 }
 ```
 
@@ -393,7 +391,7 @@ format_grants=function(x, include_mine=TRUE){
                                month_year(start), "-",
                                month_year(stop), ".",
               sep=""), .keep="none") %>%
-    baretable(align=c("l", "l", "r", "X"), tabular.environment="xltabular")
+    baretable(align=c("l", "l", "r", "X"))
 }
 
 pending = grants %>% filter(status=="Pending")
@@ -433,7 +431,7 @@ load_data("sources/professional_development.csv", ignore="date") %>%
   mutate(date=format(as.Date(date), "%d %b %Y"), description = paste(bold(title), ". \\newline ", description, ". (", location, ")", sep=""), .keep="none") %>%
   #select(-organization) %>%
   relocate(date, description) %>%
-  baretable(align=c("l", "l", "X"), tabular.environment="xltabular")
+  baretable(align=c("l", "l", "X"))
 ```
 
 # TODO: Academic Service
