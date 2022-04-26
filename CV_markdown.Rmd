@@ -498,13 +498,15 @@ load_data("sources/editorships.csv", ignore=c("start", "stop")) %>%
 ```{r invited_reviews}
 # TODO: Break up by type (and year? Add parenthetical # if >1?)
 
-# load_data("sources/editorships.csv", ignore=c("start", "stop")) %>%
+# Header by period, then make a table with "type (total)" and "[list of orgs with (total) each if >1]"
+
+# load_data("sources/service_reviewing.csv") %>%
 #   arrange(!is.na(stop), desc(stop), desc(as.Date(start))) %>%
 #   mutate(
 #     start=format(as.Date(start), "%b %Y"),
 #     stop=ifelse(is.na(stop), "Present", format(as.Date(stop), "%b %Y")),
 #     sep="--",
-#     description = paste(bold(role), ", ", italic(organization), sep=""), 
+#     description = paste(bold(role), ", ", italic(organization), sep=""),
 #     .keep="unused") %>%
 #   relocate(start, sep, stop, description) %>%
 #   baretable(align=c("l", "l", "c", "l", "X"))
