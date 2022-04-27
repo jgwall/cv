@@ -516,13 +516,13 @@ for(myperiod in unique(reviews$period)){
 ### Society Memberships
 
 ```{r membership_societies}
-# Split by current and prior
-
+# Load and format data
 societies = load_data("sources/membership_societies.csv") %>%
   arrange(start, stop ) %>%
   mutate(time=paste(start, ifelse(is.na(stop), yes="Present", no=stop), sep="-")) %>%
   relocate(time)
 
+# Split by current and prior
 current = societies %>%
   filter(is.na(stop)) %>%
   select(-start, -stop)
@@ -530,6 +530,7 @@ prior = societies %>%
   filter(!is.na(stop) & !(organization %in% current$organization)) %>%
   select(-start, -stop)
 
+# Print out
 if(nrow(prior)>0){
   cat("#### Current\n") 
   current %>% baretable()
@@ -538,8 +539,6 @@ if(nrow(prior)>0){
 }else{
   current %>% baretable()
 }
-
-
 ```
 
 ## TODO: Public Outreach and Service
@@ -547,6 +546,23 @@ if(nrow(prior)>0){
 # Other
 
 ## TODO: Meetings attended
+```{r meetings}
+
+# reviews = load_data("sources/service_reviewing.csv")
+# for(myperiod in unique(reviews$period)){
+#    cat("####", myperiod,"\n") 
+#    reviews %>% filter(period==myperiod) %>% 
+#      select(-period, -year, -notes) %>% 
+#      count(type, organization) %>%
+#      mutate(organization = paste(organization, ifelse(n>1, paste(" (",n,")", sep=""), ""), sep="")) %>%
+#      group_by(type) %>%
+#      summarize(type = paste(type, " (", sum(n), ")", sep=""), 
+#                organization = paste(sort(organization), sep="", collapse=", ")) %>%
+#      unique() %>%
+#      baretable(align=c("l","l","X"))
+# }
+
+```
 
 ## TODO: Society memberships
 
