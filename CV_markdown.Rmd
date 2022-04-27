@@ -494,24 +494,53 @@ load_data("sources/editorships.csv", ignore=c("start", "stop")) %>%
   baretable(align=c("l", "l", "c", "l", "X"))
 ```
 
-### TODO: Invited External Review
+### Invited External Review
 ```{r invited_reviews}
-# TODO: Break up by type (and year? Add parenthetical # if >1?)
-
 # Header by period, then make a table with "type (total)" and "[list of orgs with (total) each if >1]"
+reviews = load_data("sources/service_reviewing.csv")
+for(myperiod in unique(reviews$period)){
+   cat("####", myperiod,"\n") 
+   reviews %>% filter(period==myperiod) %>% 
+     select(-period, -year, -notes) %>% 
+     count(type, organization) %>%
+     mutate(organization = paste(organization, ifelse(n>1, paste(" (",n,")", sep=""), ""), sep="")) %>%
+     group_by(type) %>%
+     summarize(type = paste(type, " (", sum(n), ")", sep=""), 
+               organization = paste(sort(organization), sep="", collapse=", ")) %>%
+     unique() %>%
+     baretable(align=c("l","l","X"))
+}
 
-# load_data("sources/service_reviewing.csv") %>%
-#   arrange(!is.na(stop), desc(stop), desc(as.Date(start))) %>%
-#   mutate(
-#     start=format(as.Date(start), "%b %Y"),
-#     stop=ifelse(is.na(stop), "Present", format(as.Date(stop), "%b %Y")),
-#     sep="--",
-#     description = paste(bold(role), ", ", italic(organization), sep=""),
-#     .keep="unused") %>%
-#   relocate(start, sep, stop, description) %>%
-#   baretable(align=c("l", "l", "c", "l", "X"))
 ```
 
+### Society Memberships
+
+```{r membership_societies}
+# Split by current and prior
+
+societies = load_data("sources/membership_societies.csv") %>%
+  arrange(start, stop ) %>%
+  mutate(time=paste(start, ifelse(is.na(stop), yes="Present", no=stop), sep="-")) %>%
+  relocate(time)
+
+current = societies %>%
+  filter(is.na(stop)) %>%
+  select(-start, -stop)
+prior = societies %>%
+  filter(!is.na(stop) & !(organization %in% current$organization)) %>%
+  select(-start, -stop)
+
+if(nrow(prior)>0){
+  cat("#### Current\n") 
+  current %>% baretable()
+  cat("#### Prior\n") 
+  prior %>% baretable()
+}else{
+  current %>% baretable()
+}
+
+
+```
 
 ## TODO: Public Outreach and Service
 
