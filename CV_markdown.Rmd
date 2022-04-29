@@ -59,15 +59,13 @@ load_data = function(infile, ...){
   read_csv(infile, show_col_types=FALSE) %>% sanitize(...)
 }
 
-# Helper function to bold text
+# Helper function to format text
 bold = function(x){
   paste("\\textbf{", x, "}", sep="")
 }
-
 italic = function(x){
   paste("\\emph{", x, "}", sep="")
 }
-
 link = function(link, text){
   paste("\\href{", link, "}{", text, "}", sep="")
 }
@@ -545,22 +543,35 @@ if(nrow(prior)>0){
 
 # Other
 
-## TODO: Meetings attended
+## Meetings attended
+_\* = speaker, † = poster, § = international scope_
+
 ```{r meetings}
 
-# reviews = load_data("sources/service_reviewing.csv")
-# for(myperiod in unique(reviews$period)){
-#    cat("####", myperiod,"\n") 
-#    reviews %>% filter(period==myperiod) %>% 
-#      select(-period, -year, -notes) %>% 
-#      count(type, organization) %>%
-#      mutate(organization = paste(organization, ifelse(n>1, paste(" (",n,")", sep=""), ""), sep="")) %>%
-#      group_by(type) %>%
-#      summarize(type = paste(type, " (", sum(n), ")", sep=""), 
-#                organization = paste(sort(organization), sep="", collapse=", ")) %>%
-#      unique() %>%
-#      baretable(align=c("l","l","X"))
-# }
+meetings = load_data("sources/meetings.csv", ignore="date") %>%
+  mutate(date=as.Date(date), year = format(date, "%Y")) %>%
+  mutate(international=ifelse(is.na(international), FALSE, international))# Take care of using missing for F
+blank="\\textcolor{white}{\\_}"
+
+for(myperiod in unique(meetings$period)){
+   cat("###", paste(myperiod, " (", sum(meetings$period==myperiod), ")", sep=""),"\n")
+   submeetings = meetings %>% filter(period==myperiod)
+   
+   for(myyear in sort(unique(submeetings$year), decreasing = TRUE)){
+     cat("####", paste(myyear, " (", sum(submeetings$year==myyear), ")", sep=""),"\n")
+     submeetings %>% 
+        filter(year==myyear) %>%
+        select(-period, -year) %>%
+        arrange(desc(date)) %>%
+        mutate(speaker=ifelse(grepl("speaker", present), "*", blank),
+               poster=ifelse(grepl("poster", present), "†", blank),
+               international=ifelse(international=="TRUE", "§", blank),
+               description=paste(bold(meeting), "; ", location, " (", format(date, "%B %Y"), ")", sep=""), .keep="none") %>%
+        mutate(codes=paste(speaker, poster, international, sep=""), .keep="unused") %>%
+        relocate(codes, description) %>%
+        baretable(align=c("l", "l", "X"))
+   }
+}
 
 ```
 

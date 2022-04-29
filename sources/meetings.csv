@@ -1,12 +1,31 @@
 period,date,present,meeting,location,international
-Assistant Professor,2019-11-10,speaker,ASA-CSSA-SSSA Annual Meeting,"Tampa, Florida",
-Assistant Professor,2019-09-05,poster,Plant Genome Research Program 21st Annual Awardee Meeting,"Arlington, Virginia",
-Assistant Professor,2019-08-25,,National Association of Plant Breeders Annual Meeting,"Pine Mountain, Georgia",
-Assistant Professor,2019-03-14,poster,61st Annual Maize Genetics Conference,"St. Louis, Missouri",TRUE
-Assistant Professor,2019-01-11,speaker,Plant & Animal Genome XXVII,"San Diego, California",TRUE
+Assistant Professor,2015-03-12,poster,57th Annual Maize Genetics Conference,"St. Charles, Illinois",TRUE
+Assistant Professor,2015-07-02,speaker,Phytobiomes 2015,"Washginton, D.C.",TRUE
+Assistant Professor,2015-10-29,speaker,UGA Plant Center Retreat,"Helen, Georgia",
+Assistant Professor,2016-01-08,"speaker,poster",Plant and Animal Genome XXIV,"San Diego, California",TRUE
+Assistant Professor,2016-03-17,speaker,58th Annual Maize Genetics Conference,"Jacksonville, Florida",TRUE
+Assistant Professor,2016-04-21,speaker,BMZ Heterosis meeting,"Niamey, Niger",TRUE
+Assistant Professor,2016-05-11,,Joe L. Key Symposium,"Athens, Georgia",
+Assistant Professor,2016-08-14,speaker,7th International Crops Science Congress,"Beijing, China",TRUE
+Assistant Professor,2016-10-27,,UGA Plant Center Retreat,"Helen, Georgia",
+Assistant Professor,2016-11-09,poster,Phytobiomes: From Microbes to Plant Ecosystems,"Santa Fe, New Mexico",TRUE
+Assistant Professor,2017-01-13,speaker,Plant & Animal Genome XXV,"San Diego, California",TRUE
+Assistant Professor,2017-03-09,poster,59th Annual Maize Genetics Conference,"St. Louis, Missouri",TRUE
+Assistant Professor,2017-05-09,,Advancing Plant Sciences: Where is the research leading us?,"Athens, Georgia",
+Assistant Professor,2017-05-12,,"Institute of Plant Breeding, Genetics, and Genomics Retreat","Lake Blackshear, Georgia",
+Assistant Professor,2017-07-16,speaker,Annual Meeting of the Mycological Society of America,"Athens, Georgia",
+Assistant Professor,2017-09-25,,Parsing the Microbiome (UGA Institute of Bioinformatics Fall Symposium),"Athens, Georgia",
+Assistant Professor,2017-10-22,speaker,ASA-CSSA-SSSA Annual Meeting,"Tampa, Florida",
+Assistant Professor,2017-10-26,,UGA Plant Center Retreat,"Helen, Georgia",
+Assistant Professor,2017-12-04,speaker,Corn Breeder’s Research Conference,"Chicago, Illinois",
+Assistant Professor,2018-01-28,,"NIFA FACT Workshop – High-throughput, field-based phenotyping technologies for the Genomes to Fields (G2F) initiative","Ames, Iowa",
+Assistant Professor,2018-03-22,speaker,60th Annual Maize Genetics Conference,"Saint Malo, France",TRUE
+Assistant Professor,2018-06-19,poster,Wild and Tame Phytobiomes,"University Park, Pennsylvania",
+Assistant Professor,2018-07-23,speaker,China Agricultural University and University of Georgia Joint Research Project Symposium,"Beijing, China",TRUE
 Assistant Professor,2018-09-06,,UGA Plant Center Retreat,"Helen, Georgia",
 Assistant Professor,2018-09-06,poster,Plant Genome Research Program 21st Annual Awardee Meeting,"Arlington, Virginia",
-Assistant Professor,2018-07-23,speaker,China Agricultural University and University of Georgia Joint Research Project Symposium,"Beijing, China",TRUE
-Assistant Professor,2018-06-19,poster,Wild and Tame Phytobiomes,"University Park, Pennsylvania",
-Assistant Professor,2018-03-22,speaker,60th Annual Maize Genetics Conference,"Saint Malo, France",TRUE
-Assistant Professor,2018-01-28,,"NIFA FACT Workshop – High-throughput, field-based phenotyping technologies for the Genomes to Fields (G2F) initiative","Ames, Iowa",
+Assistant Professor,2019-01-11,speaker,Plant & Animal Genome XXVII,"San Diego, California",TRUE
+Assistant Professor,2019-03-14,poster,61st Annual Maize Genetics Conference,"St. Louis, Missouri",TRUE
+Assistant Professor,2019-08-25,,National Association of Plant Breeders Annual Meeting,"Pine Mountain, Georgia",
+Assistant Professor,2019-09-05,poster,Plant Genome Research Program 21st Annual Awardee Meeting,"Arlington, Virginia",
+Assistant Professor,2019-11-10,speaker,ASA-CSSA-SSSA Annual Meeting,"Tampa, Florida",
