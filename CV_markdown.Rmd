@@ -575,6 +575,18 @@ for(myperiod in unique(meetings$period)){
 
 ```
 
-## TODO: Society memberships
+## Society memberships
+```{r societies}
+societies = load_data("sources/membership_societies.csv") %>%
+  arrange(organization, start) %>%
+  mutate(stop=ifelse(is.na(stop), "Present", stop)) %>%
+  mutate(dates=paste(start, stop, sep="-"), organization=bold(organization), .keep="none") %>%
+  relocate(dates, organization) %>%
+  group_by(organization) %>%
+  summarize(dates = paste(dates, collapse="; ")) %>%
+  mutate(organization = paste(organization, " (", dates, ")", sep=""), .keep="none") %>%
+  baretable()
+```
+
 
 # TODO: Major Accomplishments
