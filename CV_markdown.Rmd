@@ -555,20 +555,21 @@ societies = load_data("sources/membership_societies.csv") %>%
   group_by(organization) %>%
   summarize(dates = paste(dates, collapse="; ")) %>%
   mutate(organization = paste(organization, " (", dates, ")", sep=""), .keep="none") %>%
-  baretable()
+  baretable(align=c("l","X"))
 ```
 
 ## Public Outreach and Service
 ```{r outreach}
-# outreach = load_data("sources/outreach.csv") %>%
-#   arrange(organization, start) %>%
-#   mutate(stop=ifelse(is.na(stop), "Present", stop)) %>%
-#   mutate(dates=paste(start, stop, sep="-"), organization=bold(organization), .keep="none") %>%
-#   relocate(dates, organization) %>%
-#   group_by(organization) %>%
-#   summarize(dates = paste(dates, collapse="; ")) %>%
-#   mutate(organization = paste(organization, " (", dates, ")", sep=""), .keep="none") %>%
-#   baretable()
+outreach = load_data("sources/outreach.csv", ignore="date") %>%
+  arrange(desc(date)) %>%
+  mutate(num_participants = ifelse(is.na(num_participants), yes="", 
+                                   no=paste(num_participants, "participants; ")),
+         link = ifelse(is.na(link), yes="",
+                       no=paste(" (",link(link, "link"), ")", sep=""))) %>%
+  mutate(date=format(date, "%d %b %Y"), 
+         description=paste(bold(event), " (", num_participants, location, ")",
+                           link,"  \\newline ", description, sep=""), .keep="none") %>%
+  baretable(align=c("l","l", "X"))
 ```
 
 # TODO: Major Accomplishments
