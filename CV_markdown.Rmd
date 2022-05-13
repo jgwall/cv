@@ -269,26 +269,61 @@ for(myperiod in unique(pubs$period)){
 pubs
 ```
 
+## Meetings attended
+_\* = speaker, † = poster, § = international scope_
 
-## Invited Presentations _(* = international)_
+```{r meetings}
+
+meetings = load_data("sources/meetings.csv", ignore="date") %>%
+  mutate(date=as.Date(date), year = format(date, "%Y")) %>%
+  mutate(international=ifelse(is.na(international), FALSE, international))# Take care of using missing for F
+blank="\\textcolor{white}{\\_}"
+
+for(myperiod in unique(meetings$period)){
+   cat("###", paste(myperiod, " (", sum(meetings$period==myperiod), ")", sep=""),"\n")
+   submeetings = meetings %>% filter(period==myperiod)
+   
+   for(myyear in sort(unique(submeetings$year), decreasing = TRUE)){
+     cat("####", paste(myyear, " (", sum(submeetings$year==myyear), ")", sep=""),"\n")
+     submeetings %>% 
+        filter(year==myyear) %>%
+        select(-period, -year) %>%
+        arrange(desc(date)) %>%
+        mutate(speaker=ifelse(grepl("speaker", present), "*", blank),
+               poster=ifelse(grepl("poster", present), "†", blank),
+               international=ifelse(international=="TRUE", "§", blank),
+               description=paste(bold(meeting), "; ", location, " (", format(date, "%B %Y"), ")", sep=""), .keep="none") %>%
+        mutate(codes=paste(speaker, poster, international, sep=""), .keep="unused") %>%
+        relocate(codes, description) %>%
+        baretable(align=c("l", "l", "X"))
+   }
+}
+
+```
+
+## Invited Presentations 
+_§ = international scope_
 
 ```{r presentations}
 presents = load_data("sources/presentations.csv", ignore="date") %>%
   mutate(international = ifelse(is.na(international), FALSE, international)) %>% # Remove NAs
-  mutate(date=as.Date(date), international=ifelse(international, yes="*", no="")) %>%
+  mutate(date=as.Date(date), international=ifelse(international, yes="§", no="")) %>%
   arrange(desc(date)) %>%
   mutate(date = format(date, "%d %b %Y"),
-         title = paste(international, bold(title), ". ", event, " (", location, ").", sep=""),
-         .keep="unused")
+         #title = paste(international, bold(title), ". ", event, " (", location, ").", sep=""),
+         title = paste(bold(title), ". ", event, " (", location, ").", sep=""),
+         .keep="unused") %>%
+  relocate(date, international, title)
 
 for(myperiod in unique(presents$period)){
   count = sum(presents$period==myperiod)
   cat("### ", myperiod, " (", count, ")\n", sep="")
   presents %>% filter(period==myperiod) %>%
     select(-period) %>%
-    baretable(align=c("l", "l", "X"))
+    baretable(align=c("l", "l", "l", "X"))
 }
 ```
+
 
 ## Posters & Abstracts
 
@@ -429,37 +464,7 @@ for(myperiod in unique(unfunded$period)){
 ```
 
 
-# Meetings attended
-_\* = speaker, † = poster, § = international scope_
 
-```{r meetings}
-
-meetings = load_data("sources/meetings.csv", ignore="date") %>%
-  mutate(date=as.Date(date), year = format(date, "%Y")) %>%
-  mutate(international=ifelse(is.na(international), FALSE, international))# Take care of using missing for F
-blank="\\textcolor{white}{\\_}"
-
-for(myperiod in unique(meetings$period)){
-   cat("###", paste(myperiod, " (", sum(meetings$period==myperiod), ")", sep=""),"\n")
-   submeetings = meetings %>% filter(period==myperiod)
-   
-   for(myyear in sort(unique(submeetings$year), decreasing = TRUE)){
-     cat("####", paste(myyear, " (", sum(submeetings$year==myyear), ")", sep=""),"\n")
-     submeetings %>% 
-        filter(year==myyear) %>%
-        select(-period, -year) %>%
-        arrange(desc(date)) %>%
-        mutate(speaker=ifelse(grepl("speaker", present), "*", blank),
-               poster=ifelse(grepl("poster", present), "†", blank),
-               international=ifelse(international=="TRUE", "§", blank),
-               description=paste(bold(meeting), "; ", location, " (", format(date, "%B %Y"), ")", sep=""), .keep="none") %>%
-        mutate(codes=paste(speaker, poster, international, sep=""), .keep="unused") %>%
-        relocate(codes, description) %>%
-        baretable(align=c("l", "l", "X"))
-   }
-}
-
-```
 
 
 # Professional Development
@@ -572,4 +577,4 @@ outreach = load_data("sources/outreach.csv", ignore="date") %>%
   baretable(align=c("l","l", "X"))
 ```
 
-# TODO: Major Accomplishments
+<!-- # TODO: Major Accomplishments -->
