@@ -21,19 +21,25 @@ header-includes:
   \hypersetup{colorlinks=true, urlcolor=headcolor}
   \urlstyle{same}
   \usepackage{xltabular}
-
+  #\usepackage{titlesec} # Causes problems with "option clash" error
+# Add more packages with tinytex::tlmgr_install('PACKAGE_NAME')
 
 # TODO: Can also use Bookdown to separate out sections. Not necessary as currently written, but would help if want to include plaint-text stuff somewhere.
-# TODO: Where put Carpentries? Classes? Guest lectures? Service to University? Workshops as separate thing?
+# TODO: Where put Carpentries' Classes? -> Guest lectures? Service to University? Workshops as separate thing?
 
 ---
 
 <!-- Formatting LaTeX commands -->
 \renewcommand{\labelitemi}{\textbullet}  <!-- Reset bullets to round circles -->
+
 \setlist{nosep,after=\vspace{-\baselineskip}}  <!-- Don't skip a line after lists finish -->
 \setlength{\LTpre}{0pt}  <!-- Remove extra space before longtable -->
 \setlength{\LTpost}{0pt} <!-- Remove extra space after longtable  -->
-
+<!-- Below supposed to change \paragraph formatting (=level 4 header) but doesn't -->
+<!-- \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}% -->
+<!--             {-2.5ex\@plus -1ex \@minus -.25ex}% -->
+<!--             {1.25ex \@plus .25ex}% -->
+<!--             {\normalfont\normalsize\bfseries\itshape}} -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, results="asis") # results='asis' lets latex code be interpreted properly
@@ -578,3 +584,5 @@ outreach = load_data("sources/outreach.csv", ignore="date") %>%
 ```
 
 <!-- # TODO: Major Accomplishments -->
+
+<!-- \badcommand -->
