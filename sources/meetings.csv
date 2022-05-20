@@ -1,6 +1,6 @@
 period,date,present,meeting,location,international
 Assistant Professor,2015-03-12,poster,57th Annual Maize Genetics Conference,"St. Charles, Illinois",TRUE
-Assistant Professor,2015-07-02,speaker,Phytobiomes 2015,"Washginton, D.C.",TRUE
+Assistant Professor,2015-07-02,speaker,Phytobiomes 2015,"Washington, D.C.",TRUE
 Assistant Professor,2015-10-29,speaker,UGA Plant Center Retreat,"Helen, Georgia",
 Assistant Professor,2016-01-08,"speaker,poster",Plant and Animal Genome XXIV,"San Diego, California",TRUE
 Assistant Professor,2016-03-17,speaker,58th Annual Maize Genetics Conference,"Jacksonville, Florida",TRUE
@@ -15,7 +15,7 @@ Assistant Professor,2017-03-09,poster,59th Annual Maize Genetics Conference,"St.
 Assistant Professor,2017-05-09,,Advancing Plant Sciences: Where is the research leading us?,"Athens, Georgia",
 Assistant Professor,2017-05-12,,"UGA Institute of Plant Breeding, Genetics, and Genomics Retreat","Lake Blackshear, Georgia",
 Assistant Professor,2017-07-16,speaker,Annual Meeting of the Mycological Society of America,"Athens, Georgia",
-Assistant Professor,2017-09-25,,Parsing the Microbiome (UGA Institute of Bioinformatics Fall Symposium),"Athens, Georgia",
+Assistant Professor,2017-09-25,,Parsing the Microbiome (UGA Institute of Bioinformatics Symposium),"Athens, Georgia",
 Assistant Professor,2017-10-22,speaker,ASA-CSSA-SSSA Annual Meeting,"Tampa, Florida",
 Assistant Professor,2017-10-26,,UGA Plant Center Retreat,"Helen, Georgia",
 Assistant Professor,2017-12-04,speaker,Corn Breeder’s Research Conference,"Chicago, Illinois",
@@ -28,5 +28,12 @@ Assistant Professor,2018-09-06,poster,Plant Genome Research Program 21st Annual 
 Assistant Professor,2019-01-11,speaker,Plant & Animal Genome XXVII,"San Diego, California",TRUE
 Assistant Professor,2019-03-14,poster,61st Annual Maize Genetics Conference,"St. Louis, Missouri",TRUE
 Assistant Professor,2019-08-25,,National Association of Plant Breeders Annual Meeting,"Pine Mountain, Georgia",
-Assistant Professor,2019-09-05,poster,Plant Genome Research Program 21st Annual Awardee Meeting,"Arlington, Virginia",
+Assistant Professor,2019-09-05,poster,Plant Genome Research Program 22nd Annual Awardee Meeting,"Arlington, Virginia",
 Assistant Professor,2019-11-10,speaker,ASA-CSSA-SSSA Annual Meeting,"Tampa, Florida",
+Associate Professor,2020-02-05,speaker,FFAR Foster Our Future,"Washington, D.C.",
+Associate Professor,2020-03-02,speaker,Illinois’ Corn Breeders’ School,"Champaign, Illinois",
+Associate Professor,2020-02-10,,Plants by Design,"Athens, Georgia",
+Associate Professor,2020-03-20,,Collective Behavior (UGA Institute of Bioinformatics Symposium),"Athens, Georgia",
+Associate Professor,2020-06-25,,62nd Annual Maize Genetics Conference,Virtual,TRUE
+Associate Professor,2020-09-10,,Plant Genome Research Program 23rd Annual Awardee Meeting,Virtual,
+Associate Professor,2020-08-19,speaker,National Association of Plant Breeders Annual Meeting,Virtual,

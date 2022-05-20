@@ -279,13 +279,12 @@ pubs
 _\* = speaker, † = poster, § = international scope_
 
 ```{r meetings}
-
 meetings = load_data("sources/meetings.csv", ignore="date") %>%
   mutate(date=as.Date(date), year = format(date, "%Y")) %>%
   mutate(international=ifelse(is.na(international), FALSE, international))# Take care of using missing for F
 blank="\\textcolor{white}{\\_}"
 
-for(myperiod in unique(meetings$period)){
+for(myperiod in rev(unique(meetings$period))){
    cat("###", paste(myperiod, " (", sum(meetings$period==myperiod), ")", sep=""),"\n")
    submeetings = meetings %>% filter(period==myperiod)
    
