@@ -76,6 +76,15 @@ link = function(link, text){
   paste("\\href{", link, "}{", text, "}", sep="")
 }
 
+# Put my "periods" of academic life (Assistant/Associate/Full professor) in correct order
+order_periods = function(p){
+  ref = rev(c("PhD", "Postdoc", "Assistant Professor", "Associate Professor", "Full Professor"))
+  if(any(!p %in% ref)){
+    stop("Unknown tenure period:", p[!p %in% ref])
+  }
+  return(ref[ref %in% p])
+}
+
 # Function to produce very basic table, no lines or headings - From Rob Hyndman, https://github.com/robjhyndman/CV, with modifications
 baretable <- function(tbl, digits = 0,
                       include.colnames = FALSE, include.rownames = FALSE,
@@ -241,7 +250,7 @@ pub.summary = table(pubs$period, pubs$type) %>%
   as.data.frame.matrix() %>%
   relocate(research, review, book_chapter) %>%
   rename("Research Article"=research, Review=review, "Book Chapter"=book_chapter)
-pub.summary = pub.summary[rev(unique(pubdata$period)),]
+pub.summary = pub.summary[order_periods(pubdata$period),]
 pub.totals = pub.summary %>%
   summarize_all(sum)
 rownames(pub.totals) = "Total"
@@ -258,7 +267,7 @@ pub.summary %>%
 
 ```{r print_pubs}
 # NOTE: only actually prints entries if printed in full elsewhere. Made workaround in next chunk.
-for(myperiod in rev(unique(pubs$period))){
+for(myperiod in order_periods(pubs$period)){
   count = sum(pubs$period==myperiod)
   cat("### ", myperiod, " (", count, ")\n", sep="")
   pubs %>% filter(period==myperiod) %>%
@@ -284,7 +293,7 @@ meetings = load_data("sources/meetings.csv", ignore="date") %>%
   mutate(international=ifelse(is.na(international), FALSE, international))# Take care of using missing for F
 blank="\\textcolor{white}{\\_}"
 
-for(myperiod in rev(unique(meetings$period))){
+for(myperiod in order_periods(meetings$period)){
    cat("###", paste(myperiod, " (", sum(meetings$period==myperiod), ")", sep=""),"\n")
    submeetings = meetings %>% filter(period==myperiod)
    
@@ -320,7 +329,7 @@ presents = load_data("sources/presentations.csv", ignore="date") %>%
          .keep="unused") %>%
   relocate(date, international, title)
 
-for(myperiod in rev(unique(presents$period))){
+for(myperiod in order_periods(presents$period)){
   count = sum(presents$period==myperiod)
   cat("### ", myperiod, " (", count, ")\n", sep="")
   presents %>% filter(period==myperiod) %>%
@@ -341,7 +350,7 @@ posters = load_data("sources/posters_and_abstracts.csv", ignore="date") %>%
          title = paste(international, authors, " ", bold(title), ". ", event, " (", location, ").", sep=""),
          .keep="unused")
 
-for(myperiod in rev(unique(posters$period))){
+for(myperiod in order_periods(posters$period)){
   count = sum(posters$period==myperiod)
   cat("### ", myperiod, " (", count, ")\n", sep="")
   posters %>% filter(period==myperiod) %>%
@@ -448,7 +457,7 @@ if(nrow(pending)==0){
 ## Funded
 ```{r grants_funded}
 funded = grants %>% filter(status=="Current" | status=="Finished")
-for(myperiod in rev(unique(funded$period))){
+for(myperiod in order_periods(funded$period)){
    cat("###", myperiod,"\n") 
    funded %>% filter(period==myperiod) %>% 
      select(-period) %>% 
@@ -460,7 +469,7 @@ for(myperiod in rev(unique(funded$period))){
 ## Submitted but unfunded
 ```{r grants_unfunded}
 unfunded = grants %>% filter(status=="Declined")
-for(myperiod in rev(unique(unfunded$period))){
+for(myperiod in order_periods(unfunded$period)){
    cat("###", myperiod,"\n") 
    unfunded %>% filter(period==myperiod) %>% 
      select(-period) %>% 
@@ -540,7 +549,7 @@ load_data("sources/editorships.csv", ignore=c("start", "stop")) %>%
 ```{r invited_reviews}
 # Header by period, then make a table with "type (total)" and "[list of orgs with (total) each if >1]"
 reviews = load_data("sources/service_reviewing.csv")
-for(myperiod in rev(unique(reviews$period))){
+for(myperiod in order_periods(reviews$period)){
    cat("####", myperiod,"\n") 
    reviews %>% filter(period==myperiod) %>% 
      select(-period, -year, -notes) %>% 
