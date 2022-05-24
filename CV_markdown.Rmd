@@ -9,19 +9,26 @@ email: "jason.wallace@uga.edu"
 #twitter: TheWallaceLab
 github: jgwall
 linkedin: "jason-wallace-a874b845"
-date: "`r format(Sys.time(), '%B %Y')`"
-output: vitae::hyndman       # Not bad, but a little ugly with title bar
+date: "`r format(Sys.time(), '%B %Y')`"  
+# Hyndman layout not bad, but a little ugly with title bar
+output: 
+  vitae::hyndman:  
+    keep_tex: TRUE
+    toc: TRUE
+    number_sections: FALSE
+    
 csl: 
 header-includes:
   \definecolor{headcolor}{HTML}{000099}
-  \usepackage{tabularx}
-  \usepackage{float}
-  \usepackage{colortbl}
-  \usepackage{makecell}
   \hypersetup{colorlinks=true, urlcolor=headcolor}
   \urlstyle{same}
+  \usepackage{colortbl}
   \usepackage{xltabular}
-  #\usepackage{titlesec} # Causes problems with "option clash" error
+  #\usepackage{titlesec} 
+  #\usepackage{tabularx}
+  #\usepackage{makecell}
+  #\usepackage{float}
+# Titlesec Causes problems with "option clash" error
 # Add more packages with tinytex::tlmgr_install('PACKAGE_NAME')
 
 # TODO: Can also use Bookdown to separate out sections. Not necessary as currently written, but would help if want to include plaint-text stuff somewhere.
@@ -40,6 +47,8 @@ header-includes:
 <!--             {-2.5ex\@plus -1ex \@minus -.25ex}% -->
 <!--             {1.25ex \@plus .25ex}% -->
 <!--             {\normalfont\normalsize\bfseries\itshape}} -->
+
+\titleformat{\paragraph}{\normalfont\bfseries\itshape}{\theparagraph}{1em}{}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, results="asis") # results='asis' lets latex code be interpreted properly
