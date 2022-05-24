@@ -258,7 +258,7 @@ pub.summary %>%
 
 ```{r print_pubs}
 # NOTE: only actually prints entries if printed in full elsewhere. Made workaround in next chunk.
-for(myperiod in unique(pubs$period)){
+for(myperiod in rev(unique(pubs$period))){
   count = sum(pubs$period==myperiod)
   cat("### ", myperiod, " (", count, ")\n", sep="")
   pubs %>% filter(period==myperiod) %>%
@@ -320,7 +320,7 @@ presents = load_data("sources/presentations.csv", ignore="date") %>%
          .keep="unused") %>%
   relocate(date, international, title)
 
-for(myperiod in unique(presents$period)){
+for(myperiod in rev(unique(presents$period))){
   count = sum(presents$period==myperiod)
   cat("### ", myperiod, " (", count, ")\n", sep="")
   presents %>% filter(period==myperiod) %>%
@@ -341,7 +341,7 @@ posters = load_data("sources/posters_and_abstracts.csv", ignore="date") %>%
          title = paste(international, authors, " ", bold(title), ". ", event, " (", location, ").", sep=""),
          .keep="unused")
 
-for(myperiod in unique(posters$period)){
+for(myperiod in rev(unique(posters$period))){
   count = sum(posters$period==myperiod)
   cat("### ", myperiod, " (", count, ")\n", sep="")
   posters %>% filter(period==myperiod) %>%
@@ -448,7 +448,7 @@ if(nrow(pending)==0){
 ## Funded
 ```{r grants_funded}
 funded = grants %>% filter(status=="Current" | status=="Finished")
-for(myperiod in unique(funded$period)){
+for(myperiod in rev(unique(funded$period))){
    cat("###", myperiod,"\n") 
    funded %>% filter(period==myperiod) %>% 
      select(-period) %>% 
@@ -460,7 +460,7 @@ for(myperiod in unique(funded$period)){
 ## Submitted but unfunded
 ```{r grants_unfunded}
 unfunded = grants %>% filter(status=="Declined")
-for(myperiod in unique(unfunded$period)){
+for(myperiod in rev(unique(unfunded$period))){
    cat("###", myperiod,"\n") 
    unfunded %>% filter(period==myperiod) %>% 
      select(-period) %>% 
@@ -540,7 +540,7 @@ load_data("sources/editorships.csv", ignore=c("start", "stop")) %>%
 ```{r invited_reviews}
 # Header by period, then make a table with "type (total)" and "[list of orgs with (total) each if >1]"
 reviews = load_data("sources/service_reviewing.csv")
-for(myperiod in unique(reviews$period)){
+for(myperiod in rev(unique(reviews$period))){
    cat("####", myperiod,"\n") 
    reviews %>% filter(period==myperiod) %>% 
      select(-period, -year, -notes) %>% 

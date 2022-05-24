@@ -1,4 +1,5 @@
 period,date,present,meeting,location,international
+Associate Professor,2021-07-19,,American Society of Plant Biologists Annual meeting,Virtual,
 Assistant Professor,2015-03-12,poster,57th Annual Maize Genetics Conference,"St. Charles, Illinois",TRUE
 Assistant Professor,2015-07-02,speaker,Phytobiomes 2015,"Washington, D.C.",TRUE
 Assistant Professor,2015-10-29,speaker,UGA Plant Center Retreat,"Helen, Georgia",
@@ -31,9 +32,20 @@ Assistant Professor,2019-08-25,,National Association of Plant Breeders Annual Me
 Assistant Professor,2019-09-05,poster,Plant Genome Research Program 22nd Annual Awardee Meeting,"Arlington, Virginia",
 Assistant Professor,2019-11-10,speaker,ASA-CSSA-SSSA Annual Meeting,"Tampa, Florida",
 Associate Professor,2020-02-05,speaker,FFAR Foster Our Future,"Washington, D.C.",
-Associate Professor,2020-03-02,speaker,Illinois’ Corn Breeders’ School,"Champaign, Illinois",
 Associate Professor,2020-02-10,,Plants by Design,"Athens, Georgia",
+Associate Professor,2020-03-02,speaker,Illinois’ Corn Breeders’ School,"Champaign, Illinois",
 Associate Professor,2020-03-20,,Collective Behavior (UGA Institute of Bioinformatics Symposium),"Athens, Georgia",
 Associate Professor,2020-06-25,,62nd Annual Maize Genetics Conference,Virtual,TRUE
-Associate Professor,2020-09-10,,Plant Genome Research Program 23rd Annual Awardee Meeting,Virtual,
 Associate Professor,2020-08-19,speaker,National Association of Plant Breeders Annual Meeting,Virtual,
+Associate Professor,2020-09-10,,Plant Genome Research Program 23rd Annual Awardee Meeting,Virtual,
+Associate Professor,2021-02-22,speaker,Microbiome Movement AgBiotech,Virtual,
+Associate Professor,2021-03-03,,Microbiome for Agriculture Congress,Virtual,
+Associate Professor,2021-03-03,poster,63rd Annual Maize Genetics Conference,Virtual,TRUE
+Associate Professor,2021-05-26,,Transdisciplinary Research in Plant Sciences and Engineering: from Precision Agriculture to Synthetic Biology,Virtual,
+Associate Professor,2021-05-27,,"UGA Institute of Plant Breeding, Genetics, and Genomics Retreat",Virtual,
+Associate Professor,2021-09-09,poster,Plant Genome Research Program 24th Annual Awardee Meeting,Virtual,
+Associate Professor,2021-12-15,,UGA Plant Center Retreat,"Brasstown Bald, Georgia",
+Associate Professor,2022-01-15,speaker,Plant & Animal Genome XXIX,Virtual,TRUE
+Associate Professor,2022-03-31,,64th Annual Maize Genetics Conference,"St. Louis, Missouri",TRUE
+Associate Professor,2022-05-25,,"UGA Institute of Plant Breeding, Genetics, and Genomics Retreat","Jekyll Island, Georgia",
+Associate Professor,2022-08-14,poster,18th International Symposium on Microbial Ecology,"Lausanne, Switzerland",TRUE
