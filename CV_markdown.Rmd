@@ -42,13 +42,8 @@ header-includes:
 \setlist{nosep,after=\vspace{-\baselineskip}}  <!-- Don't skip a line after lists finish -->
 \setlength{\LTpre}{0pt}  <!-- Remove extra space before longtable -->
 \setlength{\LTpost}{0pt} <!-- Remove extra space after longtable  -->
-<!-- Below supposed to change \paragraph formatting (=level 4 header) but doesn't -->
-<!-- \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}% -->
-<!--             {-2.5ex\@plus -1ex \@minus -.25ex}% -->
-<!--             {1.25ex \@plus .25ex}% -->
-<!--             {\normalfont\normalsize\bfseries\itshape}} -->
 
-\titleformat{\paragraph}{\normalfont\bfseries\itshape}{\theparagraph}{1em}{}
+\titleformat{\paragraph}{\normalfont\bfseries\itshape}{\theparagraph}{1em}{} <!-- Adjust the level-4 headers ("####") to bold + italic -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, results="asis") # results='asis' lets latex code be interpreted properly
@@ -175,9 +170,20 @@ load_data("sources/teaching_mine.csv")  %>%
 ## Guest Lectures
 ```{r teaching_guest}
 load_data("sources/teaching_guest.csv") %>%
+  arrange(desc(row_number())) %>%
   mutate(description = paste(bold(title), " (", class, ")", sep=""), .keep="unused") %>%
   relocate(date) %>%
   baretable()
+```
+
+## Workshop Instructor
+```{r teaching_workshops}
+load_data("sources/teaching_workshops.csv", ignore="date") %>%
+  arrange(desc(date)) %>%
+  mutate(description = paste(bold(title), " (", organization, "; ", location,")", sep=""), 
+         date=format(date, format="%e %b %Y"), .keep="unused") %>%
+  relocate(date) %>%
+  baretable(align=c("l","l", "X"))
 ```
 
 ## Student Mentorship
