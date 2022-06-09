@@ -1,9 +1,13 @@
-class,title,date
-CRSS 8820,Genome-wide Association,6 Mar 2018
-FYOS 1001,Maize Domestication,13 Feb 2019
-CTEGD Lunch & Learn,Reproducibility in Research,20 & 27 Mar 2019
-PBGG 6000,Plant Breeding Practicum – Maize,24 May 2019
-CRSS 8872,Genome-wide Association,17 Sept 2020
-PBGG 8861,PBGG Student Research Seminar,Spring 2021
-PBGG 8860,PBGG Student Communication Seminar,Spring 2021
-CTEGD Lunch & Learn,Rigor and Reproducibility in Research,30 Jun 2022
+date,display_date,class,title
+2018-03-06,6 Mar 2018,CRSS 8820,Genome-wide Association
+2019-02-13,13 Feb 2019,FYOS 1001,Maize Domestication
+2019-03-20,20 & 27 Mar 2019,CTEGD Lunch & Learn,Reproducibility in Research
+2019-05-24,24 May 2019,PBGG 6000,Plant Breeding Practicum – Maize
+2020-09-17,17 Sept 2020,CRSS 8872,Genome-wide Association
+2021-01-15,Spring 2021,PBGG 8861,PBGG Student Research Seminar
+2021-01-15,Spring 2021,PBGG 8860,PBGG Student Communication Seminar
+2021-02-19,19 Feb 2021,CBIO 8500,Rigor and Reproducibility in Research
+2021-07-13,13 July 2021,PBGG 6000,Plant Breeding Practicum – Maize
+2022-04-12,12 Apr 2022,CRSS 8872,Genome-wide Association
+2022-06-30,30 Jun 2022,CTEGD Lunch & Learn,Rigor and Reproducibility in Research
+2022-07-06,6 July 2022,PBGG 6000,Plant Breeding Practicum – Maize

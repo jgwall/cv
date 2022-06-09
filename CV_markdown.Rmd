@@ -169,10 +169,11 @@ load_data("sources/teaching_mine.csv")  %>%
 
 ## Guest Lectures
 ```{r teaching_guest}
-load_data("sources/teaching_guest.csv") %>%
-  arrange(desc(row_number())) %>%
+load_data("sources/teaching_guest.csv", ignore="date") %>%
+  arrange(desc(date)) %>%
   mutate(description = paste(bold(title), " (", class, ")", sep=""), .keep="unused") %>%
-  relocate(date) %>%
+  select(-date) %>%
+  relocate(display_date) %>%
   baretable()
 ```
 
@@ -180,10 +181,15 @@ load_data("sources/teaching_guest.csv") %>%
 ```{r teaching_workshops}
 load_data("sources/teaching_workshops.csv", ignore="date") %>%
   arrange(desc(date)) %>%
-  mutate(description = paste(bold(title), " (", organization, "; ", location,")", sep=""), 
-         date=format(date, format="%e %b %Y"), .keep="unused") %>%
-  relocate(date) %>%
-  baretable(align=c("l","l", "X"))
+  #  mutate(description = paste(bold(title), " (", organization, "; ", location,")", sep=""), 
+  #         date=format(date, format="%e %b %Y"), .keep="unused") %>%
+  # relocate(date) %>%
+  # baretable(align=c("l","l", "X"))
+  mutate(description = bold(title),
+        location = paste(organization, "; ", location, sep=""),
+        date=format(date, format="%e %b %Y"), .keep="unused") %>%
+  relocate(date, description, location) %>%
+  baretable(align=c("l","l", "X", "l"))
 ```
 
 ## Student Mentorship
