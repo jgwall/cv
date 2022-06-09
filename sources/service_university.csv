@@ -1,9 +1,11 @@
-start,stop,description,unit
-2018-05-01,NA,Journal Club faculty mentor,"Institute of Plant Breeding, Genetics, and Genomics"
-2018-09-01,2019-03-01,Search committee member,Institute of Bioinformatics
-2017-06-01,2019-12-31,Executive Committee member,Integrated Plant Sciences
-2017-05-01,2021-12-31,Undergraduate Committee member,The Plant Center
-2016-09-01,2017-12-31,Symposium Committee member,Institute of Bioinformatics
-2017-04-01,NA,Microbiome Group coordinator,University of Georgia
-2016-02-01,NA,Athens Science Café faculty advisor,Athens Science Cafe
-2015-09-01,2016-05-01,Curriculum Committee member,"Institute of Plant Breeding, Genetics, and Genomics"
+start,stop,role,organization,unit
+2018-05-01,NA,Faculty Mentor,Journal Club faculty mentor,"Institute of Plant Breeding, Genetics, and Genomics"
+2018-09-01,2019-03-01,Member,Faculty Search committee,Institute of Bioinformatics
+2017-06-01,2019-12-31,Member,Executive Committee,Integrated Plant Sciences
+2017-05-01,2021-12-31,Member,Undergraduate Committee,The Plant Center
+2016-09-01,2017-12-31,Member,Symposium Committee,Institute of Bioinformatics
+2017-04-01,NA,Coordinator,Microbiome Group,University of Georgia
+2016-02-01,NA,Faculty Mentor,Athens Science Café,Athens Science Cafe
+2015-09-01,2016-05-01,Member,Curriculum Committee,"Institute of Plant Breeding, Genetics, and Genomics"
+2022-01-01,NA,Chair,"Committee on Diversity, Equity, and Inclusion",Institute of Bioinformatics
+2019-08-01,2022-01-01,Chair,Outreach Committee,Institute of Bioinformatics

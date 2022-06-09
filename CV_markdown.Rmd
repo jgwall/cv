@@ -537,10 +537,11 @@ load_data("sources/service_university.csv", ignore=c("start", "stop")) %>%
     start=format(as.Date(start), "%b %Y"),
     stop=ifelse(is.na(stop), "Present", format(as.Date(stop), "%b %Y")),
     sep="--",
-    description = paste(bold(description), ", ", unit, sep=""), 
+    role=bold(role),
+    description = paste(bold(organization), ", ", unit, sep=""), 
     .keep="unused") %>%
-  relocate(start, sep, stop, description) %>%
-  baretable(align=c("l", "l", "c", "l", "X"))
+  relocate(start, sep, stop, role, description) %>%
+  baretable(align=c("l", "l", "c", "l", "l", "X"))
   
 # Deprecated reformat where have start-stop as one column instead of separate ones
   # mutate(
