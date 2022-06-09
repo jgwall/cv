@@ -46,6 +46,9 @@ header-includes:
 \titleformat{\paragraph}{\normalfont\bfseries\itshape}{\theparagraph}{1em}{} <!-- Adjust the level-4 headers ("####") to bold + italic -->
 
 ```{r setup, include=FALSE}
+
+sources_dir="sources" # Source directory for all the CSVs used
+
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, results="asis") # results='asis' lets latex code be interpreted properly
 library(vitae)
 library(dplyr)
@@ -66,7 +69,8 @@ sanitize = function(tbl, ignore=NULL){
 
 # Helper function to load a CSV and do routine tasks
 load_data = function(infile, ...){
-  read_csv(infile, show_col_types=FALSE) %>% sanitize(...)
+  myfile=paste(sources_dir, infile, sep="/")
+  read_csv(myfile, show_col_types=FALSE) %>% sanitize(...)
 }
 
 # Helper function to format text
@@ -114,14 +118,14 @@ baretable <- function(tbl, digits = 0,
 
 # Academic History
 ```{r header_info}
-load_data("sources/0_header_info.csv") %>%
+load_data("0_header_info.csv") %>%
   mutate(info = bold(info)) %>%
   baretable()
 ```
 
 ## Education
 ```{r education}
-load_data("sources/education.csv") %>%
+load_data("education.csv") %>%
   mutate(degree = bold(paste(degree, "\\textendash{}", location)), .keep="unused") %>%
   relocate(year, degree) %>%
   arrange(desc(year)) %>% # Arrange in descending order of Year
@@ -130,7 +134,7 @@ load_data("sources/education.csv") %>%
 
 ## Professional Experience
 ```{r employment}
-load_data("sources/employment.csv") %>%
+load_data("employment.csv") %>%
   arrange(desc(stop)) %>%
   mutate(time=paste(start, "\\textendash{}", stop, sep=""),
          title=bold(title),
@@ -142,7 +146,7 @@ load_data("sources/employment.csv") %>%
 
 ## Awards
 ```{r awards}
-load_data("sources/awards.csv") %>%
+load_data("awards.csv") %>%
   relocate(when) %>%
   mutate(award=bold(award)) %>%
   baretable(align=c("llXl"))
@@ -159,7 +163,7 @@ schedule_to_bullets=function(class, schedule){
 }
 
 # Load and format
-load_data("sources/teaching_mine.csv")  %>%
+load_data("teaching_mine.csv")  %>%
   mutate(class = bold(class),
          credits=paste(credits, ifelse(credits==1, "credit", "credits"))) %>%
   group_by(code) %>%
@@ -169,7 +173,7 @@ load_data("sources/teaching_mine.csv")  %>%
 
 ## Guest Lectures
 ```{r teaching_guest}
-load_data("sources/teaching_guest.csv", ignore="date") %>%
+load_data("teaching_guest.csv", ignore="date") %>%
   arrange(desc(date)) %>%
   mutate(description = paste(bold(title), " (", class, ")", sep=""), .keep="unused") %>%
   select(-date) %>%
@@ -179,7 +183,7 @@ load_data("sources/teaching_guest.csv", ignore="date") %>%
 
 ## Workshop Instructor
 ```{r teaching_workshops}
-load_data("sources/teaching_workshops.csv", ignore="date") %>%
+load_data("teaching_workshops.csv", ignore="date") %>%
   arrange(desc(date)) %>%
   #  mutate(description = paste(bold(title), " (", organization, "; ", location,")", sep=""), 
   #         date=format(date, format="%e %b %Y"), .keep="unused") %>%
@@ -195,7 +199,7 @@ load_data("sources/teaching_workshops.csv", ignore="date") %>%
 ## Student Mentorship
 ```{r student_mentorship}
 # Note: throws error if not saved to variable
-students=load_data("sources/students_grads.csv") %>%
+students=load_data("students_grads.csv") %>%
   arrange(desc(year)) %>%  # Sort newest to oldest
   mutate(role = paste(role, " (", status, ")", sep=""),
          name=bold(name),
@@ -213,7 +217,7 @@ students=load_data("sources/students_grads.csv") %>%
 
 ### Visiting Scientists
 ```{r visitors}
-visitors = load_data("sources/visiting_scientists.csv") %>%
+visitors = load_data("visiting_scientists.csv") %>%
   mutate(name=bold(name)) %>%
   relocate(date) %>%
   baretable()
@@ -221,7 +225,7 @@ visitors = load_data("sources/visiting_scientists.csv") %>%
 
 ### Undergraduate Mentoring
 ```{r undergrads}
-load_data("sources/students_undergrads.csv") %>%
+load_data("students_undergrads.csv") %>%
   #mutate(name=bold(name)) %>%
   mutate(name=bold(name), role=paste(role, " (", university, ")", sep=""), .keep="unused") %>%
   relocate(date) %>%
@@ -230,7 +234,7 @@ load_data("sources/students_undergrads.csv") %>%
 
 ### High School Students
 ```{r highschool}
-load_data("sources/students_highschool.csv") %>%
+load_data("students_highschool.csv") %>%
   mutate(name=bold(name)) %>%
   select(-grade_level) %>%
   relocate(date, name) %>%
@@ -240,21 +244,25 @@ load_data("sources/students_highschool.csv") %>%
 # Scholarly Activities
 
 ## Publications
-```{r download_pubs, cache=TRUE, cache.extra = tools::md5sum('sources/pubs.articles.csv')}
+```{r define_pubs}
+pubfile = paste(sources_dir, 'pubs.articles.csv', sep='/')
+```
+
+```{r download_pubs, cache=TRUE, cache.extra = tools::md5sum(pubfile)}
 # Load publications from CrossRef. Cache options mean only runs if source file or this chunk's code have changed
-pubs = read.csv("sources/pubs.articles.csv")
+pubs = read.csv(pubfile)
 citations = unlist(cr_cn(pubs$doi, format="bibtex")) %>%
   gsub(pattern="$\\less$i$\\greater$", repl="\\emph{", fixed=TRUE) %>% # Fix fonio genome title
   gsub(pattern="$\\less$/i$\\greater$", repl="}", fixed=TRUE)
-write(citations, "sources/pubs.articles.bib")
+write(citations, "pubs.articles.bib")
 ```
 
 
 ```{r load_pubs}
 # Load publications into R
-pubdata = read.csv("sources/pubs.articles.csv", row.names="doi", check.names=FALSE)
+pubdata = read.csv(pubfile, row.names="doi", check.names=FALSE)
 rownames(pubdata) = tolower(rownames(pubdata))
-pubs = bibliography_entries("sources/pubs.articles.bib")
+pubs = bibliography_entries(paste(sources_dir, "pubs.articles.bib", sep="/"))
 pubs = pubs %>% arrange(desc(issued)) %>%
   mutate(year=format(as.Date(issued), format="%Y"),
          DOI=tolower(DOI),
@@ -309,7 +317,7 @@ pubs
 _\* = speaker, † = poster, § = international scope_
 
 ```{r meetings}
-meetings = load_data("sources/meetings.csv", ignore="date") %>%
+meetings = load_data("meetings.csv", ignore="date") %>%
   mutate(date=as.Date(date), year = format(date, "%Y")) %>%
   mutate(international=ifelse(is.na(international), FALSE, international))# Take care of using missing for F
 blank="\\textcolor{white}{\\_}"
@@ -340,7 +348,7 @@ for(myperiod in order_periods(meetings$period)){
 _§ = international scope_
 
 ```{r presentations}
-presents = load_data("sources/presentations.csv", ignore="date") %>%
+presents = load_data("presentations.csv", ignore="date") %>%
   mutate(international = ifelse(is.na(international), FALSE, international)) %>% # Remove NAs
   mutate(date=as.Date(date), international=ifelse(international, yes="§", no="")) %>%
   arrange(desc(date)) %>%
@@ -363,7 +371,7 @@ for(myperiod in order_periods(presents$period)){
 ## Posters & Abstracts
 
 ```{r posters}
-posters = load_data("sources/posters_and_abstracts.csv", ignore="date") %>%
+posters = load_data("posters_and_abstracts.csv", ignore="date") %>%
   mutate(international = ifelse(is.na(international), FALSE, international)) %>% # Remove NAs
   mutate(date=as.Date(date), international=ifelse(international, yes="*", no="")) %>%
   arrange(desc(date)) %>%
@@ -382,7 +390,7 @@ for(myperiod in order_periods(posters$period)){
 
 ## Other Creative Contributions
 ```{r creative_contributions}
-creatives = load_data("sources/pubs.creative_contributions.csv", ignore="date") %>%
+creatives = load_data("pubs.creative_contributions.csv", ignore="date") %>%
   mutate(date=as.Date(date)) %>%
   arrange(desc(date)) %>%
   mutate(date = format(date, "%d %b %Y"),
@@ -398,7 +406,7 @@ creatives = load_data("sources/pubs.creative_contributions.csv", ignore="date") 
 # TODO: Fix fescue PGRP amounts after Noble withdraw
 
 # Calculate grant totals
-grants=load_data("sources/grants.csv", ignore=c("start", "stop", "submitted")) %>%
+grants=load_data("grants.csv", ignore=c("start", "stop", "submitted")) %>%
   mutate_at(c("amount_all", "amount_wallace"), as.numeric) %>%
   mutate_at(c("start", "stop", "submitted"), as.Date) %>%
   arrange(desc(submitted))
@@ -504,7 +512,7 @@ for(myperiod in order_periods(unfunded$period)){
 
 # Professional Development
 ```{r prof_development}
-load_data("sources/professional_development.csv", ignore="date") %>%
+load_data("professional_development.csv", ignore="date") %>%
   mutate(date=format(as.Date(date), "%d %b %Y"), description = paste(bold(title), ". \\newline ", description, ". (", location, ")", sep=""), .keep="none") %>%
   #select(-organization) %>%
   relocate(date, description) %>%
@@ -517,7 +525,7 @@ load_data("sources/professional_development.csv", ignore="date") %>%
 
 ### University Organizational Membership
 ```{r membership_university}
-load_data("sources/membership_university.csv") %>%
+load_data("membership_university.csv") %>%
   arrange(!is.na(stop), desc(stop), desc(start), organization) %>%
   mutate(
     stop=ifelse(is.na(stop), "Present", stop),
@@ -530,7 +538,7 @@ load_data("sources/membership_university.csv") %>%
 
 ### University Leadership & Administration
 ```{r service_university}
-load_data("sources/service_university.csv", ignore=c("start", "stop")) %>%
+load_data("service_university.csv", ignore=c("start", "stop")) %>%
   #arrange(!is.na(stop), desc(as.Date(start))) %>%
   arrange(!is.na(stop), desc(stop), desc(as.Date(start))) %>%
   mutate(
@@ -555,7 +563,7 @@ load_data("sources/service_university.csv", ignore=c("start", "stop")) %>%
 
 ### Editorships
 ```{r editorships}
-load_data("sources/editorships.csv", ignore=c("start", "stop")) %>%
+load_data("editorships.csv", ignore=c("start", "stop")) %>%
   arrange(!is.na(stop), desc(stop), desc(as.Date(start))) %>%
   mutate(
     start=format(as.Date(start), "%b %Y"),
@@ -570,7 +578,7 @@ load_data("sources/editorships.csv", ignore=c("start", "stop")) %>%
 ### Invited External Review
 ```{r invited_reviews}
 # Header by period, then make a table with "type (total)" and "[list of orgs with (total) each if >1]"
-reviews = load_data("sources/service_reviewing.csv")
+reviews = load_data("service_reviewing.csv")
 for(myperiod in order_periods(reviews$period)){
    cat("####", myperiod,"\n") 
    reviews %>% filter(period==myperiod) %>% 
@@ -588,7 +596,7 @@ for(myperiod in order_periods(reviews$period)){
 
 ### Society memberships
 ```{r societies}
-societies = load_data("sources/membership_societies.csv") %>%
+societies = load_data("membership_societies.csv") %>%
   arrange(organization, start) %>%
   mutate(stop=ifelse(is.na(stop), "Present", stop)) %>%
   mutate(dates=paste(start, stop, sep="-"), organization=bold(organization), .keep="none") %>%
@@ -601,7 +609,7 @@ societies = load_data("sources/membership_societies.csv") %>%
 
 ## Public Outreach and Service
 ```{r outreach}
-outreach = load_data("sources/outreach.csv", ignore="date") %>%
+outreach = load_data("outreach.csv", ignore="date") %>%
   arrange(desc(date)) %>%
   mutate(num_participants = ifelse(is.na(num_participants), yes="", 
                                    no=paste(num_participants, "participants; ")),
