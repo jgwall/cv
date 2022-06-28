@@ -10,6 +10,8 @@ email: "jason.wallace@uga.edu"
 github: jgwall
 linkedin: "jason-wallace-a874b845"
 date: "`r format(Sys.time(), '%B %Y')`"  
+csl: current-biology.csl
+#csl: current-opinion-in-microbiology.csl
 # Hyndman layout not bad, but a little ugly with title bar
 output: 
   vitae::hyndman:  
@@ -17,7 +19,6 @@ output:
     toc: TRUE
     number_sections: FALSE
     
-csl: 
 header-includes:
   \definecolor{headcolor}{HTML}{000099}
   \hypersetup{colorlinks=true, urlcolor=headcolor}
