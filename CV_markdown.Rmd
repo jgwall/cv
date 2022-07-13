@@ -254,8 +254,9 @@ pubfile = paste(sources_dir, 'pubs.articles.csv', sep='/')
 pubs = read.csv(pubfile)
 citations = unlist(cr_cn(pubs$doi, format="bibtex")) %>%
   gsub(pattern="$\\less$i$\\greater$", repl="\\emph{", fixed=TRUE) %>% # Fix fonio genome title
-  gsub(pattern="$\\less$/i$\\greater$", repl="}", fixed=TRUE)
-write(citations, "pubs.articles.bib")
+  gsub(pattern="$\\less$/i$\\greater$", repl="}", fixed=TRUE) %>%
+  gsub(pattern="$\\vert$", repl="|", fixed=TRUE) # Fix G3 journal title
+write(citations, paste(sources_dir,"pubs.articles.bib", sep='/'))
 ```
 
 

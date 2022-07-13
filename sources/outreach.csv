@@ -1,9 +1,10 @@
-date,event,num_participants,location,link,description
-2016-01-29,Whit Davis Career Fair,300,"Athens, Georgia",,Career fair for children in grades 3-5 at Whit Davis elementary
-2017-04-25,Whit Davis Career Fair,330,"Athens, Georgia",,Career fair for children in grades 3-5 at Whit Davis elementary
-2017-05-19,1st Grade Presentation: Genes and Food,50,"Athens, Georgia",,Presentation to Whit Davis Elementary School 1st Grade
-2017-09-22,Live from the Lab: The Pearl Millet Genome,NA,"Athens, Georgia",https://m.facebook.com/story.php?story_fbid=10159231245035234&id=10150089036300234,Facebook Live stream explaining the significance of the pearl millet genome publication
-2017-12-11,Hilsman Middle School Science Fair,100,"Athens, Georgia",,Served as volunteer judge for a middle school science fair at Hilsman Middle School
-2018-03-09,Whit Davis Career Fair,300,"Athens, Georgia",,Career fair for children in grades 3-5 at Whit Davis elementary
-2019-03-28,Whit Davis Career Fair,300,"Athens, Georgia",,Career fair for children in grades 3-5 at Whit Davis elementary
-2021-01-20,Youth Coding Night,10,"Athens, Georgia",,Introduction to coding to church youth group (ages 11-18)
+date,event,num_participants,location,description,link
+2016-01-29,Whit Davis Career Fair,300,"Athens, Georgia",Career fair for children in grades 3-5 at Whit Davis elementary,
+2017-04-25,Whit Davis Career Fair,330,"Athens, Georgia",Career fair for children in grades 3-5 at Whit Davis elementary,
+2017-05-19,1st Grade Presentation: Genes and Food,50,"Athens, Georgia",Presentation to Whit Davis Elementary School 1st Grade,
+2017-09-22,Live from the Lab: The Pearl Millet Genome,NA,"Athens, Georgia",Facebook Live stream explaining the significance of the pearl millet genome publication,https://m.facebook.com/story.php?story_fbid=10159231245035234&id=10150089036300234
+2017-12-11,Hilsman Middle School Science Fair,100,"Athens, Georgia",Served as volunteer judge for a middle school science fair at Hilsman Middle School,
+2018-03-09,Whit Davis Career Fair,300,"Athens, Georgia",Career fair for children in grades 3-5 at Whit Davis elementary,
+2019-03-28,Whit Davis Career Fair,300,"Athens, Georgia",Career fair for children in grades 3-5 at Whit Davis elementary,
+2021-01-20,Youth Coding Night,10,"Athens, Georgia",Introduction to coding to church youth group (ages 11-18),
+2022-05-23,Skype-A-Scientist,20,Virtual,"Zoom call with 3rd-grade Spanish immersion class, Liberty Bell Elementary School, Coopersberg, PA",
