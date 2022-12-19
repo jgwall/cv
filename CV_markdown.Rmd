@@ -9,6 +9,7 @@ email: "jason.wallace@uga.edu"
 #twitter: TheWallaceLab
 github: jgwall
 linkedin: "jason-wallace-a874b845"
+orcid: "0000-0002-8937-6543"
 date: "`r format(Sys.time(), '%B %Y')`"  
 csl: current-biology.csl
 #csl: current-opinion-in-microbiology.csl
@@ -251,7 +252,8 @@ pubfile = paste(sources_dir, 'pubs.articles.csv', sep='/')
 
 ```{r download_pubs, cache=TRUE, cache.extra = tools::md5sum(pubfile)}
 # Load publications from CrossRef. Cache options mean only runs if source file or this chunk's code have changed
-pubs = read.csv(pubfile)
+pubs = read.csv(pubfile)  %>%
+  filter(doi != "")
 citations = unlist(cr_cn(pubs$doi, format="bibtex")) %>%
   gsub(pattern="$\\less$i$\\greater$", repl="\\emph{", fixed=TRUE) %>% # Fix fonio genome title
   gsub(pattern="$\\less$/i$\\greater$", repl="}", fixed=TRUE) %>%
