@@ -615,7 +615,24 @@ societies = load_data("membership_societies.csv") %>%
   baretable(align=c("l","X"))
 ```
 
-## Public Outreach and Service
+## Other Service
+```{r service_general}
+load_data("service_general.csv", ignore=c("start", "stop")) %>%
+  arrange(!is.na(stop), desc(stop), desc(as.Date(start))) %>%
+  mutate(
+    start=format(as.Date(start), "%b %Y"),
+    stop=ifelse(is.na(stop), "Present", format(as.Date(stop), "%b %Y")),
+    sep="--",
+    role=bold(role),
+    description = paste(bold(organization), ", ", unit, sep=""), 
+    .keep="unused") %>%
+  relocate(start, sep, stop, role, description) %>%
+  baretable(align=c("l", "l", "c", "l", "l", "X"))
+  
+```
+
+
+## Public Outreach
 ```{r outreach}
 outreach = load_data("outreach.csv", ignore="date") %>%
   arrange(desc(date)) %>%
