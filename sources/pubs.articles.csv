@@ -1,49 +1,57 @@
-period,year,description,doi,lab_authors,lab_role,article_type
-PhD,2014,Improved B. halodurans transformation,10.1111/j.1472-765x.2011.03017.x,,primary,research
-PhD,2014,OLE RNA-membrane association,10.1111/j.1365-2958.2010.07439.x,,collaborator,research
-PhD,2014,OLE RNA protects from alcohol toxicity,10.1093/nar/gks352,,primary,research
-Postdoc,2014,Entering the Second Century of Maize Quantitative Genetics,10.1038/hdy.2013.6,,primary,review
-Postdoc,2014,Association mapping across numerous maize traits,10.1371/journal.pgen.1004845,,primary,research
-Assistant Professor,2015,Carbon and nitrogen GWAS in maize,10.1104/pp.15.00025,,collaborator,research
-Assistant Professor,2015,Barnyard millet genetic diversity,10.3835/plantgenome2014.10.0067,,primary,research
-Assistant Professor,2015,Foxtail millet genetic diversity,10.3835/plantgenome2015.07.0054,,collaborator,research
-Assistant Professor,2016,Fast-flowering minimaize,10.1534/genetics.116.191726,,collaborator,research
-Assistant Professor,2016,Pearl millet leaf spot mapping,10.3835/plantgenome2015.10.0106,,primary,research
-Assistant Professor,2016,Maize WEMA GWAS height and flowering,10.2135/cropsci2015.10.0632,,primary,research
-Assistant Professor,2017,Vitamin E in maize (Diepenbrock),10.1105/tpc.17.00475,,collaborator,research
-Assistant Professor,2017,Pearl millet genome,10.1038/nbt.3943,,collaborator,research
-Assistant Professor,2017,Maize leaf angle (Strable),10.1105/tpc.16.00477,,collaborator,research
-Assistant Professor,2017,Genotyping by Sequencing (Current Protocols),10.1002/cppb.20042,,primary,review
-Assistant Professor,2018,Deep learning at the Edge (Voghoei),10.1109/CSCI46756.2018.00177,Voghoei,collaborator,review
-Assistant Professor,2018,Maize leaf microbiome,10.1094/PBIOMES-02-18-0008-R,Kovar,primary,research
-Assistant Professor,2018,Endophytes: The Other Maize Genome,10.1007/978-3-319-97427-9_14,,primary,book_chapter
-Assistant Professor,2018,On the road to Breeding 4.0,10.1146/annurev-genet-120116-024846,,primary,review
-Assistant Professor,2018,Maize rhizosphere microbiome (Walters/Ley),10.1073/pnas.1800918115,,collaborator,research
-Assistant Professor,2018,Cotton fiber QTL (Patterson),10.3835/plantgenome2017.06.0057,,collaborator,research
-Assistant Professor,2018,Pearl millet male fertility locus (Pucher),10.1186/s12870-018-1267-8,,collaborator,research
-Assistant Professor,2018,Ab10 genetic mechanisms (Dawe),10.1016/j.cell.2018.03.009,,collaborator,research
-Assistant Professor,2019,Small millet pop analysis (Johnson),10.3835/plantgenome2019.03.0021,Johnson,primary,research
-Assistant Professor,2019,Sorghum root-knot nematode resistance,10.1094/PHYTO-11-18-0433-R,,collaborator,research
-Associate Professor,2020,G2F 2014-2017 dataset,10.1186/s13104-020-4922-8,,collaborator,research
-Associate Professor,2021,Fonio genome ,10.1093/gigascience/giab013,,collaborator,research
-Associate Professor,2021,G2F phenotypic plasticity,10.2139/ssrn.3684755,,collaborator,research
-Associate Professor,2021,Maize carotenoid variation (Diepenbrock),10.1093/plcell/koab032,,collaborator,research
-Associate Professor,2021,16s extraction & amplification (Giangacomo),10.1094/PBIOMES-07-20-0055-R,Giangacomo,primary,research
-Associate Professor,2021,Hemp genetic diversity (Johnson),10.3389/fgene.2021.682475,Johnson,primary,research
-Associate Professor,2021,Georgia peanut cultivar diversity (Nino Brown),10.1002/tpg2.20141,Johnson,collaborator,research
-Associate Professor,2021,Living mulch improves soil health (Hill),10.1002/agj2.20768,,collaborator,research
-Associate Professor,2021,Bladderwort insulator elements (Parrott) (PREPRINT),10.1101/2021.11.04.467280,Kovar,collaborator,research
-Associate Professor,2021,G2F Dominance and GxE (Holland),10.1093/g3journal/jkaa050,,collaborator,research
-Associate Professor,2022,Maize endophyte screening (Schultz),10.1007/s10725-022-00842-9,Schultz,primary,research
-Associate Professor,2022,Sorghum Sugarcane Aphid GWAS (Punnuri),10.1016/j.ygeno.2022.110408,Li,collaborator,research
-Associate Professor,2022,Cotton small-effect QTL (Paterson),10.3389/fpls.2022.981682,,collaborator,research
-Associate Professor,2022,Maize seed endophyte review,10.1111/mpp.13278,,primary,review
-Associate Professor,2023,Genomes to Fields 2018-2019 data,10.1186/s12863-023-01129-2,,collaborator,research
-Associate Professor,2023,G2F yield prediction (Washburn lab),10.1093/g3journal/jkad006,,collaborator,research
-Associate Professor,2023,Maize lesion mimic (Murray lab),10.1007/s00122-023-04394-y,,collaborator,research
-Associate Professor,2023,G2F prediction contest dataset ,10.1186/s13104-023-06421-z,,collaborator,research
-Associate Professor,2023,Corey maize microbiome heterosis,10.3390/microorganisms11040879,Schultz,primary,research
-Associate Professor,2023,G2F 2020-2021 field season data,10.1186/s13104-023-06430-y,,collaborator,research
-Associate Professor,2023,kGWASflow paper,10.1093/g3journal/jkad246,Corut,primary,research
-Associate Professor,2023,Bladderwort insulator elements II (Laspisa),10.3389/fpls.2023.1279231,Laspisa,primary,research
-Associate Professor,2024,Soybean microbiome and nematode resistance (Ivy Tran),10.3389/fpls.2023.1326882,,collaborator,research
+period,year,description,doi,lab_authors,lab_role,article_type,URL
+PhD,2014,Improved B. halodurans transformation,10.1111/j.1472-765x.2011.03017.x,,primary,research,
+PhD,2014,OLE RNA-membrane association,10.1111/j.1365-2958.2010.07439.x,,collaborator,research,
+PhD,2014,OLE RNA protects from alcohol toxicity,10.1093/nar/gks352,,primary,research,
+Postdoc,2014,Entering the Second Century of Maize Quantitative Genetics,10.1038/hdy.2013.6,,primary,review,
+Postdoc,2014,Association mapping across numerous maize traits,10.1371/journal.pgen.1004845,,primary,research,
+Assistant Professor,2015,Carbon and nitrogen GWAS in maize,10.1104/pp.15.00025,,collaborator,research,
+Assistant Professor,2015,Barnyard millet genetic diversity,10.3835/plantgenome2014.10.0067,,primary,research,
+Assistant Professor,2015,Foxtail millet genetic diversity,10.3835/plantgenome2015.07.0054,,collaborator,research,
+Assistant Professor,2016,Fast-flowering minimaize,10.1534/genetics.116.191726,,collaborator,research,
+Assistant Professor,2016,Pearl millet leaf spot mapping,10.3835/plantgenome2015.10.0106,,primary,research,
+Assistant Professor,2016,Maize WEMA GWAS height and flowering,10.2135/cropsci2015.10.0632,,primary,research,
+Assistant Professor,2017,Vitamin E in maize (Diepenbrock),10.1105/tpc.17.00475,,collaborator,research,
+Assistant Professor,2017,Pearl millet genome,10.1038/nbt.3943,,collaborator,research,
+Assistant Professor,2017,Maize leaf angle (Strable),10.1105/tpc.16.00477,,collaborator,research,
+Assistant Professor,2017,Genotyping by Sequencing (Current Protocols),10.1002/cppb.20042,,primary,protocol,
+Assistant Professor,2018,Deep learning at the Edge (Voghoei),10.1109/CSCI46756.2018.00177,Voghoei,collaborator,review,
+Assistant Professor,2018,Maize leaf microbiome,10.1094/PBIOMES-02-18-0008-R,Kovar,primary,research,
+Assistant Professor,2018,Endophytes: The Other Maize Genome,10.1007/978-3-319-97427-9_14,,primary,book_chapter,
+Assistant Professor,2018,On the road to Breeding 4.0,10.1146/annurev-genet-120116-024846,,primary,review,
+Assistant Professor,2018,Maize rhizosphere microbiome (Walters/Ley),10.1073/pnas.1800918115,,collaborator,research,
+Assistant Professor,2018,Cotton fiber QTL (Patterson),10.3835/plantgenome2017.06.0057,,collaborator,research,
+Assistant Professor,2018,Pearl millet male fertility locus (Pucher),10.1186/s12870-018-1267-8,,collaborator,research,
+Assistant Professor,2018,Ab10 genetic mechanisms (Dawe),10.1016/j.cell.2018.03.009,,collaborator,research,
+Assistant Professor,2019,Small millet pop analysis (Johnson),10.3835/plantgenome2019.03.0021,Johnson,primary,research,
+Assistant Professor,2019,Sorghum root-knot nematode resistance,10.1094/PHYTO-11-18-0433-R,,collaborator,research,
+Associate Professor,2020,G2F 2014-2017 dataset,10.1186/s13104-020-4922-8,,collaborator,research,
+Associate Professor,2021,Fonio genome ,10.1093/gigascience/giab013,,collaborator,research,
+Associate Professor,2021,G2F phenotypic plasticity,10.2139/ssrn.3684755,,collaborator,research,
+Associate Professor,2021,Maize carotenoid variation (Diepenbrock),10.1093/plcell/koab032,,collaborator,research,
+Associate Professor,2021,16s extraction & amplification (Giangacomo),10.1094/PBIOMES-07-20-0055-R,Giangacomo,primary,research,
+Associate Professor,2021,Hemp genetic diversity (Johnson),10.3389/fgene.2021.682475,Johnson,primary,research,
+Associate Professor,2021,Georgia peanut cultivar diversity (Nino Brown),10.1002/tpg2.20141,Johnson,collaborator,research,
+Associate Professor,2021,Living mulch improves soil health (Hill),10.1002/agj2.20768,,collaborator,research,
+Associate Professor,2021,Bladderwort insulator elements (Parrott) (PREPRINT),10.1101/2021.11.04.467280,Kovar,collaborator,research,
+Associate Professor,2021,G2F Dominance and GxE (Holland),10.1093/g3journal/jkaa050,,collaborator,research,
+Associate Professor,2022,Maize endophyte screening (Schultz),10.1007/s10725-022-00842-9,Schultz,primary,research,
+Associate Professor,2022,Sorghum Sugarcane Aphid GWAS (Punnuri),10.1016/j.ygeno.2022.110408,Li,collaborator,research,
+Associate Professor,2022,Cotton small-effect QTL (Paterson),10.3389/fpls.2022.981682,,collaborator,research,
+Associate Professor,2022,Maize seed endophyte review,10.1111/mpp.13278,,primary,review,
+Associate Professor,2023,Genomes to Fields 2018-2019 data,10.1186/s12863-023-01129-2,,collaborator,research,
+Associate Professor,2023,G2F yield prediction (Washburn lab),10.1093/g3journal/jkad006,,collaborator,research,
+Associate Professor,2023,Maize lesion mimic (Murray lab),10.1007/s00122-023-04394-y,,collaborator,research,
+Associate Professor,2023,G2F prediction contest dataset ,10.1186/s13104-023-06421-z,,collaborator,research,
+Associate Professor,2023,Corey maize microbiome heterosis,10.3390/microorganisms11040879,Schultz,primary,research,
+Associate Professor,2023,G2F 2020-2021 field season data,10.1186/s13104-023-06430-y,,collaborator,research,
+Associate Professor,2023,kGWASflow paper,10.1093/g3journal/jkad246,Corut,primary,research,
+Associate Professor,2023,Bladderwort insulator elements II (Laspisa),10.3389/fpls.2023.1279231,Laspisa,primary,research,
+Associate Professor,2023,Living mulch microbiome,10.1371/journal.pone.0290608,Li,primary,research,
+Associate Professor,2024,Soybean microbiome and nematode resistance (Ivy Tran),10.3389/fpls.2023.1326882,,collaborator,research,
+Associate Professor,2024,Davis Gimode peanut GS for aflatoxin,10.3146/0095-3679-51-PS23-4,,collaborator,research,
+Associate Professor,2024,CSHL Protocols – Topical Overview,10.1101/pdb.top108463,,primary,review,http://cshprotocols.cshlp.org/cgi/reprint/pdb.top108463v1.pdf?ijkey=47wbqGplvzehuoY&keytype=finite
+Associate Professor,2024,CSHL Protocols – Root microbiomes,10.1101/pdb.prot108580,,collaborator,protocol,http://cshprotocols.cshlp.org/cgi/reprint/pdb.prot108580v1.pdf?ijkey=PA51qVRd5et03TN&keytype=finite
+Associate Professor,2024,CSHL Protocols – Maize leaf microbiome,10.1101/pdb.prot108581,,primary,protocol,http://cshprotocols.cshlp.org/cgi/reprint/pdb.prot108581v1.pdf?ijkey=Loib3lL6cKkxzqB&keytype=finite
+Associate Professor,2024,CSHL Protocols – Seed endophytes,10.1101/pdb.prot108582,Laspisa,primary,protocol,http://cshprotocols.cshlp.org/cgi/reprint/pdb.prot108582v1.pdf?ijkey=mlhn4E2BT7lgZtV&keytype=finite
+Associate Professor,2024,CSHL Protocols – Amplicon libraries with PNAs,10.1101/pdb.prot108583,Griffis,primary,protocol,http://cshprotocols.cshlp.org/cgi/reprint/pdb.prot108583v1.pdf?ijkey=fyDIBBlzcKApltp&keytype=finite
+Associate Professor,2024,CSHL Protocols – Inoculation,10.1101/pdb.prot108584,Laspisa,collaborator,protocol,https://urldefense.com/v3/__http://cshprotocols.cshlp.org/cgi/reprint/pdb.prot108584v1.pdf?ijkey=Nb6zKcC4aFcQ0zg&keytype=finite__;!!DZ3fjg!52fZ8qbMWkEsU2zseS9UOFgR6jWA_ckKD9I-5CWlYZIjOSbr0Girddoiyc5f30lUJPTl_qD3nJHynVOZdqaWrP5FChi0J09SzWsXisM$

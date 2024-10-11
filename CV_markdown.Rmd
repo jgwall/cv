@@ -38,6 +38,8 @@ header-includes:
 
 # TODO - Add section on Public Datasets. (CSV already mostly filled out)
 
+# TODO - See if "protocol" classification of papers caused a problem and I need to change them all to "review"
+
 ---
 
 <!-- Formatting LaTeX commands -->

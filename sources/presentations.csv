@@ -1,11 +1,11 @@
 period,date,title,event,location,international
 Assistant Professor,2015-02-13,Leveraging Genomics to Improve Staple Crops,International Crops Research Institute for the Semi-Arid Tropics invited speaker,"Hyderabad, India",TRUE
 Assistant Professor,2015-02-19,Applying High-Throughput Genomics to Crops for the Developing World,Next Generation Genomics and Integrated Breeding for Crop Improvement,"Hyderabad, India",TRUE
-Assistant Professor,2015-06-30,Analyzing the Leaf Microbiome across 270 Diverse Maize Lines,Phytobiomes 2015,"Washington, D.C.",
+Assistant Professor,2015-06-30,Analyzing the Leaf Microbiome across 270 Diverse Maize Lines,Phytobiomes 2015,"Washington, D.C.",TRUE
 Assistant Professor,2015-10-02,Leveraging Genomics to Improve Staple Crops,UGA Institute of Bioinformatics Seminar Series,"Athens, Georgia",
 Assistant Professor,2015-10-30,Leveraging Genomics to Improve Staple Crops,UGA Plant Center Retreat,"Helen, Georgia",
-Assistant Professor,2016-01-13,Analyzing the Leaf Microbiome across 270 Diverse Maize Lines,Plant & Animal Genome XXIV,"San Diego, California",
-Assistant Professor,2016-03-20,The effect of host genetics on the maize leaf microbiome across 270 diverse inbred lines,58th Annual Maize Genetics Conference,"Jacksonville, Florida",
+Assistant Professor,2016-01-13,Analyzing the Leaf Microbiome across 270 Diverse Maize Lines,Plant & Animal Genome XXIV,"San Diego, California",TRUE
+Assistant Professor,2016-03-20,The effect of host genetics on the maize leaf microbiome across 270 diverse inbred lines,58th Annual Maize Genetics Conference,"Jacksonville, Florida",TRUE
 Assistant Professor,2016-04-22,Genotyping by Sequencing (GBS) Method Overview,BMZ Heterosis Project Meeting & Training,"Niamey, Niger",TRUE
 Assistant Professor,2016-04-22,TASSEL/GBS Practical Examples,BMZ Heterosis Project Meeting & Training,"Niamey, Niger",TRUE
 Assistant Professor,2016-04-25,Leveraging Genomics to Improve Staple Crops,West African Center for Crop Improvement seminar series,"Accra, Ghana",TRUE
@@ -14,7 +14,7 @@ Assistant Professor,2016-05-20,Leveraging Genomics to Improve Staple Crops,"UGA 
 Assistant Professor,2016-08-16,Nested Association Mapping for QTL Discovery and Genome-Wide Association,7th International Crop Science Congress,"Beijing, China",TRUE
 Assistant Professor,2016-08-24,The Effect of Host Genetics on the Maize Leaf Microbiome,UGA Plant Functional Genomics Seminar,"Athens, Georgia",
 Assistant Professor,2016-09-21,Leveraging Genomics to Improve Staple Crops,UGA Genetics Seminar Series,"Athens, Georgia",
-Assistant Professor,2017-01-14,Exploring the other maize genome: Quantitative analysis of how maize plants interact with their microbial communities,Plant & Animal Genome XXV,"San Diego, California",
+Assistant Professor,2017-01-14,Exploring the other maize genome: Quantitative analysis of how maize plants interact with their microbial communities,Plant & Animal Genome XXV,"San Diego, California",TRUE
 Assistant Professor,2017-03-09,Unraveling the Genetics of Maize-Microbiome Interactions,NewLeaf Symbiotics invited presentation,"Saint Louis, Missouri",
 Assistant Professor,2017-07-18,Harnessing Fungi to Improve Agriculture,Mycological Society of America,"Athens, Georgia",
 Assistant Professor,2017-10-23,The effect of host genetics on maize-microbiome interaction,ASA-CSSA-SSSA Annual Meeting,"Tampa, Florida",
@@ -24,7 +24,7 @@ Assistant Professor,2018-03-22,The Maize Microbiome,MaizeGDB workshop in conjunc
 Assistant Professor,2018-07-23,Quantitative Genetics of the Maize Microbiome,Chinese Agriculture University – University of Georgia collaboration conference,"Beijing, China",TRUE
 Assistant Professor,2018-10-12,Harnessing Plant Microbiomes for Agriculture,University of Kentucky Department of Plant & Soil Sciences Seminar Series,"Lexington, Kentucky",
 Assistant Professor,2018-11-06,La Microbiome del Maíz,UNITEC Universidad Tecnológica de México – Campus León Seminar Series,"Guanajuato, Mexico (via webinar)",TRUE
-Assistant Professor,2019-01-16,Genomics of Crop-Microbiome interactions,Plant & Animal Genome XXVII,"San Diego, California",
+Assistant Professor,2019-01-16,Genomics of Crop-Microbiome interactions,Plant & Animal Genome XXVII,"San Diego, California",TRUE
 Assistant Professor,2019-04-13,The Effect of Host Genetics on the Maize Leaf Microbiome,UGA Microbiome Seminar Series,"Athens, Georgia",
 Assistant Professor,2019-07-22,Harnessing Microbes to Improve Agriculture,Noble Research Institute seminar,"Ardmore, Oklahoma",
 Assistant Professor,2019-11-11,Unraveling the Mechanisms of Microbe-Induced Abiotic Stress tolerance in Plants,Crop Science Society of America annual meeting,"San Antonio, Texas",
@@ -41,3 +41,6 @@ Associate Professor,2021-09-17,Habitat or Mastermind? How maize shapes its micro
 Associate Professor,2021-11-18,Thanks for the Little Monsters: What We Owe Our Microbes,Athens Science Cafe,"Athens, Georgia",
 Associate Professor,2022-01-15,"A Large, Full Diallel of Tall Fescue for Dissecting Plant-Microbe Mutualism",Plant & Animal Genome XXIX,Virtual,TRUE
 Associate Professor,2023-10-04,Productive Partnerships: Helping plants and microbes work better together,University of Wisconsin Plant Cellular & Molecular Biology seminar series,"Madison, Wisconsin",
+Associate Professor,2024-01-15,"Genetic, Environmental, and GxE Effects of the Maize Microbiome across the United States",Plant & Animal Genome 30,"San Diego, California",TRUE
+Associate Professor,2024-01-23,The Genomes to Fields Initiative,Georgia Corn Short Course,"Tifton, Gerogia",
+Associate Professor,2024-03-02,Genetic & Environmental Impacts on the Maize Microbiome across the United States,66th Annual Maize Genetics Conference,"Raleigh, North Carolina",TRUE
