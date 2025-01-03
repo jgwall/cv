@@ -11,8 +11,8 @@ github: jgwall
 linkedin: "jason-wallace-a874b845"
 orcid: "0000-0002-8937-6543"
 date: "`r format(Sys.time(), '%B %Y')`"  
-csl: current-biology.csl
-#csl: current-opinion-in-microbiology.csl
+#csl: current-biology.csl
+csl: current-opinion-in-microbiology.csl
 # Hyndman layout not bad, but a little ugly with title bar
 output: 
   vitae::hyndman:  
@@ -26,6 +26,11 @@ header-includes:
  -  \urlstyle{same}
  -  \usepackage{colortbl}
  -  \usepackage{xltabular}
+ -  \usepackage[square,sort,comma,numbers]{natbib}
+# -  \usepackage{natbib}
+ #-  \makeatletter\let\saved@bibitem\@bibitem\makeatother
+ #-  \usepackage{hyperref}
+ #-  \makeatletter\let\@bibitem\saved@bibitem\makeatother
   #\usepackage{titlesec} 
   #\usepackage{tabularx}
   #\usepackage{makecell}
@@ -50,6 +55,7 @@ header-includes:
 \setlength{\LTpost}{0pt} <!-- Remove extra space after longtable  -->
 
 \titleformat{\paragraph}{\normalfont\bfseries\itshape}{\theparagraph}{1em}{} <!-- Adjust the level-4 headers ("####") to bold + italic -->
+\setlength{\bibsep}{0pt} <!-- Reduce the spacing between publication entries -->
 
 ```{r setup, include=FALSE}
 
@@ -65,6 +71,7 @@ library(kableExtra)
 library(bibtex)
 library(tidyr)
 library(scales)
+library(RefManageR)
 
 # Function to make sure any special characters are dealt with first
 sanitize = function(tbl, ignore=NULL){
@@ -263,6 +270,15 @@ citations = unlist(cr_cn(pubs$doi, format="bibtex")) %>%
   gsub(pattern="$\\less$/i$\\greater$", repl="}", fixed=TRUE) %>%
   gsub(pattern="$\\vert$", repl="|", fixed=TRUE) %>% # Fix G3 journal title
   gsub(pattern="month=(...)", repl="month={\\1}") # Fix 3-letter month abbreviations
+
+# Fix non-unique keys
+keys = sub(citations, pattern="@[^\\{]+\\{([^,]+),.+", repl="\\1") %>%
+  sub(pattern = "^ +", repl="") # Strip leading spaces
+newkeys = paste(keys, 1:length(keys), sep="_")
+for(i in 1:length(citations)){
+  citations[i] = sub(citations[i], pattern=keys[i], repl=newkeys[i])
+}
+# Write out
 write(citations, paste(sources_dir,"pubs.articles.bib", sep='/'))
 ```
 
@@ -271,12 +287,15 @@ write(citations, paste(sources_dir,"pubs.articles.bib", sep='/'))
 # Load publications into R
 pubdata = read.csv(pubfile, row.names="doi", check.names=FALSE)
 rownames(pubdata) = tolower(rownames(pubdata))
+
+#bibliography_entries(paste(sources_dir, "pubs.articles.bib", sep="/"))
 pubs = bibliography_entries(paste(sources_dir, "pubs.articles.bib", sep="/"))
 pubs = pubs %>% arrange(desc(issued)) %>%
   mutate(year=format(as.Date(issued), format="%Y"),
          DOI=tolower(DOI),
          period = pubdata[DOI, "period"],
          type = pubdata[DOI, "article_type"])
+#pubs
 #pubs$URL = paste("\\href{", pubs$URL, "}{", pubs$URL, "}", sep="")
 ```
 
@@ -287,7 +306,7 @@ pubs = pubs %>% arrange(desc(issued)) %>%
 pub.summary = table(pubs$period, pubs$type) %>%
   as.data.frame.matrix() %>%
   relocate(research, review, book_chapter) %>%
-  rename("Research Article"=research, Review=review, "Book Chapter"=book_chapter)
+  rename("Research Article"=research, "Review"=review, "Book Chapter"=book_chapter, "Protocol"=protocol)
 pub.summary = pub.summary[order_periods(pubdata$period),]
 pub.totals = pub.summary %>%
   summarize_all(sum)
@@ -303,15 +322,35 @@ pub.summary %>%
 ```
 
 
-```{r print_pubs}
-# NOTE: only actually prints entries if printed in full elsewhere. Made workaround in next chunk.
-for(myperiod in order_periods(pubs$period)){
+```{r print_pubs, results='asis'}
+
+# # NOTE: only actually prints entries if printed in full elsewhere. Made workaround in next chunk.
+# for(myperiod in order_periods(pubs$period)){
+#   count = sum(pubs$period==myperiod)
+#   cat("### ", myperiod, " (", count, ")\n", sep="")
+#   pubs %>% filter(period==myperiod) %>%
+#     vitae:::knit_print.vitae_bibliography() %>%
+#     cat()
+# }
+
+# Having to hardcode due to something breaking / updating in package
+# cat("### ", "Associate Professor", " (", sum(pubs$period=="Associate Professor"), ")\n", sep="")
+# pubs %>% filter(period=="Associate Professor")
+# cat("### ", "Assistant Professor", " (", sum(pubs$period=="Assistant Professor"), ")\n", sep="")
+# pubs %>% filter(period=="Assistant Professor")
+cite_period = function(myperiod){
   count = sum(pubs$period==myperiod)
   cat("### ", myperiod, " (", count, ")\n", sep="")
-  pubs %>% filter(period==myperiod) %>%
-    vitae:::knit_print.vitae_bibliography() %>%
-    cat()
+  pubs %>% filter(period==myperiod)
 }
+
+cite_period("Associate Professor")
+cite_period("Assistant Professor")
+cite_period("Postdoc")
+cite_period("PhD")
+
+
+
 # TODO: Figure out how to indicate if I'm senior/corresponding author, bold my name, and underline lab members. (Latter two may have to be a lua filter apparnetly)
 # TODO: More control if I do this myself (to add bold, asterisks, etc?). Harder to change bibliography method, so keep commented out if need that for some reason.
 ```
