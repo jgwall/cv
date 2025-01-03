@@ -26,7 +26,6 @@ header-includes:
  -  \urlstyle{same}
  -  \usepackage{colortbl}
  -  \usepackage{xltabular}
- -  \usepackage[square,sort,comma,numbers]{natbib}
 # -  \usepackage{natbib}
  #-  \makeatletter\let\saved@bibitem\@bibitem\makeatother
  #-  \usepackage{hyperref}
@@ -55,7 +54,7 @@ header-includes:
 \setlength{\LTpost}{0pt} <!-- Remove extra space after longtable  -->
 
 \titleformat{\paragraph}{\normalfont\bfseries\itshape}{\theparagraph}{1em}{} <!-- Adjust the level-4 headers ("####") to bold + italic -->
-\setlength{\bibsep}{0pt} <!-- Reduce the spacing between publication entries -->
+
 
 ```{r setup, include=FALSE}
 
@@ -280,6 +279,49 @@ for(i in 1:length(citations)){
 }
 # Write out
 write(citations, paste(sources_dir,"pubs.articles.bib", sep='/'))
+
+
+# TODO: The below function can supposedly format individual citations, maybe giving me more control. But seems unnecesssarily complicated
+#  Taken from https://stackoverflow.com/questions/63141295/creating-formatted-references-with-different-citation-styles-to-academic-papers
+# citation <- function(bib, csl="chicago-author-date.csl", toformat="plain", cslrepo="https://raw.githubusercontent.com/citation-style-language/styles/master") {
+#   if (!file.exists(bib)) {
+#     message("Assuming input is literal bibtex entry")
+#     tmpbib <- tempfile(fileext = ".bib")
+#     on.exit(unlink(tmpbib), add=TRUE)
+#     if(!validUTF8(bib)) {
+#       bib <- iconv(bib, to="UTF-8")
+#     }
+#     writeLines(bib, tmpbib)
+#     bib <- tmpbib
+#   }
+#   if (tools::file_ext(csl)!="csl") {
+#     warning("CSL file name should end in '.csl'")
+#   }
+#   if (!file.exists(csl)) {
+#     cslurl <- file.path(cslrepo, csl)
+#     message(paste("Downling CSL from", cslurl))
+#     cslresp <- httr::GET(cslurl, httr::write_disk(csl))
+#     if(httr::http_error(cslresp)) {
+#       stop(paste("Could not download CSL.", "Code:", httr::status_code(cslresp)))
+#     }
+#   }
+#   tmpcit <- tempfile(fileext = ".md")
+#   on.exit(unlink(tmpcit), add=TRUE)
+#   
+#   writeLines(c("---","nocite: '@*'","---"), tmpcit)
+#   rmarkdown::find_pandoc()
+#   command <- paste(shQuote(rmarkdown:::pandoc()), 
+#                    "--filter", "pandoc-citeproc",
+#                    "--to", shQuote(toformat),
+#                    "--csl", shQuote(csl),
+#                    "--bibliography", shQuote(bib), 
+#                   shQuote(tmpcit))
+#   rmarkdown:::with_pandoc_safe_environment({
+#     result <- system(command, intern = TRUE)
+#     Encoding(result) <- "UTF-8"
+#   })
+#   result
+# }
 ```
 
 
