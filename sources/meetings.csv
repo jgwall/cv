@@ -30,7 +30,7 @@ Assistant Professor,2019-01-11,speaker,Plant & Animal Genome XXVII,"San Diego, C
 Assistant Professor,2019-03-14,poster,61st Annual Maize Genetics Conference,"St. Louis, Missouri",TRUE
 Assistant Professor,2019-08-25,,National Association of Plant Breeders Annual Meeting,"Pine Mountain, Georgia",
 Assistant Professor,2019-09-05,poster,Plant Genome Research Program 22nd Annual Awardee Meeting,"Arlington, Virginia",
-Assistant Professor,2019-11-10,speaker,ASA-CSSA-SSSA Annual Meeting,"Tampa, Florida",
+Assistant Professor,2019-11-10,speaker,ASA-CSSA-SSSA Annual Meeting,"Tampa, Florida",TRUE
 Associate Professor,2020-02-05,speaker,FFAR Foster Our Future,"Washington, D.C.",
 Associate Professor,2020-02-10,,Plants by Design,"Athens, Georgia",
 Associate Professor,2020-03-02,speaker,Illinois’ Corn Breeders’ School,"Champaign, Illinois",
@@ -49,15 +49,22 @@ Associate Professor,2022-01-15,speaker,Plant & Animal Genome XXIX,Virtual,TRUE
 Associate Professor,2022-03-31,,64th Annual Maize Genetics Conference,"St. Louis, Missouri",TRUE
 Associate Professor,2022-05-25,,"UGA Institute of Plant Breeding, Genetics, and Genomics Retreat","Jekyll Island, Georgia",
 Associate Professor,2022-08-14,poster,18th International Symposium on Microbial Ecology,"Lausanne, Switzerland",TRUE
-Associate Professor,2022-09-04,speaker,DragonCon 2022,"Atlanta, Georgia",
+Associate Professor,2022-09-04,speaker,DragonCon 2022,"Atlanta, Georgia",TRUE
 Associate Professor,2022-09-07,poster,25th Annual Plant Genome Research Program Awardee Meeting,"Washington, D.C.",
-Associate Professor,2022-09-13,,Phytobiomes,"Denver, Colorado",
+Associate Professor,2022-09-13,,Phytobiomes,"Denver, Colorado",TRUE
 Associate Professor,2022-11-02,,Georgia Plant Conservation Alliance Annual Meeting,"Brunswick, Georgia",
 Associate Professor,2022-12-12,,UGA Plant Center Retreat,"Young Harris, Georgia",
-Associate Professor,2023-01-07,,Plant & Animal Genome 30,"San Diego, California",
-Associate Professor,2023-03-16,,65th Annual Maize Genetics Conference,"St. Louis, Missouri",
+Associate Professor,2023-01-07,,Plant & Animal Genome 30,"San Diego, California",TRUE
+Associate Professor,2023-03-16,,65th Annual Maize Genetics Conference,"St. Louis, Missouri",TRUE
 Associate Professor,2023-05-17,,"UGA Institute of Plant Breeding, Genetics, and Genomics Retreat","Columbus, Georgia",
 Associate Professor,2023-08-05,poster,Plant Biology 2023 (American Society of Plant Biologists),"Savannah, Georgia",
-Associate Professor,2023-08-31,speaker,DragonCon 2023,"Atlanta, Georgia",
+Associate Professor,2023-08-31,speaker,DragonCon 2023,"Atlanta, Georgia",TRUE
 Associate Professor,2023-09-08,poster,26th Annual Plant Genome Research Program Awardee Meeting,"Washington, D.C.",
 Associate Professor,2023-12-13,,UGA Plant Center Retreat,"Young Harris, Georgia",
+Associate Professor,2024-01-15,speaker,Plant & Animal Genome 31,"San Diego, California",TRUE
+Associate Professor,2024-03-01,speaker,66th Annual Maize Genetics Conference,"Raleigh, North Carolina",TRUE
+Associate Professor,2024-04-27,speaker,AI In Plant Breeding Symposium,"Athens, Georgia",
+Associate Professor,2024-05-15,,"UGA Institute of Plant Breeding, Genetics, and Genomics Retreat","Hiawasee, Georgia",
+Associate Professor,2024-08-31,speaker,DragonCon 2024,"Atlanta, Georgia",TRUE
+Associate Professor,2024-11-01,,UGA Plant Center Retreat,"Pine Mountain, Georgia",
+Associate Professor,2024-11-20,,Phytobiomes 2024,"St. Louis, Missouri",TRUE
