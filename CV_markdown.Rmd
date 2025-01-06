@@ -19,6 +19,7 @@ output:
     keep_tex: TRUE
     toc: TRUE
     number_sections: FALSE
+#bibliograhy: sources/pubs.articles.bib
 # NTOE: if fail to compile PDF, try quoting top 2 below    
 header-includes:
  -  \definecolor{headcolor}{HTML}{000099}
@@ -26,10 +27,7 @@ header-includes:
  -  \urlstyle{same}
  -  \usepackage{colortbl}
  -  \usepackage{xltabular}
-# -  \usepackage{natbib}
- #-  \makeatletter\let\saved@bibitem\@bibitem\makeatother
- #-  \usepackage{hyperref}
- #-  \makeatletter\let\@bibitem\saved@bibitem\makeatother
+
   #\usepackage{titlesec} 
   #\usepackage{tabularx}
   #\usepackage{makecell}
@@ -54,6 +52,22 @@ header-includes:
 \setlength{\LTpost}{0pt} <!-- Remove extra space after longtable  -->
 
 \titleformat{\paragraph}{\normalfont\bfseries\itshape}{\theparagraph}{1em}{} <!-- Adjust the level-4 headers ("####") to bold + italic -->
+
+<!-- Change spacing, etc. in bibliography CSLReferences environment, from Pandoc -->
+ \renewenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+    {\begin{list}{}{%
+          \setlength{\itemindent}{0pt}
+          \setlength{\leftmargin}{0pt}
+          \setlength{\parsep}{0pt}
+          % turn on hanging indent if param 1 is 1
+          \ifodd #1
+          \setlength{\leftmargin}{\cslhangindent}
+          \setlength{\itemindent}{-1\cslhangindent}
+          \fi
+          % set entry spacing
+          \setlength{\itemsep}{0\baselineskip}}} % hard-coded itemsep
+    {\end{list}}
+<!-- End change bibliogaphy spacing etc. -->
 
 
 ```{r setup, include=FALSE}
@@ -376,14 +390,10 @@ pub.summary %>%
 # }
 
 # Having to hardcode due to something breaking / updating in package
-# cat("### ", "Associate Professor", " (", sum(pubs$period=="Associate Professor"), ")\n", sep="")
-# pubs %>% filter(period=="Associate Professor")
-# cat("### ", "Assistant Professor", " (", sum(pubs$period=="Assistant Professor"), ")\n", sep="")
-# pubs %>% filter(period=="Assistant Professor")
 cite_period = function(myperiod){
   count = sum(pubs$period==myperiod)
   cat("### ", myperiod, " (", count, ")\n", sep="")
-  pubs %>% filter(period==myperiod)
+  pubs %>% filter(period==myperiod) %>% vitae:::knit_print.vitae_bibliography()
 }
 
 cite_period("Associate Professor")
@@ -400,7 +410,7 @@ cite_period("PhD")
 ```{r print_pubs_dummy, include=FALSE}
 # Workaround to needing a full printing for things to be included.
 # This doesn't show up, but it apparently gets everything placed properly to show
-pubs
+#pubs
 ```
 
 ## Meetings attended
