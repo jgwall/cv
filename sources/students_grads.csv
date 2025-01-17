@@ -1,22 +1,22 @@
-role,status,name,degree,department,lab,year,notes,current_place
+role,status,name,degree,department,lab,year,current_place,notes
 Chair,Current,"Talamantes, Darrian",PhD,UGA Institute of Bioinformatics ,,2020-,,
 Chair,Current,"Behnke, Mary-Frances",PhD,UGA Institute of Bioinformatics ,,2024-,,
-Chair,Prior,"Johnson, Matthew",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics ",,2020,,Elo Life Systems (Greenhouse Operations Manager)
-Chair,Prior,"Kovar, Lynsey",MS,UGA Institute of Bioinformatics ,,2020,,Shape Therapeutics (Research Scientist)
-Chair,Prior,"Rodman, Naomi",MS,UGA Department of Crop & Soil Sciences ,,2021,Incomplete,Tugboat (Insurance App)
-Chair,Prior,"Griffis, Holly",MS,UGA Department of Genetics ,,2022,,UGA (Research Technician)
-Chair,Prior,"Aduragbemi, Amo",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics ",,2023,Transfer to Texas A&M (family situation),
-Chair,Prior,"Li, Hanxia",PhD,UGA Institute of Bioinformatics ,,2023,,St. Jude's Children's Reseach Hospital (Postdoc)
-Chair,Prior,"Schultz, Corey",PhD,UGA Institute of Bioinformatics ,,2023,,Bayer (Data Analyst)
+Chair,Prior,"Johnson, Matthew",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics ",,2020,Elo Life Systems (Greenhouse Operations Manager),
+Chair,Prior,"Kovar, Lynsey",MS,UGA Institute of Bioinformatics ,,2020,Shape Therapeutics (Research Scientist),
+Chair,Prior,"Rodman, Naomi",MS,UGA Department of Crop & Soil Sciences ,,2021,Tugboat (Insurance App),Incomplete
+Chair,Prior,"Griffis, Holly",MS,UGA Department of Genetics ,,2022,UGA (Research Technician),
+Chair,Prior,"Aduragbemi, Amo",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics ",,2023,,Transfer to Texas A&M (family situation)
+Chair,Prior,"Li, Hanxia",PhD,UGA Institute of Bioinformatics ,,2023,St. Jude's Children's Reseach Hospital (Postdoc),
+Chair,Prior,"Schultz, Corey",PhD,UGA Institute of Bioinformatics ,,2023,Bayer (Data Analyst),
 Chair,Prior,"Corut, Kivanc",PhD,UGA Institute of Bioinformatics ,,2024,,
-Co-Chair,Prior,"Voghoei, Sahar",PhD,UGA Department of Computer Science ,,2021,,Carl Vincent Institute of Government (Data Scientist)
+Co-Chair,Prior,"Voghoei, Sahar",PhD,UGA Department of Computer Science ,,2021,Carl Vincent Institute of Government (Data Scientist),
 Committee Member,Current,"Pinchi Davila, Xiomy",PhD,UGA Department of Plant Pathology,Annie Chung,2021-present,,
 Committee Member,Current,"Zhang, Shufan",PhD,UGA Institute of Bioinformatics,Jonathan Arnold,2021-present,,
 Committee Member,Current,"Maharjan, Namrata",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics",Soraya Bertioli,2022-present,,
 Committee Member,Current,"Ployaram, Wiriyanat",PhD,UGA Department of Crop & Soil Sciences,Andrew Patterson,2022-present,,
 Committee Member,Current,"Mangla, Hrithik",PhD,UGA Department of Crop & Soil Sciences,Andrew Patterson,2024-present,,
-Committee Member,Current,"Santigo-Sosa, Damian",PhD,UGA Department of Marine Science,,2024-present,,
-Committee Member,Current,"Spittle, Jake",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics ",,2024-present,,
+Committee Member,Current,"Santigo-Sosa, Damian",PhD,UGA Department of Marine Science,Adrienne Hoarfrost,2024-present,,
+Committee Member,Current,"Spittle, Jake",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics ",Wayne Parrott & Zenglu Li,2024-present,,
 Committee Member,Prior,"Steketee, Clint",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics",Zenglu Li,2018,,
 Committee Member,Prior,"Sumabat, Leilani",PhD,UGA Department of Plant Pathology,Marin Brewer,2018,,
 Committee Member,Prior,"Gimode, Davis",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics",Peggy Ozias-Akins,2019,,
@@ -42,4 +42,4 @@ Committee Member,Prior,"Fernandez-Canela, Josue",PhD,UGA Department of Plant Bio
 Committee Member,Prior,"Piri, Rebecca",PhD,UGA Institute of Bioinformatics,Kelly Dawe,2024,,
 Committee Member,Prior,"Kwon, Khee-Man",PhD,UGA Department of Plant Pathology,Melissa Mitchum,2024,,
 Committee Member,Prior,"Wright, Hallie",PhD,"UGA Institute of Plant Breeding, Genetics, and Genomics",Katrien Devos,2024,,
-Committee Member,Prior,"Newton, Carter",PhD,UGA Department of Plant Pathology,,2023-2024,Changed committee due to project changes,
+Committee Member,Prior,"Newton, Carter",PhD,UGA Department of Plant Pathology,Li Yang,2023-2024,,Changed committee due to project changes

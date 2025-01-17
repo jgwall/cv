@@ -229,9 +229,11 @@ students=load_data("students_grads.csv") %>%
   arrange(desc(year)) %>%  # Sort newest to oldest
   mutate(role = paste(role, " (", status, ")", sep=""),
          name=bold(name),
+         department = ifelse(is.na(lab), department, paste(department, " (", lab, ")", sep="")), # Add lab if present
          department = ifelse(is.na(notes), department, paste(department, " (", notes, ")", sep="")), #Add notes in if present
          .keep="unused") %>%
   relocate(degree, year) %>%
+  select(-current_place) %>%
   group_by(role) %>%
   group_map(function(x, ...){
     cat("###", unique(x$role), "\n")
