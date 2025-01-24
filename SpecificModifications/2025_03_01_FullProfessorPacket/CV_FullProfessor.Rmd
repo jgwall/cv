@@ -1,0 +1,730 @@
+---
+name: Jason G.
+surname: Wallace
+position: "Associate Professor"
+address: "Department of Crop & Soil Sciences, University of Georgia"
+phone: +1-706-542-9696 
+www: wallacelab.uga.edu
+email: "jason.wallace@uga.edu"
+#twitter: TheWallaceLab
+github: jgwall
+linkedin: "jason-wallace-a874b845"
+orcid: "0000-0002-8937-6543"
+date: "`r format(Sys.time(), '%B %Y')`"  
+#csl: current-biology.csl
+csl: current-opinion-in-microbiology.csl
+# Hyndman layout not bad, but a little ugly with title bar
+output: 
+  vitae::hyndman:  
+    keep_tex: TRUE
+    toc: TRUE
+    number_sections: FALSE
+#bibliograhy: sources/pubs.articles.bib
+# NTOE: if fail to compile PDF, try quoting top 2 below    
+header-includes:
+ -  \definecolor{headcolor}{HTML}{000099}
+ -  \hypersetup{colorlinks=true, urlcolor=headcolor}
+ -  \urlstyle{same}
+ -  \usepackage{colortbl}
+ -  \usepackage{xltabular}
+
+  #\usepackage{titlesec} 
+  #\usepackage{tabularx}
+  #\usepackage{makecell}
+  #\usepackage{float}
+# Titlesec Causes problems with "option clash" error
+# Add more packages with tinytex::tlmgr_install('PACKAGE_NAME')
+
+# TODO: Can also use Bookdown to separate out sections. Not necessary as currently written, but would help if want to include plaint-text stuff somewhere.
+
+# TODO - Add section on Public Datasets. (CSV already mostly filled out)
+
+---
+
+<!-- Formatting LaTeX commands -->
+\renewcommand{\labelitemi}{\textbullet}  <!-- Reset bullets to round circles -->
+
+\setlist{nosep,after=\vspace{-\baselineskip}}  <!-- Don't skip a line after lists finish -->
+\setlength{\LTpre}{0pt}  <!-- Remove extra space before longtable -->
+\setlength{\LTpost}{0pt} <!-- Remove extra space after longtable  -->
+
+\titleformat{\paragraph}{\normalfont\bfseries\itshape}{\theparagraph}{1em}{} <!-- Adjust the level-4 headers ("####") to bold + italic -->
+
+<!-- Change spacing, etc. in bibliography CSLReferences environment, from Pandoc -->
+ \renewenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+    {\begin{list}{}{%
+          \setlength{\itemindent}{0pt}
+          \setlength{\leftmargin}{0pt}
+          \setlength{\parsep}{0pt}
+          % turn on hanging indent if param 1 is 1
+          \ifodd #1
+          \setlength{\leftmargin}{\cslhangindent}
+          \setlength{\itemindent}{-1\cslhangindent}
+          \fi
+          % set entry spacing
+          \setlength{\itemsep}{0\baselineskip}}} % hard-coded itemsep
+    {\end{list}}
+<!-- End change bibliogaphy spacing etc. -->
+
+
+```{r setup, include=FALSE}
+
+sources_dir="../../sources" # Source directory for all the CSVs used
+
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, results="asis") # results='asis' lets latex code be interpreted properly
+library(vitae)
+library(dplyr)
+library(readr)
+library(rcrossref)
+library(tibble)
+library(kableExtra)
+library(bibtex)
+library(tidyr)
+library(scales)
+library(RefManageR)
+
+# Function to make sure any special characters are dealt with first
+sanitize = function(tbl, ignore=NULL){
+  to_change = names(tbl)
+  to_change = to_change[!to_change %in% ignore]
+  tbl %>% mutate_at(.vars=to_change, dplR::latexify, doublebackslash = FALSE)
+}
+
+# Helper function to load a CSV and do routine tasks
+load_data = function(infile, ...){
+  myfile=paste(sources_dir, infile, sep="/")
+  read_csv(myfile, show_col_types=FALSE) %>% sanitize(...)
+}
+
+# Helper function to format text
+bold = function(x){
+  paste("\\textbf{", x, "}", sep="")
+}
+italic = function(x){
+  paste("\\emph{", x, "}", sep="")
+}
+link = function(link, text){
+  paste("\\href{", link, "}{", text, "}", sep="")
+}
+
+# Put my "periods" of academic life (Assistant/Associate/Full professor) in correct order
+order_periods = function(p){
+  ref = rev(c("PhD", "Postdoc", "Assistant Professor", "Associate Professor", "Full Professor"))
+  if(any(!p %in% ref)){
+    stop("Unknown tenure period:", p[!p %in% ref])
+  }
+  return(ref[ref %in% p])
+}
+
+# Function to produce very basic table, no lines or headings - From Rob Hyndman, https://github.com/robjhyndman/CV, with modifications
+baretable <- function(tbl, digits = 0,
+                      include.colnames = FALSE, include.rownames = FALSE,
+                      hline.after = NULL, size = getOption("xtable.size", NULL),
+                      add.to.row = getOption("xtable.add.to.row", NULL), 
+                      #tabular.environment="tabularx",
+                      tabular.environment="xltabular", # Can experiment with this later
+                      width = "\\textwidth",
+                      ...) {
+  xtable::xtable(tbl, digits = digits, ...) %>%
+    print(
+      include.colnames = include.colnames, include.rownames = include.rownames,
+      hline.after = hline.after,  comment = FALSE,
+      tabular.environment = tabular.environment,
+      floating = FALSE, size = size, add.to.row = add.to.row,
+      width=width,
+      sanitize.text.function = function(x) {x}
+    )
+}
+
+
+```
+
+# 1. Academic History
+```{r header_info}
+load_data("0_header_info.csv") %>%
+  mutate(info = bold(info)) %>%
+  baretable()
+```
+
+## Academic Positions
+```{r employment}
+load_data("employment.csv") %>%
+  arrange(desc(stop)) %>%
+  filter(as.numeric(start) >= 2012) %>% # Ignore PhD and earlier
+  mutate(time=paste(start, "\\textendash{}", stop, sep=""),
+         title=bold(title),
+         location=paste(organization, " (", location, ")", sep=""), .keep="unused") %>%
+  relocate(time, title) %>%
+  baretable()
+```
+
+
+
+
+# 2. Instruction
+
+## Instructor of Record
+```{r teaching_mine}
+# schedule_to_bullets=function(class, schedule){
+#   bullets = paste(" \\item", schedule, sep=" ", collapse=" ")
+#   bullets = paste("\\begin{itemize}", bullets, "\\end{itemize}")
+#   paste(unique(class), bullets)
+# }
+
+
+# Load and format tabular
+load_data("teaching_mine.csv")  %>%
+  mutate(class = bold(class),
+         credits=paste(credits, ifelse(credits==1, "credit", "credits"))) %>%
+  group_by(code) %>%
+  summarize(credits = unique(credits), times=paste(n(), "semesters"),
+            enrollment = paste(sum(as.integer(enrollment)), "total students"),
+            span=paste(min(schedule), " - ", max(schedule), " (",times,")", sep="")) %>%
+  select(code, credits, span, enrollment) %>%
+  baretable()
+
+  #baretable(align=c("llXl")) # Have to specify column width for bullets to work ("X" = variable, but still works)
+```
+
+<!-- ## Guest Lectures -->
+<!-- ```{r teaching_guest} -->
+<!-- load_data("teaching_guest.csv", ignore="date") %>% -->
+<!--   arrange(desc(date)) %>% -->
+<!--   mutate(description = paste(bold(title), " (", class, ")", sep=""), .keep="unused") %>% -->
+<!--   select(-date) %>% -->
+<!--   relocate(display_date) %>% -->
+<!--   baretable() -->
+<!-- ``` -->
+
+<!-- ## Workshop Instructor -->
+<!-- ```{r teaching_workshops} -->
+<!-- load_data("teaching_workshops.csv", ignore="date") %>% -->
+<!--   arrange(desc(date)) %>% -->
+<!--   #  mutate(description = paste(bold(title), " (", organization, "; ", location,")", sep=""),  -->
+<!--   #         date=format(date, format="%e %b %Y"), .keep="unused") %>% -->
+<!--   # relocate(date) %>% -->
+<!--   # baretable(align=c("l","l", "X")) -->
+<!--   mutate(description = bold(title), -->
+<!--         location = paste(organization, "; ", location, sep=""), -->
+<!--         date=format(date, format="%e %b %Y"), .keep="unused") %>% -->
+<!--   relocate(date, description, location) %>% -->
+<!--   baretable(align=c("l","l", "X", "l")) -->
+<!-- ``` -->
+
+## Graduate Student Supervision
+
+### Major Professor - Current
+```{r student_mentorship}
+# Note: throws error if not saved to variable
+# My own students
+students=load_data("students_grads.csv") %>%
+  arrange(status, desc(year)) %>%  # Sort newest to oldest
+  filter(role %in% c("Chair","Co-Chair") & is.na(notes)) %>%
+  mutate(role = paste(role, " (", status, ")", sep=""),
+         name=bold(name),
+         department = ifelse(is.na(notes), department, paste(department, " (", notes, ")", sep="")), status=status, #Add notes in if present
+         .keep="unused") %>%
+  relocate(degree, year) %>%
+  select(-role) 
+
+students %>%
+  filter(status=="Current") %>%
+  select(-status) %>%
+  baretable()
+```
+
+### Major Professor - Graduated
+
+```{r}
+students %>%
+  filter(status=="Prior") %>%
+  select(-status) %>%
+#  baretable()
+     # baretable(align="llllllX")
+      baretable(align=c("l", "l", "l", "l", "p{13em}", "X", "l"))
+#  }, .keep=TRUE)
+
+  
+# group_by(role) %>%
+#   group_map(function(x, ...){
+#     cat("###", unique(x$role), "\n")
+#     x %>% select(-role) %>%
+#       #baretable(align="llllX")
+#       baretable(align=c("l", "p{1.5em}", "p{5em}", "p{11em}", "X"))
+#   }, .keep=TRUE)
+```
+
+### Graduate Student Committees
+
+```{r students_committees}
+# Note: throws error if not saved to variable
+# My own students
+load_data("students_grads.csv") %>%
+  arrange(status, desc(year)) %>%  # Sort newest to oldest
+  filter(role == "Committee Member") %>%
+  group_by(department) %>%
+  mutate(year = ifelse(status=="Current", yes = "current", no=year)) %>% 
+  mutate(name = paste(name, " (", degree, " ", year, ")", sep="")) %>%
+  summarize(total=n(), names=paste(name, collapse="; ")) %>%
+  mutate(department = paste(department, " (", total, ")", sep="")) %>%
+  select(-total) %>%
+  #baretable(align="llX")
+  baretable(align=c("l","p{17em}","X"))
+```
+
+
+<!-- ### Visiting Scientists -->
+<!-- ```{r visitors} -->
+<!-- visitors = load_data("visiting_scientists.csv") %>% -->
+<!--   mutate(name=bold(name)) %>% -->
+<!--   relocate(date) %>% -->
+<!--   baretable() -->
+<!-- ``` -->
+
+## Undergraduate Research Mentoring
+```{r undergrads}
+load_data("students_undergrads.csv") %>%
+  #mutate(name=bold(name)) %>%
+  mutate(name=bold(name), role=paste(role, " (", university, ")", sep=""), .keep="unused") %>%
+  relocate(date) %>%
+  filter(!grepl(role, pattern="technician", ignore.case=TRUE)) %>% 
+  arrange(desc(row_number())) %>%
+  baretable()
+```
+
+<!-- ### High School Students -->
+<!-- ```{r highschool} -->
+<!-- load_data("students_highschool.csv") %>% -->
+<!--   mutate(name=bold(name)) %>% -->
+<!--   select(-grade_level) %>% -->
+<!--   relocate(date, name) %>% -->
+<!--   baretable() -->
+<!-- ``` -->
+
+## Student Awards
+
+```{r student_awards}
+load_data("awards_students.csv") %>%
+  arrange(desc(date())) %>%
+  mutate(award = paste(award, " (", sponsor, ")", sep=""),
+         student=bold(student)) %>%
+  select(date, student, award) %>%
+  baretable()
+```
+
+## Professional Development
+```{r prof_development}
+load_data("professional_development.csv", ignore="date") %>%
+  arrange(desc(date)) %>%
+  mutate(date=format(as.Date(date), "%d %b %Y"), description = paste(bold(title), ". \\newline ", description, ". (", location, ")", sep=""), .keep="none") %>%
+  #select(-organization) %>%
+  relocate(date, description) %>%
+  baretable(align=c("l", "l", "X"))
+```
+
+# 3. Scholarly Activities
+
+## Publications
+```{r define_pubs}
+pubfile = paste(sources_dir, 'pubs.articles.csv', sep='/')
+```
+
+```{r download_pubs, cache=TRUE, cache.extra = tools::md5sum(pubfile)}
+# Load publications from CrossRef. Cache options mean only runs if source file or this chunk's code have changed
+pubs = read.csv(pubfile)  %>%
+  filter(doi != "")
+citations = unlist(cr_cn(pubs$doi, format="bibtex")) %>%
+  gsub(pattern="$\\less$i$\\greater$", repl="\\emph{", fixed=TRUE) %>% # Fix fonio genome title
+  gsub(pattern="$\\less$/i$\\greater$", repl="}", fixed=TRUE) %>%
+  gsub(pattern="$\\vert$", repl="|", fixed=TRUE) %>% # Fix G3 journal title
+  gsub(pattern="month=(...)", repl="month={\\1}") # Fix 3-letter month abbreviations
+
+# Fix non-unique keys
+keys = sub(citations, pattern="@[^\\{]+\\{([^,]+),.+", repl="\\1") %>%
+  sub(pattern = "^ +", repl="") # Strip leading spaces
+newkeys = paste(keys, 1:length(keys), sep="_")
+for(i in 1:length(citations)){
+  citations[i] = sub(citations[i], pattern=keys[i], repl=newkeys[i])
+}
+# Write out
+write(citations, paste(sources_dir,"pubs.articles.bib", sep='/'))
+```
+
+
+```{r load_pubs}
+# Load publications into R
+pubdata = read.csv(pubfile, row.names="doi", check.names=FALSE)
+rownames(pubdata) = tolower(rownames(pubdata))
+
+#bibliography_entries(paste(sources_dir, "pubs.articles.bib", sep="/"))
+pubs = bibliography_entries(paste(sources_dir, "pubs.articles.bib", sep="/"))
+pubs = pubs %>% arrange(desc(issued)) %>%
+  mutate(year=format(as.Date(issued), format="%Y"),
+         DOI=tolower(DOI),
+         period = pubdata[DOI, "period"],
+         type = pubdata[DOI, "article_type"])
+```
+
+```{r summarize_pubs}
+# Summary table of publications
+
+# Table output; "hold_position" argument keeps it in place, not top of page
+pub.summary = table(pubs$period, pubs$type) %>%
+  as.data.frame.matrix() %>%
+  relocate(research, review, book_chapter) %>%
+  rename("Research Article"=research, "Review"=review, "Book Chapter"=book_chapter, "Protocol"=protocol)
+pub.summary = pub.summary[order_periods(pubdata$period),]
+pub.totals = pub.summary %>%
+  summarize_all(sum)
+rownames(pub.totals) = "Total"
+
+pub.summary %>%
+  rbind(pub.totals) %>%
+  kbl(booktabs=TRUE) %>%
+  kableExtra::kable_styling(latex_options = c("hold_position")) %>%
+  row_spec(nrow(pub.summary), hline_after=TRUE) %>% # Separate from "totals"
+  row_spec(nrow(pub.summary)+1, italic=TRUE, background="white", align="r") # Change format for "totals" row
+
+```
+
+
+```{r print_pubs, results='asis'}
+
+# # NOTE: only actually prints entries if printed in full elsewhere. Made workaround in next chunk.
+
+# Having to hardcode due to something breaking / updating in package
+cite_period = function(myperiod){
+  count = sum(pubs$period==myperiod)
+  cat("### ", myperiod, " (", count, ")\n", sep="")
+  pubs %>% filter(period==myperiod) %>% vitae:::knit_print.vitae_bibliography()
+}
+
+cite_period("Associate Professor")
+cite_period("Assistant Professor")
+cite_period("Postdoc")
+cite_period("PhD")
+
+
+
+# TODO: Figure out how to indicate if I'm senior/corresponding author, bold my name, and underline lab members. (Latter two may have to be a lua filter apparnetly)
+# TODO: More control if I do this myself (to add bold, asterisks, etc?). Harder to change bibliography method, so keep commented out if need that for some reason.
+```
+
+```{r print_pubs_dummy, include=FALSE}
+# Workaround to needing a full printing for things to be included.
+# This doesn't show up, but it apparently gets everything placed properly to show
+#pubs
+```
+
+
+## Research Grants Received
+```{r grants_summary}
+#TODO: go through and double-check amounts. See conflicts between my grant-tracking and my tenure package
+# TODO: Fix fescue PGRP amounts after Noble withdraw
+
+# Calculate grant totals
+grants=load_data("grants.csv", ignore=c("start", "stop", "submitted")) %>%
+  mutate_at(c("amount_all", "amount_wallace"), as.numeric) %>%
+  mutate_at(c("start", "stop", "submitted"), as.Date) %>%
+  arrange(desc(submitted))
+totals = grants %>%
+  filter(status=="Current" | status=="Finished") %>%
+  group_by(period, role) %>%
+  summarize(total_all=sum(amount_all, na.rm=TRUE), total_wallace=sum(amount_wallace, na.rm=TRUE)) %>%
+  pivot_wider(names_from=role, values_from=c(total_all, total_wallace)) %>% 
+  rename(all_copi=`total_all_Co\\mbox{-}PI`, all_pi=total_all_PI,
+           mine_copi=`total_wallace_Co\\mbox{-}PI`, mine_pi=total_wallace_PI) %>%
+  relocate(period, all_pi, mine_pi, all_copi, mine_copi) %>%
+  mutate(total_all = all_pi + all_copi, total_mine = mine_pi + mine_copi)
+
+# # Totals for below
+# totals.sum = select(totals, -period) %>%
+#   mutate(period="Totals") %>%
+#   summarize_all(sum, na.rm=TRUE)
+# 
+# # Format pretty
+# accent_color="headcolor"
+# totals %>%
+#   rbind(totals.sum) %>%
+#   mutate_if(is.numeric, dollar)  %>%
+#   kbl(booktabs=TRUE, col.names=NULL) %>%
+#   kableExtra::kable_styling(latex_options = c("hold_position")) %>%
+#   add_header_above(c(" ", "Total", "Wallace Lab", "Total", "Wallace Lab", "Total", "Wallace Lab"), 
+#                    color=c(rep("black",5), rep(accent_color,2)),
+#                    bold=c(rep(FALSE,5), rep(TRUE,2)), 
+#                    italic=c(rep(FALSE,5), rep(TRUE,2))) %>%
+#   add_header_above(c(" ", "PI"=2, "Co-PI"=2, "Totals"=2), bold=TRUE,
+#                    italic=c(F,F,F,T),
+#                    color=c("black","black", "black", accent_color)) %>%
+#   column_spec(1, bold = T) %>%
+#   row_spec(nrow(totals), hline_after=TRUE) %>% 
+#   row_spec(nrow(totals)+1, italic=TRUE, color=accent_color) %>% # Change format for "totals" row
+#   column_spec(6:7, italic=TRUE, bold=TRUE, color=accent_color) 
+#   
+# # Grand totals
+# grand = paste(bold("Total grants: "), 
+#               dollar(totals.sum$all_pi + totals.sum$all_copi, prefix="\\$"), "; ", 
+#               bold("Total to Wallace: "), 
+#               dollar(totals.sum$mine_pi + totals.sum$mine_copi, prefix="\\$"), sep="") 
+# #cat("\\begin{center}",grand,"\\end{center}\n")
+```
+
+```{r grants_helpers}
+month_year=function(x){
+  as.Date(x) %>% format("%b %Y")
+}
+
+# Helper function to format grants. include_mine does whether or not to include my portion
+format_grants=function(x, include_mine=TRUE){
+  x = x %>% mutate(mine_desc = ifelse(is.na(amount_wallace) | !include_mine, 
+                                      yes=paste(" (", source, ")", sep=""),
+                                      no=paste(" (", source, "; ",
+                                               dollar(amount_wallace, prefix="\\$"), 
+                                               " to Wallace)", sep="")), .keep="all" )
+  x %>%
+    mutate(role=role,
+           amount=dollar(amount_all, prefix="\\$"),
+           description = paste(bold(title), mine_desc,". ", 
+                               month_year(start), "-",
+                               month_year(stop), ".",
+              sep=""), .keep="none") %>%
+    baretable(align=c("l", "l", "r", "X"))
+}
+```
+
+<!-- ### Pending -->
+<!-- ```{r grants_pending} -->
+<!-- pending = grants %>% filter(status=="Pending") -->
+<!-- if(nrow(pending)==0){ -->
+<!--   cat("[None currently]\n") -->
+<!-- }else{ -->
+<!--   format_grants(pending) -->
+<!-- } -->
+<!-- ``` -->
+
+<!-- ### Funded -->
+```{r grants_funded}
+funded = grants %>% filter(status=="Current" | status=="Finished")
+for(myperiod in order_periods(funded$period)){
+   cat("###", myperiod,"\n") 
+   funded %>% filter(period==myperiod) %>% 
+     select(-period) %>% 
+     format_grants()
+}
+  
+```
+
+<!-- ### Submitted but unfunded -->
+<!-- ```{r grants_unfunded} -->
+<!-- unfunded = grants %>% filter(status=="Declined") -->
+<!-- for(myperiod in order_periods(unfunded$period)){ -->
+<!--    cat("###", myperiod,"\n")  -->
+<!--    unfunded %>% filter(period==myperiod) %>%  -->
+<!--      select(-period) %>%  -->
+<!--      format_grants() -->
+<!-- } -->
+<!-- ``` -->
+
+## Awards
+```{r awards}
+load_data("awards.csv") %>%
+  relocate(when) %>%
+  mutate(award=bold(award)) %>%
+  filter(sponsor != "Phytobiomes Conference 2015") %>%  # NOt really relevant anymore
+  baretable(align=c("llXl"))
+```
+
+
+
+
+<!-- ## Meetings attended -->
+<!-- _\* = speaker, † = poster, § = international scope_ -->
+
+<!-- ```{r meetings} -->
+<!-- meetings = load_data("meetings.csv", ignore="date") %>% -->
+<!--   mutate(date=as.Date(date), year = format(date, "%Y")) %>% -->
+<!--   mutate(international=ifelse(is.na(international), FALSE, international))# Take care of using missing for F -->
+<!-- blank="\\textcolor{white}{\\_}" -->
+
+<!-- for(myperiod in order_periods(meetings$period)){ -->
+<!--    cat("###", paste(myperiod, " (", sum(meetings$period==myperiod), ")", sep=""),"\n") -->
+<!--    submeetings = meetings %>% filter(period==myperiod) -->
+
+<!--    for(myyear in sort(unique(submeetings$year), decreasing = TRUE)){ -->
+<!--      cat("####", paste(myyear, " (", sum(submeetings$year==myyear), ")", sep=""),"\n") -->
+<!--      submeetings %>%  -->
+<!--         filter(year==myyear) %>% -->
+<!--         select(-period, -year) %>% -->
+<!--         arrange(desc(date)) %>% -->
+<!--         mutate(speaker=ifelse(grepl("speaker", present), "*", blank), -->
+<!--                poster=ifelse(grepl("poster", present), "†", blank), -->
+<!--                international=ifelse(international=="TRUE", "§", blank), -->
+<!--                description=paste(bold(meeting), "; ", location, " (", format(date, "%B %Y"), ")", sep=""), .keep="none") %>% -->
+<!--         mutate(codes=paste(speaker, poster, international, sep=""), .keep="unused") %>% -->
+<!--         relocate(codes, description) %>% -->
+<!--         baretable(align=c("l", "l", "X")) -->
+<!--    } -->
+<!-- } -->
+
+<!-- ``` -->
+
+## Invited Presentations 
+_§ = international scope_
+
+```{r presentations}
+presents = load_data("presentations.csv", ignore="date") %>%
+  mutate(international = ifelse(is.na(international), FALSE, international)) %>% # Remove NAs
+  mutate(date=as.Date(date), international=ifelse(international, yes="§", no="")) %>%
+  arrange(desc(date)) %>%
+  mutate(date = format(date, "%d %b %Y"),
+         #title = paste(international, bold(title), ". ", event, " (", location, ").", sep=""),
+         title = paste(bold(title), ". ", event, " (", location, ").", sep=""),
+         .keep="unused") %>%
+  relocate(date, international, title)
+
+for(myperiod in order_periods(presents$period)){
+  count = sum(presents$period==myperiod)
+  cat("### ", myperiod, " (", count, ")\n", sep="")
+  presents %>% filter(period==myperiod) %>%
+    select(-period) %>%
+    baretable(align=c("l", "l", "l", "X"))
+}
+```
+
+
+## Posters & Abstracts
+
+```{r posters}
+posters = load_data("posters_and_abstracts.csv", ignore="date") %>%
+  mutate(international = ifelse(is.na(international), FALSE, international)) %>% # Remove NAs
+  mutate(date=as.Date(date), international=ifelse(international, yes="*", no="")) %>%
+  arrange(desc(date)) %>%
+  mutate(date = format(date, "%d %b %Y"),
+         title = paste(international, authors, " ", bold(title), ". ", event, " (", location, ").", sep=""),
+         .keep="unused")
+
+for(myperiod in order_periods(posters$period)){
+  count = sum(posters$period==myperiod)
+  cat("### ", myperiod, " (", count, ")\n", sep="")
+  posters %>% filter(period==myperiod) %>%
+    select(-period) %>%
+    baretable(align=c("l", "l", "X"))
+}
+```
+
+<!-- ## Other Creative Contributions -->
+<!-- ```{r creative_contributions} -->
+<!-- creatives = load_data("pubs.creative_contributions.csv", ignore="date") %>% -->
+<!--   mutate(date=as.Date(date)) %>% -->
+<!--   arrange(desc(date)) %>% -->
+<!--   mutate(date = format(date, "%d %b %Y"), -->
+<!--          description = paste(authors, bold(link(url, title))), .keep="unused") %>% -->
+<!--   relocate(date, description, type) %>% -->
+<!--   baretable(align=c("l", "l", "X", "l")) -->
+<!-- ``` -->
+
+
+# 4. Public Service
+
+```{r outreach}
+outreach = load_data("outreach.csv", ignore="date") %>%
+  arrange(desc(date)) %>%
+  mutate(num_participants = ifelse(is.na(num_participants), yes="", 
+                                   no=paste(num_participants, "participants; ")),
+         link = ifelse(is.na(link), yes="",
+                       no=paste(" (",link(link, "link"), ")", sep=""))) %>%
+  mutate(date=format(date, "%d %b %Y"), 
+         description=paste(bold(event), " (", num_participants, location, ")",
+                           link,"  \\newline ", description, sep=""), .keep="none") %>%
+  baretable(align=c("l","l", "X"))
+```
+
+# 5. Professional Service
+
+## Societies and Other Organizations
+```{r service_general}
+load_data("service_general.csv", ignore=c("start", "stop")) %>%
+  arrange(!is.na(stop), desc(stop), desc(as.Date(start))) %>%
+  mutate(
+    start=format(as.Date(start), "%b %Y"),
+    stop=ifelse(is.na(stop), "Present", format(as.Date(stop), "%b %Y")),
+    sep="--",
+    role=bold(role),
+    description = paste(bold(organization), ", ", unit, sep=""), 
+    .keep="unused") %>%
+  relocate(start, sep, stop, role, description) %>%
+  baretable(align=c("l", "l", "c", "l", "l", "X"))
+  
+```
+
+
+## Editorships
+```{r editorships}
+load_data("editorships.csv", ignore=c("start", "stop")) %>%
+  arrange(!is.na(stop), desc(stop), desc(as.Date(start))) %>%
+  mutate(
+    start=format(as.Date(start), "%b %Y"),
+    stop=ifelse(is.na(stop), "Present", format(as.Date(stop), "%b %Y")),
+    sep="--",
+    description = paste(bold(role), ", ", italic(organization), sep=""), 
+    .keep="unused") %>%
+  relocate(start, sep, stop, description) %>%
+  baretable(align=c("l", "l", "c", "l", "X"))
+```
+
+## Invited External Review
+```{r invited_reviews}
+# Header by period, then make a table with "type (total)" and "[list of orgs with (total) each if >1]"
+reviews = load_data("service_reviewing.csv")
+for(myperiod in order_periods(reviews$period)){
+   cat("####", myperiod,"\n") 
+   reviews %>% filter(period==myperiod) %>% 
+     select(-period, -year, -notes) %>% 
+     count(type, organization) %>%
+     mutate(organization = paste(organization, ifelse(n>1, paste(" (",n,")", sep=""), ""), sep="")) %>%
+     group_by(type) %>%
+     summarize(type = paste(type, " (", sum(n), ")", sep=""), 
+               organization = paste(sort(organization), sep="", collapse=", ")) %>%
+     unique() %>%
+     baretable(align=c("l","l","X"))
+}
+
+```
+
+
+## University Organizational Membership
+```{r membership_university}
+load_data("membership_university.csv") %>%
+  arrange(!is.na(stop), desc(stop), desc(start), organization) %>%
+  mutate(
+    stop=ifelse(is.na(stop), "Present", stop),
+    sep="--",
+    organization = bold(organization), 
+    .keep="unused") %>%
+  relocate(start, sep, stop, organization) %>%
+  baretable(align=c("l", "l", "c", "l", "X"))
+```
+
+## University Leadership & Administration
+```{r service_university}
+load_data("service_university.csv", ignore=c("start", "stop")) %>%
+  #arrange(!is.na(stop), desc(as.Date(start))) %>%
+  arrange(!is.na(stop), desc(stop), desc(as.Date(start))) %>%
+  mutate(
+    start=format(as.Date(start), "%b %Y"),
+    stop=ifelse(is.na(stop), "Present", format(as.Date(stop), "%b %Y")),
+    sep="--",
+    role=bold(role),
+    description = paste(bold(organization), ", ", unit, sep=""), 
+    .keep="unused") %>%
+  relocate(start, sep, stop, role, description) %>%
+  baretable(align=c("l", "l", "c", "l", "l", "X"))
+  
+# Deprecated reformat where have start-stop as one column instead of separate ones
+  # mutate(
+  #   date=paste(format(as.Date(start), "%b %Y"), ifelse(is.na(stop), "Present", format(as.Date(stop), "%b %Y")), sep="--"), 
+  #                   description = paste(bold(description), ", ", unit, sep=""), .keep="unused") %>%
+  # relocate(date, description) %>%
+  # baretable(align=c("l", "l", "X"))
+```
+
