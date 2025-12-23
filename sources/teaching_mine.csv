@@ -1,28 +1,32 @@
-class,code,credits,schedule,enrollment
-Research Methods and Design in Crop Science,CRSS 8010,3,Fall 2016,19
-Research Methods and Design in Crop Science,CRSS 8010,3,Fall 2018,25
-Research Methods and Design in Crop Science,CRSS 8010,3,Fall 2020,30
-Research Methods and Design in Crop Science,CRSS 8010,3,Fall 2022,39
-Research Methods and Design in Crop Science,CRSS 8010,3,Fall 2024,41
-PBGG Student Communication Seminar,PBGG 8860,1,Fall 2023,3
-PBGG Student Communication Seminar,PBGG 8860,1,Fall 2024,6
-PBGG Student Communication Seminar,PBGG 8860,1,Spring 2022,6
-PBGG Student Communication Seminar,PBGG 8860,1,Spring 2023,4
-PBGG Student Communication Seminar,PBGG 8860,1,Spring 2024,2
-PBGG Student Communication Seminar,PBGG 8860,1,Spring 2025,4
-PBGG Student Research Seminar,PBGG 8861,1,Fall 2023,8
-PBGG Student Research Seminar,PBGG 8861,1,Fall 2024,5
-PBGG Student Research Seminar,PBGG 8861,1,Spring 2022,6
-PBGG Student Research Seminar,PBGG 8861,1,Spring 2023,8
-PBGG Student Research Seminar,PBGG 8861,1,Spring 2024,6
-PBGG Student Research Seminar,PBGG 8861,1,Spring 2025,8
-Genomic selection,PBGG 8874,1,Spring 2017,13
-Genomic selection,PBGG 8874,1,Spring 2019,19
-Genomic selection,PBGG 8874,1,Spring 2021,13
-Genomic selection,PBGG 8874,1,Spring 2023,29
-Genomic selection,PBGG 8874,1,Spring 2025,23
-Genome-wide association in plants,PBGG 8875,1,Spring 2017,16
-Genome-wide association in plants,PBGG 8875,1,Spring 2019,23
-Genome-wide association in plants,PBGG 8875,1,Spring 2021,17
-Genome-wide association in plants,PBGG 8875,1,Spring 2023,28
-Genome-wide association in plants,PBGG 8875,1,Spring 2025,26
+date,class,code,credits,schedule,enrollment
+2016-08-10,Research Methods and Design in Crop Science,CRSS 8010,3,Fall 2016,19
+2017-01-01,Genome-wide association in plants,PBGG 8875,1,Spring 2017,16
+2017-03-01,Genomic selection,PBGG 8874,1,Spring 2017,13
+2018-08-01,Research Methods and Design in Crop Science,CRSS 8010,3,Fall 2018,25
+2019-01-01,Genome-wide association in plants,PBGG 8875,1,Spring 2019,23
+2019-03-01,Genomic selection,PBGG 8874,1,Spring 2019,19
+2020-07-22,Research Methods and Design in Crop Science,CRSS 8010,3,Fall 2020,30
+2021-01-01,Genome-wide association in plants,PBGG 8875,1,Spring 2021,17
+2021-03-01,Genomic selection,PBGG 8874,1,Spring 2021,13
+2022-01-01,PBGG Student Communication Seminar,PBGG 8860,1,Spring 2022,6
+2022-01-01,PBGG Student Research Seminar,PBGG 8861,1,Spring 2022,6
+2022-07-13,Research Methods and Design in Crop Science,CRSS 8010,3,Fall 2022,39
+2023-01-01,PBGG Student Communication Seminar,PBGG 8860,1,Spring 2023,4
+2023-01-01,PBGG Student Research Seminar,PBGG 8861,1,Spring 2023,8
+2023-01-01,Genome-wide association in plants,PBGG 8875,1,Spring 2023,28
+2023-03-01,Genomic selection,PBGG 8874,1,Spring 2023,29
+2023-09-01,PBGG Student Communication Seminar,PBGG 8860,1,Fall 2023,3
+2023-09-01,PBGG Student Research Seminar,PBGG 8861,1,Fall 2023,8
+2024-01-01,PBGG Student Communication Seminar,PBGG 8860,1,Spring 2024,2
+2024-01-01,PBGG Student Research Seminar,PBGG 8861,1,Spring 2024,6
+2024-07-03,Research Methods and Design in Crop Science,CRSS 8010,3,Fall 2024,41
+2024-09-01,PBGG Student Communication Seminar,PBGG 8860,1,Fall 2024,6
+2024-09-01,PBGG Student Research Seminar,PBGG 8861,1,Fall 2024,5
+2025-01-01,PBGG Student Communication Seminar,PBGG 8860,1,Spring 2025,4
+2025-01-01,PBGG Student Research Seminar,PBGG 8861,1,Spring 2025,8
+2025-01-01,Genome-wide association in plants,PBGG 8875,1,Spring 2025,26
+2025-03-01,Genomic selection,PBGG 8874,1,Spring 2025,23
+2025-05-01,Advanced Software Carpentries,BING 8960,3,Summer 2025,20
+2025-08-01,PBGG Student Communication Seminar,PBGG 8860,1,Fall 2025,2
+2025-08-01,PBGG Student Research Seminar,PBGG 8861,1,Fall 2025,8
+2025-08-01,Research Methods and Design in Crop Science,CRSS 8010,3,Fall 2025,40
