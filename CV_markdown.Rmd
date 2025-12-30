@@ -452,20 +452,22 @@ _§ = international scope_
 ```{r presentations}
 presents = load_data("presentations.csv", ignore="date") %>%
   mutate(international = ifelse(is.na(international), FALSE, international)) %>% # Remove NAs
-  mutate(date=as.Date(date), international=ifelse(international, yes="§", no="")) %>%
+  mutate(date=as.Date(date), 
+         international=ifelse(international, yes="§", no="")) %>%
   arrange(desc(date)) %>%
   mutate(date = format(date, "%d %b %Y"),
          #title = paste(international, bold(title), ". ", event, " (", location, ").", sep=""),
          title = paste(bold(title), ". ", event, " (", location, ").", sep=""),
          .keep="unused") %>%
-  relocate(date, international, title)
+  relocate(date, international, title) %>%
+  mutate(invited_or_volunteered = ifelse(invited_or_volunteered=="invited", yes="(Invited)", no=""))  # Remove non-invited things
 
 for(myperiod in order_periods(presents$period)){
   count = sum(presents$period==myperiod)
   cat("### ", myperiod, " (", count, ")\n", sep="")
   presents %>% filter(period==myperiod) %>%
-    select(-period) %>%
-    baretable(align=c("l", "l", "l", "X"))
+    select(-period, ) %>%
+    baretable(align=c("l", "l", "l", "X", "l"))
 }
 ```
 
